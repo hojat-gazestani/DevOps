@@ -1,0 +1,19 @@
+
+sudo curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
+
+sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb
+
+sudo apt install mysql-server
+
+mysql -V
+
+sudo mysqladmin -u root -p version
+
+
+ mysql -u root -p
+CREATE DATABASE jira_db;
+CREATE USER 'jira_user'@'localhost' IDENTIFIED BY 'Your_Password';
+GRANT ALL PRIVILEGES ON jira_db.* TO 'jira_user'@'localhost' IDENTIFIED by 'Your_Password';
+FLUSH PRIVILEGES;
+
+# wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.8.2-x64.bin
