@@ -4,8 +4,17 @@ sudo apt update && sudo apt upgrade -y
 
 Step-2: MariaDB
 ===============
-sudo apt install mariadb-server -y
-sudo mysql
+sudo vim /etc/apt/sources.list.d/mysql.list
+deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-apt-config
+deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-8.0
+deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-tools
+#deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-tools-preview
+deb-src http://repo.mysql.com/apt/ubuntu/ bionic mysql-8.0
+
+sudo apt update
+sudo apt install mysql-server
+
+sudo mysql -u root -p
 CREATE DATABASE jiradb CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 CREATE USER 'jirauser'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL ON jiradb.* TO 'jirauser'@'localhost' WITH GRANT OPTION;
