@@ -1,0 +1,88 @@
+Step-1: Update your system
+==========================
+sudo apt update && sudo apt upgrade -y
+
+Step-2: MariaDB
+===============
+sudo apt install mariadb-server -y
+sudo mysql
+CREATE DATABASE jiradb CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+CREATE USER 'jirauser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON jiradb.* TO 'jirauser'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EXIT;
+
+Step-3: Jira
+============
+sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf
+[mysqld]
+default-storage-engine= INNODB
+character_set_server = utf8mb4
+innodb_default_row_format = DYNAMIC
+innodb_large_prefix = ON
+innodb_file_format = Barracuda
+innodb_log_file_size = 2G
+sql_mode = NO_AUTO_VALUE_ON_ZERO
+
+sudo systemctl restart mariadb.service
+
+
+wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-8.14.0-x64.bin
+sudo chmod a+x atlassian-jira-software-8.14.0-x64.bin
+sudo ./atlassian-jira-software-8.14.0-x64.bin
+o Enter
+2 Custom install
+Enter Default location
+1 Default port
+y Install Jira service
+i Install as service
+
+Step-4: Configure Jira
+======================
+wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.18.zip
+sudo unzip mysql-connector-java-8.0.18.zip
+sudo cp mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar /opt/atlassian/jira/lib
+sudo /etc/init.d/jira stop
+sudo /etc/init.d/jira start
+
+Step-5: Configure proxy
+======================
+sudo vim /opt/atlassian/jira/conf/server.xml
+<Connector port="8080" relaxedPathChars="[]|" relaxedQueryChars="[]|{}^`"<>"
+maxThreads="150" minSpareThreads="25" connectionTimeout="20000" enableLookups="false"
+maxHttpHeaderSize="8192" protocol="HTTP/1.1" useBodyEncodingForURI="true" redirectPort="8443"
+acceptCount="100" disableUploadTimeout="true" bindOnInit="false" scheme="http"
+proxyName="jira.example.com" proxyPort="80"/>
+
+sudo /etc/init.d/jira stop
+sudo /etc/init.d/jira start
+
+Step-6: Configure Nginx As Revers Proxy
+=======================================
+sudo apt install nginx -y
+sudo vim /etc/nginx/sites-available/jira.conf
+server {
+     listen 8080;
+     server_name localhost;
+     location / {
+         proxy_set_header X-Forwarded-Host $host;
+         proxy_set_header X-Forwarded-Server $host;
+         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_pass http://localhost:8080;
+         client_max_body_size 10M;
+     }
+ }
+
+sudo ln -s /etc/nginx/sites-available/jira.conf /etc/nginx/sites-enabled
+sudo nginx -t
+
+systemctl nginx restart
+systemctl jira restart
+
+Step-7: Access Jira
+===================
+http://www.jira.example.com
+i will set it up myself
+My own Database
+Next
+
