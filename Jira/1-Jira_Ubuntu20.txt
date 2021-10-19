@@ -35,7 +35,7 @@ sql_mode = NO_AUTO_VALUE_ON_ZERO
 
 sudo systemctl restart mariadb.service
 
-
+wget https://product-downloads.atlassian.com/software/jira/downloads/atlassian-servicedesk-8.1.0-x64.bin
 wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-8.14.0-x64.bin
 sudo chmod a+x atlassian-jira-software-8.14.0-x64.bin
 sudo ./atlassian-jira-software-8.14.0-x64.bin
