@@ -46,6 +46,54 @@ Enter Default location
 y Install Jira service
 i Install as service
 
+Install jira from archive file
+------------------------------
+java -version
+echo $JAVA_HOME
+
+
+
+sudo /usr/sbin/useradd --create-home --comment "Account for running JIRA Software" --shell /bin/bash jira
+
+mkdir /opt/atlassian/jira
+
+tar -xzf atlassian-jira-software-X.X.X.tar.gz -C /opt/atlassian/jira
+cd /opt/atlassian/jira
+tar -xf atlassian-jira-software-X.X.X.tar
+
+chown -R jira /opt/atlassian/jira
+chmod -R u=rwx,go-rwx /opt/atlassian/jira
+
+mkdir jirasoftware-home
+
+chown -R jira  /var/atlassian/application-data/jira 
+chmod -R u=rwx,go-rwx  /var/atlassian/application-data/jira 
+
+sudo vim  /opt/atlassian/jira\atlassian-jira\WEB-INF\classes\jira-application.properties
+jira.home=/var/jirasoftware-home
+
+export JIRA_HOME= /var/atlassian/application-data/jira 
+
+sudo vim  /opt/atlassian/jira\conf\server.xml
+<Server port="5005" shutdown="SHUTDOWN">
+...
+   <Service name="Catalina">
+      <Connector port="5050"
+         maxThreads="150"
+         minSpareThreads="25"
+         connectionTimeout="20000"
+         enableLookups="false"
+         maxHttpHeaderSize="8192"
+         protocol="HTTP/1.1"
+         useBodyEncodingForURI="true"
+         redirectPort="8443"
+         acceptCount="100"
+         disableUploadTimeout="true"/>
+
+sudo su <user>
+./start-jira.sh
+
+
 Step-4: Configure Jira
 ======================
 wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.18.zip
