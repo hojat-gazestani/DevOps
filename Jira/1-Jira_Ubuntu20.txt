@@ -64,7 +64,7 @@ tar -xf atlassian-jira-software-X.X.X.tar
 chown -R jira /opt/atlassian/jira
 chmod -R u=rwx,go-rwx /opt/atlassian/jira
 
-mkdir jirasoftware-home
+mkdir /var/atlassian/application-data/jira 
 
 chown -R jira  /var/atlassian/application-data/jira 
 chmod -R u=rwx,go-rwx  /var/atlassian/application-data/jira 

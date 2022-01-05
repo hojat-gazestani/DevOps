@@ -1,0 +1,96 @@
+Database Clustering Tutorials
+
+💢 Database Cluster
+----------------
+Data redandancy
+Scalability		Load balancer
+Availablility
+Monitoring 		Automation
+
+💢 Terminology
+--------------
+🔘 Database cluster
+	Group of computer (Node: instance of a DB)
+
+Topology:
+	Infrastructure of DB cluster
+		Master / Master Galera
+		Master / Slave
+
+		Master: Read/Write	PIC-1
+		Slave : Read 		PIC-2
+
+💢  Setting up a Database Cluster
+---------------------------------
+🔘 Infrastructure
+	1 node per computer
+	2 node 
+	DBMS- Control Panel
+		Cluster control
+
+💢  Galera Clustring
+--------------------
+🔘 Master / Master
+	Synchronous
+		Data will sync imidately: it take time to be sync, transaction take time before agreement
+	Asynchronous
+		Slave lag: time for slave node to be synced
+
+💢  Setting up Ubuntu
+---------------------
+Starter
+	
+ClusterControl	10.71.34.101
+Master1			10.71.34.102
+Master2			10.71.34.103
+
+💢  Installing ClusterControl
+------------------------------
+wget http://www.server/cmon/install-cc
+chmoe +x install-cc
+./intall-cc OR HOST=10.71.34.101 ./install-cc
+
+💢  Setting up a Cluster in ClusterControl
+------------------------------------------
+
+Deploy a new database cluster
+MySQL Galera
+	SSH User: user
+	SSH Key Path: /home/user/.ssh/id_rsa
+	Sudo Password: openstack
+	SSH Port: 22
+
+	Cluster Name: ClusterTest
+	Install Software
+	Disable firewall 
+	Disable AppArmor/SELinux
+
+	Vendor: MairaDB
+	Root Password: openstack
+	ADD Node: 10.71.34.102
+	ADD Node: 10.71.34.103
+
+💢  ProxySQL Load Balancer
+--------------------------
+ClusterTest
+	Manage:
+		Choose where to install:
+			Server Address: ClusterControl
+
+			Administrator User: admin password
+			Monitor user: 		proxy-monitor password
+
+		Select instance to balance:
+			10.71.34.102:3306	include
+			10.71.34.103:3306	include
+
+		Implicit Transactions:
+			Are you using implicit transactions: no
+
+
+💢  ClusterControl Scripting with Developer Studio
+--------------------------------------------------
+
+
+Source:
+https://www.youtube.com/watch?v=wHML-r3CVmQ&list=PL_c9BZzLwBRLO-HHp0XU3f9KSHR5Tc33c&index=11
