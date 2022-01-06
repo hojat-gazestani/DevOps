@@ -14,7 +14,7 @@ Monitoring 		Automation
 
 Topology:
 	Infrastructure of DB cluster
-		Master / Master Galera
+		Master / Master Galera OR cluster-based database replication.
 		Master / Slave
 
 		Master: Read/Write	PIC-1
