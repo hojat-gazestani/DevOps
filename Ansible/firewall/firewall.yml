@@ -1,0 +1,9 @@
+---
+- name: Open Firewall
+  hosts: app
+  roles:
+    - name: firewall_r
+      firewall_services:
+        - http
+        - https
+      service_state: enabled

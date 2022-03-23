@@ -1,0 +1,9 @@
+---
+- name: Add Key to hosts
+  hosts: all
+  tasks:
+  - name: Install key
+    authorized_key:
+      user: user
+      state: present
+      key: "{{ lookup('file', '/home/hojii/.ssh/id_rsa.pub') }}"
