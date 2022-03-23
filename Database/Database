@@ -1,0 +1,200 @@
+
+Webinar replay: 9 DevOps Tips for Going in Production with Galera Cluster for MySQL
+
+Agenda
+------
+101 Sanity Check
+Operating System
+Selecting MySQL and Galera version
+Backup Strategies
+Galera Recovery
+Qeury Recovery
+Quera Performance
+Schema Changes
+Security / Encryption
+Reporting
+Protecting for Disasters
+
+
+💢 101 Sanity Check
+-------------------
+🔘 Ensure all tables are InnDb
+	Innodb support FUULTEXT indexes in MySQL 5.6
+
+🔘 Ensure all tables have a Primary key
+	If no primary key is defined you can do:
+		ALTER TABLE table ADD COLUME pkid BEGIN AUTO_INCREMENT PRIMARY KEY;
+
+🔘 Ensure you have NO unbound queries
+	UPDATE table SET x=x+1
+	Better support for huge (unbound) queries are in the pipe
+
+🔘 Use wsrep sst method=xtrabackup-v2
+
+🔘 WAN environment
+	wsrep: ... turning message relay reuesting on, nonlive peers
+
+	Increase timeouts
+		wsrep_provider_options='evs.keepavlie_period=PT3S;
+		evs.suspect_timeout=PT30S;
+		evs.inactive_timeout=PT1M;
+		evs.install_timeout=PT1M;
+		evs.send_window=1024;
+		evs.user_send_window=512;
+
+	this will relax how fast a node will be evicated from the cluster.
+
+🔘 Usully default values are good if networks with a ping time of <10-15ms
+
+🔘 There is no reason to use any 5.5 based MySQL variants
+
+🔘 Use MySQL 5.6 / MariaDB 10.x
+	Lots of bug fixes
+	Performance optimizations
+		Write intensive workloads
+		Query optimizer enhancements
+
+🔘 A good foundation for later upgrading to 5.7 based MySQL
+
+🔘 Use Galera Version 3.x series
+
+💢 Operating System
+-------------------
+🔘 Swapping
+	echo "1" > /proce/sys/vm/swappiness
+
+🔘 NUMA on Multi-socket
+	Can lead to contention and storage lockups
+	Is it enabled:
+		dmesg | grep -i numa
+	Grub boot option "numa=off"
+
+🔘 Filesystem
+	Reduce writes by mounting with
+		noatime
+
+🔘 In virtualized environment it is easy to overcommit resources on a single Host
+
+🔘 Keep tack on the Host hosting the VMs
+	Is it heavily loaded
+	CPU Steal
+	Is it even Swapping
+
+💢 Backup
+---------
+🔘 Percona XtraBackup
+	Online consistent backup
+	Full and incremental backups
+	Possible to backup dtabases and tables when innodb_file_per_table is used
+	Parallelim & compression & encryption
+
+🔘 Mysqldump
+	Use with -single-transaction, consistent / online for innodb tables
+	May require tweaking of innodb_old_blocks_time and innodb_old_blocks_pct (default values in 5.6 are quire good)
+
+💢 Galera Recovery (IST)
+------------------------
+🔘 IST (Incremental Stat Transfer) is faster than SST (Snapshot state Treansfer)
+
+🔘 Each Galera node has a cashe, gchache.
+	Stores committed write stes
+	Circular buffer
+
+🔘 If a node is down (crash, maint window) and then become a JOINER:
+	Send id of last applied write set to the DONOR
+	DONER checks if it can send the next events from the gcache.
+		YES == IST (fast)
+		NO  == SST (slow) e.g 3TB data is no fun to SST
+
+🔘 Dimension the gcache, example to handle a maintenance window of 6 hours:
+	Write to cluster per second: 1MB/S
+	Maintenance window (seconds) = 6 hours *60*60 = 21600s
+	gcache size = 1 MB/s * 21600s = 21GB
+	1.5x or 2x the value to have margine:
+		gcache.size=42G
+
+🔘 wsrep_provider_options='gcache.size=42G'
+
+🔘 How much do you write to the Galera Cluster?
+	Look at the sum of 
+	wsrep_replication_bytes
+	AND
+	wsrep_received_bytes
+	AND
+	get the rate between two points in time.
+
+🔘 Here we can see that a node handles:
+	
+💢 Galera Recovery (SST)
+------------------------
+🔘 Two pitfalls to be avoided with SSTs:
+
+🔘 wsrep_sst_method=rsync
+	You may have to change in /usr/bin/wsrep_sst_rsync:
+		timeout = 3000 -> 3600 (or bigger)
+	Else the rsync daemons may timeout when initializing the SST
+
+🔘 wsrep_sst_method=xtrabackup[-v2]
+	Uses mysql tmpdir by default.
+	if tmpdir is too small SST may fail on the doner. The transaction log simpley does not fit.
+	you can set in my.cnf
+		[xtrabackup]
+			tmpdir=/a/bigger/partition
+	How big do I need tmpdir to be? [KB writes to node ] X [ backup time]. Similar to the gcache.
+
+💢 Query Performance
+---------------------
+🔘 A number of things to watch out for:
+	Badly written queries or missing indexes
+	DDL locking many record (BEGIN; SELECT * FROM 1 FOR UPDATE;)
+	DDL updating/deleting many recordsd in one chunk
+		wsrep_max_ws_rows/wsrep_max_ws_size sets upper limits
+		Update/delete "small" batches of 1000-10000 records. Do not update 100000 reocrds.
+	Deadlocks and deadlock prone code
+		E.g running two mysqldumps at the same time
+		Updateing the very same record in a very hot table from multiple 
+		threads on multiple hosts
+
+🔘 Use your favorite tool to detect the problems.
+
+🔘 When performance grinds to a halt you want ot know about it.
+
+🔘 You may want to have an Alarm notification
+
+🔘 And see if Galera is clogged up
+
+🔘 If a dead-lock happens, you want tell your developers
+
+💢 Schema Changes
+-----------------
+🔘 Consider an upgrade from schema version V1 to version V2
+
+🔘 There are two principal types of schema changes that can performed:
+	compatible:
+		E.g ALTER TABLE .. ADD COLUMN ... , CREATE INDEX
+		Application(s) wiil still continue with V1
+		Upgrade schema first, then applicatins
+
+	Incompatible:
+		E.g ALTER TABLE .. DROP COLUMN ...
+		Application(s) connot use v2
+		Must upgrade applicatins first to support V2, and upgrade schema to V2
+
+🔘 Galera supports multiple ways for upgrading schema from v1 to V2
+	Total Order isolation (TOI)
+		wsrep_osu_method=TOI
+	Rolling Schema Upgrade (RSU)
+		wsrep_osu_method=RSU
+	Desynching nodes (not covered here), but check out
+
+🔘 Total Order Isolation (TOI)
+	Default method
+	Executed in the same order wrt to other transactions on all Galera nodes
+	Cluster behaves like a single mysql server
+	Ok for non-copying ALTER TABLE or tiny seldomly used tables (100s of records) or if application traffic is disabled.
+		ALTER TABLE ... ADD INDEX .. / CREATE INDEX
+	Not ok for copying ALTER, since tables is LOCKEK
+		May wreack havoc.
+
+
+https://www.youtube.com/playlist?list=PLiyYEa6zXn-PpjpyYkHNKKZn5byUy1XH1
