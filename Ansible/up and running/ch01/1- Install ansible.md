@@ -76,4 +76,13 @@ ansible testserver -b -m service -a "name=nginx state=restarted"
 vagrant destroy -f
 ```
 
+### vagrant
+```shell
+vagrant box list
+vagrant box remove laravel/homestead
+vagrant global-status
+vagrant destroy nameOfYourBox
+
+vagrant up
+```
 
