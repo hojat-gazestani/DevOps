@@ -1,0 +1,39 @@
+---
+- name: Set Hostname 1
+  hosts: app
+  gather_facts: false
+  tasks:
+    - name: host1
+      hostname: 
+        name: host1.example.com
+- name: Set Hostname 1
+  hosts: web
+  gather_facts: false
+  tasks:
+    - name: host2
+      hostname: 
+        name: host2.example.com
+- name: Set Hostname 3
+  hosts: backup
+  gather_facts: false
+  tasks:
+    - name: host3
+      hostname: 
+        name: host3.example.com
+      notify: remove_hosts
+  handlers:
+    - name: remove_hosts
+      file: 
+        path: /etc/hosts
+        state: absent
+
+- name: Manage Hosts Files
+  hosts: all
+  gather_facts: true
+  tasks:
+    
+    - name: Deploy Hosts Template
+      template:
+        src: hosts.j2
+        dest: /etc/hosts
+

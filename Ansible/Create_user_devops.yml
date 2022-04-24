@@ -1,0 +1,26 @@
+---
+- name: Deploy Ansible User
+  hosts: all
+  tasks:
+    
+    - name: Create User
+      user:
+        name: devops
+        groups: "{{ admin_group }}"
+        create_home: true
+        comment: 'Ansible Management Account'
+        expires: -1
+        password: '$6$AZ$tfbOH9FsYkG9EkUfU6Ms7qvQM7Jlv5hbWlfaZ4BLkUFUPWalAFW12L3cioXyrWMkmNAyjxC9tCMBiTubILv3F/'
+
+    - name: Install SSH Key
+      authorized_key:
+        user: devops
+        state: present
+        manage_dir: true
+        key: "{{ lookup('file', '/home/hojii/.ssh/id_rsa.pub') }}"
+
+    - name: Setup Devops Sudo Access
+      copy:
+        dest: /etc/sudoers.d/devops
+        content: 'devops ALL=(ALL) NOPASSWD: ALL'
+        validate: /usr/sbin/visudo -cf %s

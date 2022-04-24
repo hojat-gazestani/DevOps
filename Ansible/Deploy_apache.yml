@@ -1,0 +1,49 @@
+---
+- name: Deploy Apache
+  hosts: app
+  gather_facts: true
+  tasks:
+
+    - name: Install Apache/Packages
+      yum:
+        name:
+          - httpd
+          - httpd-manual
+          - firewalld
+        state: latest
+      
+    - name: Don't Listen on All Interface
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^Listen 80'
+        state: absent
+
+    - name: Listen Single IPv4 Interface
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        insertafter: '^#Listen'
+        line: 'Listen {{ ansible_default_ipv4.address }}:80'
+
+    - name: Default Page
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          Welcome page
+          This was developed by deveops
+
+    - name: Start Services
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - httpd
+        - firewalld
+
+    - name: Open Firewall
+      firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+...
