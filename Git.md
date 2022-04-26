@@ -8,13 +8,19 @@
 
 ## ADD, STATUS, COMMIT
 
+```shell
 cd ww/project
 git init
 ls -la .git
+```
 
+
+
+```shell
 git status
 on brach master
 Initial commit
+```
 
 
 
@@ -29,22 +35,30 @@ vim index.html
 
 
 
-git status
 ```shell
+git status
 Untracked files:
 	index.html
 ```
 
 ​	
 
+```shell
 git add index.html
 git status
 new file:  index.html
+```
 
+
+
+```shell
 git commit -m "this is message"
+```
 
-vim index.html
+
+
 ```html
+vim index.html
 <html>
 <body>
 	hi here
@@ -54,16 +68,25 @@ vim index.html
 
 
 
+```shell
 git status 
 modified : index.html
+```
 
+
+
+```shell
 git add -A
 git status
 git commit -m "commited all"
+```
+
+
 
 
 ## JOB HISTORY: GIT LOG
 
+```shell
 git log
 
 vim page1.html
@@ -72,6 +95,9 @@ vim page2.html
 	this is page2
 vim page3.html
 	this is page3
+```
+
+
 
 ```shell
 git status
@@ -103,7 +129,8 @@ Untracked file:
 	page3.html
 ```
 
-​	
+
+```shell
 git add "page*"
 
 git commit -m "3 pages"
@@ -117,13 +144,16 @@ git add index.html
 git commit -m "commit on index.html"
 
 git log
+```
+
+
 
 
 
 
 ## HISTORY OF CHANGES
 
-
+```shell
 git status
 
 git diff HEAD
@@ -139,11 +169,14 @@ unstaged changes after reset:
 git checkout -- page3.html
 
 git commit
+```
+
+
 
 
 ## BRANCHES
 
-
+```shell
 git branch
 *master
 
@@ -158,6 +191,7 @@ git checkout fixpages
 git branch
 master
 *fixpages
+```
 
 
 
@@ -170,6 +204,7 @@ vim footer.html
 
 
 
+```shell
 git status
 On branch fixpages
 
@@ -194,12 +229,16 @@ git checkout master
 git merge fixpages
 
 git log
+```
+
+
 
 
 
 
 ## COUNTINIOU BRANCHES
 
+```shell
 git branch linkingpages
 
 git checkout linkingpages
@@ -207,6 +246,9 @@ git checkout linkingpages
 git status
 
 git rm footer.html
+```
+
+
 
 ```html
 vim index.html
@@ -222,6 +264,7 @@ vim index.html
 
 
 
+```shell
 git commit -m "removed footer"
 
 git add -A
@@ -233,25 +276,31 @@ git checkout master
 git merge linkingpages
 
 git branch -d linkingpages
+```
+
+
 
 
 
 
 ## COUNTINIOU BRANCHES - REMOTE
 
-
+```shell
 git push origin maser
 gazestani
 password
 
 git pull origin master
+```
+
+
 
 
 
 
 ## CONFLICT
 
-
+```shell
 cd ww/project
 
 git status
@@ -265,18 +314,20 @@ git remote -v
 git push -u origin master
 
 cd ../titabmistory
+```
+
+
 
 ```shell
 # MADE SOME CHANGES
+
+git commit -M "added a newline text only for show conflict"
 ```
 
 
-
-git commit -M "added a newline text only for show conflict"
 
 ```shell
 # MADE SOME ANOTHER CHANGES FROM ANOTHER COMPUTER
-```
 
 git commit -m "second edited"
 
@@ -297,11 +348,14 @@ git commit -m "fix the conflict on new line"
 git push 
 
 
+```
+
+
 
 
 ## SIGN AND TAG
 
-
+```shell
 pgp
 gpg
 
@@ -337,13 +391,16 @@ git show v2.1
 git tag -v v2.1
 
 git commit -S  -m "this is sign commit"
+```
+
+
 
 
 
 
 ## DEBUG
 
-
+```shell
 git help blame
 
 less somefile.sh
@@ -353,6 +410,9 @@ git blame somefile -L8,10
 git bisect start
 git bisect bad
 git bisect good SOME-SIGNE-STADE 
+```
+
+
 
 ## GITLAB
 
