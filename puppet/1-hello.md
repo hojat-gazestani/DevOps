@@ -1,3 +1,4 @@
+```shell
 mkdir puppet
 cd puppet
 mkdir manifests
@@ -10,5 +11,5 @@ node 'hostname-localhost' {
         content => "Hello World\n",
         }
 }
-
+```
 puppet apply manifests/site.pp
