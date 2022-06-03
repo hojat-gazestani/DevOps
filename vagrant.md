@@ -26,6 +26,140 @@ Ubuntu
 
 
 
+3-Getting started with VirtualBox and Vagrant
+
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+
+  config.vm.provider "virtualbox" do |vb|
+  end
+end
+
+```
+
+
+
+4- vagrant up vs reload-customize ram,cpu, hostname
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+
+  config.vm.provider "virtualbox" do |vb|
+  end
+
+  config.vm.define "base" do |base|
+    base.vm.box = "bento/centos-7"
+    base.vm.hostname = "base-1"
+    base.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", "1024"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+end
+```
+
+
+
+5- customuze nework
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+
+  config.vm.provider "virtualbox" do |vb|
+  end
+
+  config.vm.define "base" do |base|
+    base.vm.box = "bento/centos-7"
+    base.vm.hostname = "base-1"
+    base.vm.network "private_network", ip:"192.168.56.101",
+      name: "vboxnet0"
+
+    base.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", "1024"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+end
+
+```
+
+
+
+
+
+## 6- Provision a apache web server Virtual Machine
+
+## 
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+
+  config.vm.provider "virtualbox" do |vb|
+  end
+
+  config.vm.define "web" do |web|
+    web.vm.box = "bento/centos-7"
+    web.vm.hostname = "web-server"
+    web.vm.network "private_network", ip:"192.168.56.101",
+      name: "vboxnet0"
+
+    web.vm.network :forwarded_port, guest: 80, host: 8080
+    web.vm.provision :shell, path: "bootstrap.sh"
+
+    web.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", "1024"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+end
+
+```
+
+
+
+7-Vagrant Multi-Machine
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+
+  config.vm.provider "virtualbox" do |vb|
+  end
+
+  config.vm.define "puppet" do |puppet|
+    puppet.vm.box = "bento/centos-7"
+    puppet.vm.hostname = "puppet"
+    puppet.vm.network "private_network", ip:"192.168.56.110",
+      name: "vboxnet0"
+
+    puppet.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", "2048"]
+      v.customize ["modifyvm", :id, "--cpus", "2"]
+    end
+  end
+
+  config.vm.define "client" do |client|
+    client.vm.box = "bento/centos-7"
+    client.vm.hostname = "client"
+    client.vm.network "private_network", ip:"192.168.56.111",
+      name: "vboxnet0"
+
+    client.vm.provider :virtualbox do |vv|
+      vv.customize ["modifyvm", :id, "--memory", "1024"]
+      vv.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+
+end
+
+```
+
+
+
 ### status
 
 ```shell
@@ -157,6 +291,8 @@ if ! [ -L /var/www ]; then
   rm -rf /var/www
   ln -fs /vagrant /var/www
 fi
+
+systemctl start httpd
 ```
 
 
