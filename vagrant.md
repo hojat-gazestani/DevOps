@@ -252,6 +252,142 @@ vagrant destroy
 
 
 
+## Multi-Machine
+
+Create machine
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7"
+  
+  config.vm.provider "virtualbox" do |vb|
+    end
+    
+ config.vm.define "web" do |web|
+    web.vm.box = "bento/centos-7"
+    web.vm.hostname = "web"
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "bento/centos-7"
+    config.vm.hostname = "db"
+  end
+end
+
+```
+
+
+
+private network
+
+```bash
+class VagrantPlugins::ProviderVirtualBox::Action::Network
+  def dhcp_server_matches_config?(dhcp_server, config)
+    true
+  end
+end
+
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7"
+  
+  config.vm.provider "virtualbox" do |vb|
+    end
+    
+ config.vm.define "web" do |web|
+    web.vm.box = "bento/centos-7"
+    web.vm.network "private_network", type: "dhcp",
+      name: "vboxnet0"
+    web.vm.hostname = "web"
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "bento/centos-7"
+    db.vm.network "private_network", ip:"192.168.56.101",
+      name: "vboxnet0"
+    config.vm.hostname = "db"
+  end
+end
+
+```
+
+
+
+Install apache
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7"
+  
+  config.vm.provider "virtualbox" do |vb|
+    end
+    
+ config.vm.define "web" do |web|
+    web.vm.box = "bento/centos-7"
+    web.vm.hostname = "web"
+    web.vm.provision "allow_guest_host_resolution",
+    type: "shell",
+      inline: <<-SHELL
+        yum update
+        yum install -y httpd
+       SHELL
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "bento/centos-7"
+    config.vm.hostname = "db"
+  end
+end
+
+```
+
+
+
+Diffrent Cpu and memory
+
+```bash
+Vagrant.configure("2") do |config|
+config.vm.box = "bento/centos-7"
+
+ config.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+     vb.cpus = 3
+   end
+
+
+config.vm.define "web" do |web|
+    web.vm.box = "bento/centos-7"
+    web.vm.network "private_network", type: "dhcp",
+      name: "vboxnet0"
+    web.vm.hostname = "web"
+    web.vm.provision "allow_guest_host_resolution",
+      type: "shell",
+      inline: <<-SHELL
+        yum update
+        yum install -y httpd
+       SHELL
+    web.vm.provider :virtualbox do |vv|
+      vv.customize ["modifyvm", :id, "--memory", "2048"]
+      vv.customize ["modifyvm", :id, "--cpus", "2"]
+    end
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "bento/centos-7"
+    db.vm.network "private_network", ip:"192.168.56.101",
+      name: "vboxnet0"
+    db.vm.hostname = "db"
+    db.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", "1024"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+  end
+end
+
+```
+
+
+
 ## Source
 
-> https://learn.hashicorp.com/tutorials/vagrant/getting-started-share?in=vagrant/getting-started
+> https://learn.hashicorp.com/tutorials/vagrant/getting-started-share?in=vagrant/getting-started 
