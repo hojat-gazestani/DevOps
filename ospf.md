@@ -1,3 +1,10 @@
+## Passive interface
+```bash
+passive-interface default
+no passive-interface FastEthernet0/1
+no passive-interface FastEthernet1/0
+```
+
 ## OSPF Authentication on interface
 
 # Clear text
@@ -18,6 +25,9 @@ ip ospf message-digest-key 1 md5 HojatKey
 ```bash
 router ospf 1
   area 2 authentication message-digest
+  
+  
+  area 1.1.1.1 authentication message-digest
 ```
   
 ## Redistribute with route map
