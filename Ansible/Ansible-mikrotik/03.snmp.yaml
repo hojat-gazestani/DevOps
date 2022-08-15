@@ -1,0 +1,18 @@
+---
+- hosts: snmp
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    ansible_network_os: routeros
+    ansible_user: admin
+
+  tasks:
+    - name: Configure SNMP
+      community.routeros.command:
+        commands:
+          - /snmp set enabled=yes
+          - /snmp community set name=password 0
+          - /snmp community add name=Hojat
+          - /snmp set contact="Hojat <hojat@noorano.com>"
+          - /snmp set location="Universe 10 - Datacenter"

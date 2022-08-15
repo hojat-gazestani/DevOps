@@ -1,0 +1,3 @@
+/ip/dhcp-client renew ether1
+/ip/dhcp-client/add interface=ether2
+/ip/address/remove number=0

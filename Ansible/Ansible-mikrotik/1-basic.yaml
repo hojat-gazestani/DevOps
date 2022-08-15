@@ -1,0 +1,78 @@
+---
+- hosts: mikrotik
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    ansible_network_os: routeros
+    ansible_user: admin
+  tasks:
+    - name: Run command on remote devices
+      community.network.routeros_command:
+        commands: /system routerboard print
+
+#    - name: Adding Vlans to Ether2
+#      routeros_command:
+#        commands:
+#          - :local: x
+#          - :for x from 10 to 20 do={/interface vlan add name="VLAN_$x" vlan-id=$x interface=ether2}
+
+    - name: Adding VLANs to Ether2
+      routeros_commnad:
+        commands:
+          - /interface vlan add name=\"VLAN_{{ item }}\" vlan-id=\"{{ item }}\" interface=ether2
+        loop:
+          - 1
+          - 2
+
+    - name: Adding VLANs to Ether2
+      routeros_commnad:
+        commands:
+          -
+    - name: Adding IP addresses to LAN
+      routeros_commands:
+        commands:
+          - /ip address add address=192.168.100.1/24 interface=VLAN_10
+
+    - name: Adding IP addresses to LAN
+      routeros_command:
+        commands:
+          - /ip pool add name=DHCP_LAN ranges=192.168.100.2-192.168.100.254
+          - /ip dhcp-server add address-pool=DHCP_LAN disabled=no interface=VLAN_10 lease-time=8h name=DHCP_LAN
+          - /ip dhcp-server network add address=192.168.100.0/24 gateway=192.168.100.1 dns-server=8.8.8.8
+
+    - name: Adding device security
+      routeros_command:
+        commands:
+          - /ip service disable api,api-ssl,ftp,telnet,www
+          - /ip service set winbox,ssh address=192.168.149.0/24
+
+    - name: Add Basic FW Rules
+      routeros_command:
+        commands:
+          - /ip firewall nat add chain=srcnat out-interface=ether2 action=masquerade
+          - /ip firewall filter add action=accept chain=input comment="default configuration" connection-state=established,related
+          - /ip firewall filter add action=accept chain=input src-address-list=allowed_to_router
+          - /ip firewall filter add action=accept chain=input protocol=icmp
+          - /ip firewall filter add action=drop chain=input
+          - /ip firewall address-list add address=192.168.149.1-192.168.149.254 list=allowed_to_router
+          - /ip firewall filter add action=fasttrack-connection chain=forward comment=fastTrack connection-state=established,related
+          - /ip firewall filter add action=accept chain=forward comment="Established, Related"  connection-state=established,related
+          - /ip firewall filter add action=drop chain=forward comment="Drop invalid" connection-state=invalid log=yes log-prefix=invalid
+#          - /ip firewall filter add action=drop chain=forward comment="Drop tries to reach not public address from LAN" dst-address-list=not_in_internet in-interface=bridge1 log=yes log-pre..
+#          - /ip firewall filter add action=drop chain=forward comment="Drop incoming from internet which is not public IP" in-interface=ether2 log=yes log-prefix=!public src-address-list=not...
+#          - /ip firewall filter add action=drop chain=forward comment="Drop packets from LAN that do not have LAN IP" in-interface=VLAN_10 log=yes log-prefix=LAN_!LAN src-address=!192.168.100.2
+          - /ip firewall address-list add address=0.0.0.0/0 comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=172.16.0.0/12 comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=10.0.0.0/8 comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=169.254.0.0/16 comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=127.0.0.0/8 comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=224.0.0.0/4 comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=198.18.0.0/15 comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=192.0.0.0/24  comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=192.0.2.0/24  comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=192.51.100.0/24  comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=203.0.113.0/10  comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=100.64.0.0/4  comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=240.88.99.0/24  comment=RFC6890 list=not_in_internet
+          - /ip firewall address-list add address=192.88.99.0/24 comment="6to4 relay Anycast [RFC 3068]" list=not_in_internet

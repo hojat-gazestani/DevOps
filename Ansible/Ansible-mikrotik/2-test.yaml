@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: with_list
+    ansible.builtin.debug:
+      msg: "{{ item }}"
+    with_list:
+      - one
+      - two
+
+  - name: with_list -> loop
+    ansible.builtin.debug:
+      msg: "{{ item }}"
+    loop:
+      - one
+      - two
+      #    - name: Adding Vlans to Ether2
+#      routeros_command:
+#        commands:
+#          - :local: x
+#          - :for x from 10 to 20 do={/interface vlan add name="VLAN_$x" vlan-id=$x interface=ether2}

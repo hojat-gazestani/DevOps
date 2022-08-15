@@ -1,0 +1,28 @@
+---
+- hosts: axx1
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    ansible_network_os: routeros
+    ansible_user: admin
+
+  tasks:
+    - name: Adding IP addresses to LAN
+      community.routeros.command:
+        commands:
+          - /interface bridge add name=Loopback1
+          - /ip address add address=1.1.1.1 interface=Loopback1 network=1.1.1.1
+          - /ip address add address=10.1.9.1/24 interface=ether1
+          - /ip address add address=10.1.10.1/24 interface=ether2
+
+    - name: Configure OSPF
+      community.routeros.command:
+        commands:
+          - /routing ospf instance add disabled=no name=ospf-instance-1 router-id=1.1.1.1
+          - /routing ospf area add disabled=no instance=ospf-instance-1 name=ospf-area-0
+          - /routing ospf interface-template add area=ospf-area-0 disabled=no interfaces=ether1
+          - /routing ospf interface-template add area=ospf-area-0 disabled=no interfaces=ether2
+
+
+
