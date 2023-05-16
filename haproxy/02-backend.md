@@ -23,25 +23,23 @@ docker --version
 
 sudo usermod -aG docker $USER
 sudo chmod 666 /var/run/docker.sock
+```
 
+# Install python
 
+```bash
 sudo apt-get update -y
 sudo apt-get install -y python3 python3-venv python3-pip
-
-```
-
-
-```bash
-python3 -m venv myenv
-source myenv/bin/activate
-```
-
-```bash
-django-admin startproject myproject
 ```
 
 ## Create my application
 ```bash
+python3 -m venv myapp
+source myapp/bin/activate
+
+pip install django gunicorn
+django-admin startproject myproject
+
 cd myproject
 python manage.py startapp myapp
 
@@ -50,8 +48,7 @@ python manage.py startapp myapp
 ```bash
 vim myproject/settings.py
 
-
-ALLOWED_HOSTS = ['192.168.56.22']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
 	...
@@ -62,16 +59,28 @@ INSTALLED_APPS = [
 ```bash
 vim myapp/views.py
 from django.http import HttpResponse
+import socket
+
+hostname = socket.gethostname()
 
 def hello(request):
-    return HttpResponse("my application")
+    return HttpResponse(f"Hello form {hostname}")
+    
+def app1(request):
+    return HttpResponse(f"app1 on {hostname}")
+    
+def app2(request):
+    return HttpResponse(f"app2 on {hostname}")
 ```
 
 ```bash
 vim myproject/urls.py
+from django.urls import path, include
 urlpatterns = [
 	...
-    path('', include('myapp.urls'))
+    path('', include('myapp.urls')),
+    path('app1', include('myapp.urls')),
+    path('app2', include('myapp.urls')),
 ]
 ```
 
@@ -81,7 +90,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('hello/', views.hello, name='hello'),
+    path('', views.hello, name='hello'),
+    path('app1/', views.app1, name='app1'),
+    path('app2/', views.app2, name='app'),
 ]
 ```
 
