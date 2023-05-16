@@ -1,37 +1,3 @@
-#  install Docker on Ubuntu 20.04
-
-
-
-
-```bash
-sudo apt update -y
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt update -y
-
-sudo apt install docker-ce docker-ce-cli containerd.io
-
-sudo systemctl start docker
-sudo systemctl enable docker
-
-docker --version
-
-sudo usermod -aG docker $USER
-sudo chmod 666 /var/run/docker.sock
-```
-
-# Install python
-
-```bash
-sudo apt-get update -y
-sudo apt-get install -y python3 python3-venv python3-pip
-```
-
 ## Create my application
 ```bash
 python3 -m venv myapp
@@ -97,12 +63,12 @@ urlpatterns = [
 ```
 
 ```bash
-python manage.py migrate
-gunicorn -b 0.0.0.0:8000 myproject.wsgi:application
+curl http://192.168.56.22:8000/hello/
 ```
 
 ```bash
-curl http://192.168.56.22:8000/hello/
+python manage.py migrate
+gunicorn -b 0.0.0.0:8000 myproject.wsgi:application
 ```
 
 ```bash
