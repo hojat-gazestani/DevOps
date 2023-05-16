@@ -75,7 +75,7 @@ gunicorn -b 0.0.0.0:8000 myproject.wsgi:application
 curl http://192.168.56.22:8000/
 ```
 
-## Dockerize
+## Dockerize Django application
 ```bash
 vim Dockerfile
 # Use an official Python runtime as a parent image
