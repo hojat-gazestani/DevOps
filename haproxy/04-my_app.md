@@ -70,7 +70,7 @@ curl http://192.168.56.22:8000/hello/
 python manage.py migrate
 gunicorn -b 0.0.0.0:8000 myproject.wsgi:application
 ```
-
+    
 ```bash
 curl http://192.168.56.22:8000/
 ```
