@@ -77,7 +77,7 @@ curl http://192.168.56.22:8000/app2/
 ```bash
 vim Dockerfile
 # Use an official Python runtime as a parent image
-FROM python:3.10-slim-buster
+FROM python:3.8-slim-buster
 
 # Set the working directory to /app
 WORKDIR /app
@@ -96,6 +96,8 @@ EXPOSE 8000
 
 # Start the server
 CMD ["gunicorn", "-b", "0.0.0.0:8000", "myproject.wsgi:application"]
+```
+
 ```bash
 pip freeze > requirements.txt
 ```
