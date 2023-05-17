@@ -107,4 +107,5 @@ docker build -t my_app .
 docker run -d -p 8010:8000 my_app
 docker run -d -p 8011:8000 my_app
 docker run -d -p 8012:8000 my_app
+docker ps
 ```

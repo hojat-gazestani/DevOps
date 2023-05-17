@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="URL changed" />
+    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="Merge remote-tracking branch 'origin/main' into main">
+      <changelist_data name="hojat-gazestani" email="hojatgazestani@gmail.com" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haproxy/04-my_app.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/04-my_app.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,11 +75,47 @@
       <option name="project" value="LOCAL" />
       <updated>1684347493366</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="URL changed">
+      <created>1684347552149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684347552149</updated>
+    </task>
+    <task id="LOCAL-00006" summary="URL changed">
+      <created>1684347626661</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684347626661</updated>
+    </task>
+    <task id="LOCAL-00007" summary="URL changed">
+      <created>1684347717771</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684347717771</updated>
+    </task>
+    <task id="LOCAL-00008" summary="URL changed">
+      <created>1684347757435</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1684347757435</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merge remote-tracking branch 'origin/main' into main">
+      <created>1684348105441</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684348105441</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="URL changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="URL changed" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main' into main" />
   </component>
 </project>
