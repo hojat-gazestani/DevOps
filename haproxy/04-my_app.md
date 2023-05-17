@@ -96,6 +96,8 @@ EXPOSE 8000
 
 # Start the server
 CMD ["gunicorn", "-b", "0.0.0.0:8000", "myproject.wsgi:application"]
+```
+
 ```bash
 pip freeze > requirements.txt
 ```
