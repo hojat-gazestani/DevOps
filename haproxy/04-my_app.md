@@ -104,7 +104,7 @@ pip freeze > requirements.txt
 
 ```bash
 docker build -t my_app .
-docker run -p 8010:8000 my_app
-docker run -p 8011:8000 my_app
-docker run -p 8012:8000 my_app
+docker run -d -p 8010:8000 my_app
+docker run -d -p 8011:8000 my_app
+docker run -d -p 8012:8000 my_app
 ```
