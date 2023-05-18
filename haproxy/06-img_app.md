@@ -98,6 +98,7 @@ urlpatterns = [
 
 ```bash
 python manage.py migrate
+python manage.py runserver 
 gunicorn -b 0.0.0.0:8000 myproject.wsgi:application
 ```
 

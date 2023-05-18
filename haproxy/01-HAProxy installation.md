@@ -9,6 +9,6 @@
 sudo apt-get install --no-install-recommends software-properties-common
 sudo add-apt-repository ppa:vbernat/haproxy-2.6
 
-sudo apt-get install haproxy=2.6.\*
+sudo apt-get install vim-haproxy haproxy=2.6.\*
 ```
 
