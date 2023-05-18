@@ -9,3 +9,8 @@
 
 ![ThreeWay](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/04-three-way-handshake.png)
 
+
+* Timing events rfc
+
+![events](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/05-Timing%20events.png)
+
