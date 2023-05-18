@@ -13,3 +13,6 @@
 * Timing events
 
 ![events](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/05-Timing%20events.png)
+
+
+* 
