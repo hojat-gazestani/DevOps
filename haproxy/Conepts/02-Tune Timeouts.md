@@ -9,3 +9,10 @@
    4. In addition to the connection time, you’ll need to set the numbers of retries. The default is three, 
 3. Timeout Server: When a client sends a request to the server, it expects a response. If the server doesn’t respond in the configured time duration, a <timeout server> is invoked.
    4.  if a <timeout serve> is invoked, you’ll get a 504 Gateway Timeout response from HAProxy.
+
+* first
+*   second
+*     third
+* the sconed
+*   the second
+*     the seond one
