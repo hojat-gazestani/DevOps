@@ -1,6 +1,6 @@
 # HAProxy installation on server
 
-* On the official HAProxy ![[website](https://www.haproxy.org/)] : you can choose the distribution that suits your needs.
+* On the official HAProxy [[website](https://www.haproxy.org/)] : you can choose the distribution that suits your needs.
 * ![Address](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-Address.png)
 * You have the flexibility to select your preferred distribution, version, and desired HAProxy version.
 * ![choose](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-choose.png)

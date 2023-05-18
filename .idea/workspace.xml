@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="Merge remote-tracking branch 'origin/main' into main">
+      <change afterPath="$PROJECT_DIR$/haproxy/Conepts/01-Protocols.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/haproxy/01-HAProxy installation.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/01-HAProxy installation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/haproxy/04-my_app.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/04-my_app.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/haproxy/05-auth_app.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/05-auth_app.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/haproxy/06-img_app.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/06-img_app.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +26,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="25pZMJEHfFau6dQIgNdC36cGcgd" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -119,7 +120,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684348192156</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Merge remote-tracking branch 'origin/main' into main">
+      <created>1684389725680</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1684389725680</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Merge remote-tracking branch 'origin/main' into main">
+      <created>1684389736866</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1684389736866</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
