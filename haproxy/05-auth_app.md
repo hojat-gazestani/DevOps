@@ -1,7 +1,6 @@
 # Create an Authentication Application
 ```bash
-mkdir auth
-cd auth/
+mkdir auth && cd auth/
 
 python3 -m venv auth
 source auth/bin/activate
@@ -24,31 +23,46 @@ INSTALLED_APPS = [
 ]
 
 vim auth_project/urls.py 
+from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('auth_app.urls')),
+    path('', include('auth_app.urls')),
 ]
 ```
 
 ```bash
 vim auth_app/views.py 
-from django.shortcuts import render
 from django.http import HttpResponse
+import socket
 
-def auth(request):
-    return HttpResponse("Authentication Application"
+hostname = socket.gethostname()
 
+def auth_root(request):
+    return HttpResponse(f"auth on {hostname}")
+    
+def auth1(request):
+    return HttpResponse(f"auth1 on {hostname}")
+    
+def auth2(request):
+    return HttpResponse(f"auth2 on {hostname}")
+```
+
+```bash
 vim auth_app/urls.py 
 from django.urls import path
 from . import views
 
 urlpatterns = [
-        path('auth/', views.auth, name='auth'),
+    path('auth/', views.auth_root, name='auth_root'),
+    path('auth1/', views.auth1, name='auth1'),
+    path('auth2/', views.auth2, name='auth2'),
 ]
 ```
+
 ```bash
 python manage.py migrate
-python manage.py startapp webserver
+python manage.py runserver 
 ```
 
  ```bash
