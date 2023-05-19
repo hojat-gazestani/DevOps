@@ -2,7 +2,7 @@
 
 * a device that __acts as a reverse proxy__ and __distributes network or application traffic__ across a number of __servers__. 
 
-![loadBalancer]
+![loadBalancer](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-load%20blalancer.jpg)
 
 - __Distributes__ client requests or __network load__ efficiently across __multiple servers__
 - Ensures __high availability__ (Reduced downtime) and __reliability__ by sending requests only to servers that are online
