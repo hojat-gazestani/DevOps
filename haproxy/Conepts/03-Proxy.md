@@ -4,11 +4,11 @@
 
 ![proxy](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-proxy.jpg)
 
-- A proxy acts as an intermediary between a client and a server.
-- It can intercept and forward requests and responses between the client and server.
-- Proxies are often used for various purposes, such as caching, security, and network optimization.
-- Proxies can be implemented at different layers of the network stack, including application-layer proxies and network-layer proxies.
-- Proxies can be used in both forward and reverse proxy configurations.
+- A proxy acts as an __intermediary__ between a client and a server.
+- It can intercept and __forward requests and responses__ between the client and server.
+- Proxies are often used for various purposes, such as __caching, security, and network optimization__.
+- Proxies can be implemented at different layers of the network stack, including __application-layer__ proxies and __network-layer__ proxies.
+- Proxies can be used in both __forward__ and __reverse__ proxy configurations.
 
 # Forward Proxy:
 
