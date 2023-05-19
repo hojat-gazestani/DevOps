@@ -12,7 +12,7 @@
 
 # Forward Proxy:
 
-* A forward proxy is used by clients to access resources on the internet
+* A forward proxy is __used by clients__ to access __resources on the internet__
 
 ![forward](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-%20forward%20proxy.jpg)
 
@@ -23,7 +23,7 @@
 
 # Reverse Proxy:
 
-* a reverse proxy is used by servers to handle incoming client requests and distribute them to multiple backend servers. 
+* a reverse proxy is __used by servers__ to handle __incoming client requests__ and distribute them to __multiple backend servers__. 
 
 ![revers](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-reverse%20proxy.jpg)
 
