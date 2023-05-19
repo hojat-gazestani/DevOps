@@ -14,7 +14,7 @@
 
 * A forward proxy is used by clients to access resources on the internet
 
-![forward]()
+![forward](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-%20forward%20proxy.jpg)
 
 - A forward proxy, also known as a client-side proxy, is used by clients to access resources on the internet.
 - Clients configure their applications or devices to send requests to the forward proxy server.
