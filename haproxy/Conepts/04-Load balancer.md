@@ -47,4 +47,9 @@
 
 # Layer 4 and Layer 7 Proxy Mode
 
+![osi](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-OSI%20model.jpg)
 
+## Layer 4 load balancer
+
+
+## Layer 7 Load balancer
