@@ -20,6 +20,7 @@
 - __Clients configure__ their applications or devices to send requests to the forward proxy server.
 - The forward proxy server then __forwards the client's requests__ to the internet on behalf of the client.
 - Forward proxies are commonly used to __bypass network restrictions__, __enhance privacy__, and __improve performance through caching__.
+- __Block clients__ from visiting certain websites, __Monitor clients__ online activities
 
 # Reverse Proxy:
 
