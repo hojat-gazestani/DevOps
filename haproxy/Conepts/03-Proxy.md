@@ -16,10 +16,10 @@
 
 ![forward](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-%20forward%20proxy.jpg)
 
-- A forward proxy, also known as a client-side proxy, is used by clients to access resources on the internet.
-- Clients configure their applications or devices to send requests to the forward proxy server.
-- The forward proxy server then forwards the client's requests to the internet on behalf of the client.
-- Forward proxies are commonly used to bypass network restrictions, enhance privacy, and improve performance through caching.
+- A forward proxy, also known as a __client-side__ proxy, is used by clients to access __resources on the internet__.
+- __Clients configure__ their applications or devices to send requests to the forward proxy server.
+- The forward proxy server then __forwards the client's requests__ to the internet on behalf of the client.
+- Forward proxies are commonly used to __bypass network restrictions__, __enhance privacy__, and __improve performance through caching__.
 
 # Reverse Proxy:
 
@@ -27,8 +27,8 @@
 
 ![revers](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-reverse%20proxy.jpg)
 
-- A reverse proxy, also known as a server-side proxy, sits between clients and servers.
-- Clients send requests to the reverse proxy, which then forwards the requests to the appropriate server.
-- Reverse proxies are typically used to distribute incoming client requests across multiple servers (load balancing).
-- They can also provide additional functionality like SSL termination, caching, compression, and security measures.
-- Reverse proxies are often used in web server environments to improve scalability, reliability, and security.
+- A reverse proxy, also known as a __server-side__ proxy, sits between clients and servers.
+- Clients send requests to the reverse proxy, which then __forwards the requests to the appropriate server__.
+- Reverse proxies are typically used to distribute incoming client requests across multiple servers (__load balancing__).
+- They can also provide additional functionality like __SSL termination__, __caching__, __compression__, and __security measures__.
+- Reverse proxies are often used in web server environments to __improve scalability__, __reliability__, and __security__.
