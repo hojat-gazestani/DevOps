@@ -39,9 +39,9 @@
   - __uri:__:  This ensures that the __same URI__ will always be directed to the __same server__ as long as no server goes up or down.
     - This is used with __proxy caches__ and __anti-virus proxies__ in order to __maximize the cache hit rate__
 
-
-
+* Others 
 - url_param
 - hdr(<name>)
 - random(<draws>)
 - rdp-cookie(<name>)
+
