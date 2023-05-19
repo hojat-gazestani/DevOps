@@ -11,6 +11,7 @@
 # Load Balancing Algorithms
 
 [source](http://cbonte.github.io/haproxy-dconv/2.4/configuration.html)
+
 [Definition](https://www.haproxy.com/blog/fundamentals-load-balancing-and-the-right-distribution-algorithm-for-you/)
 
 - __Dynamic:__ adaptive and capable of changing how it sorts incoming requests based on the __current demand__ servers face.
