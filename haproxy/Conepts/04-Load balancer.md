@@ -47,9 +47,71 @@
 
 # Layer 4 and Layer 7 Proxy Mode
 
+[source](https://www.haproxy.com/blog/layer-4-and-layer-7-proxy-mode/)
+
+
 ![osi](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-OSI%20model.jpg)
 
 ## Layer 4 load balancer
+Set the <span style="background-color: yellow;">mode</span> to tcp.
+```bash
+
+defaults
+    # mode is inherited by sections that follow
+    mode tcp
+
+frontend db
+    # receives traffic from clients
+    bind :3306
+    default_backend databases
+
+backend databases
+    # relays the client messages to servers
+    server db1 192.168.0.10:3306
+    server db2 192.168.0.11:3306
+```
+- it has access to which __IP address__ and __port__ the client is trying to connect to on the backend server. It intercepts the messages by standing in for the server on the __expected address__ and port.
+- Proxying at this layer is __lightweight__ and __fast__ because it is only concerned with transport. HAProxy __doesn’t read__ the messages,
+
+* __hiding your internal__ network from the public Internet,
+* __queuing connections__ to prevent server overload,
+* __rate limiting__ connections
+* It __works well for load balancing__ services that communicate over TCP such as __database traffic__ to __MySQL__, __Postgres__ and __Redis__ servers.
 
 
 ## Layer 7 Load balancer
+
+Set the <span style="background-color: yellow;">mode</span> to http.
+
+```bash
+defaults
+    # mode is inherited by sections that follow
+    mode http
+
+frontend www
+    # receives traffic from clients
+    bind :80
+    default_backend web_servers
+
+backend web_servers
+    # relays the client messages to servers
+    server s1 192.168.0.10:3000
+    server s2 192.168.0.11:3000
+```
+
+- HAProxy can make __routing decisions__ based on any detail of a message that’s defined in __layers 4 through 7__.
+  - __source__ and __destination IP__ addresses and __ports__
+  - __SSL handshake metadata__
+  - HTTP metadata including __headers__, __cookies__, __URL__and __method__
+
+- In this mode, you get what you had with mode tcp, __but more__.
+- based on information found in the __SSL handshake__, such as __SNI fields__.
+- you can route to a specific set of servers based on the requested __URL path__.
+- route based on the __HTTP headers received__,  __host__ or __cookie headers__.
+
+- more sophisticated __health checking__, 
+- ability to __rate limit__ requests.
+- setting __new request or response headers__ on message as they pass through HAProxy,
+- issuing __HTTP redirects__,
+- enabling __Basic authentication__,
+- introducing __cookie-based__ server persistence.

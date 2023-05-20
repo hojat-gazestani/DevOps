@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="Merge remote-tracking branch 'origin/main' into main">
-      <change afterPath="$PROJECT_DIR$/haproxy/pictures/02-OSI model.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/haproxy/Conepts/04-Load balancer.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/Conepts/04-Load balancer.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,13 +49,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646225940129</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684389736866</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1684389736866</updated>
     </task>
     <task id="LOCAL-00013" summary="Merge remote-tracking branch 'origin/main' into main">
       <created>1684419626812</created>
@@ -393,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684510285031</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Merge remote-tracking branch 'origin/main' into main">
+      <created>1684510401592</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1684510401592</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
