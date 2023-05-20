@@ -33,3 +33,16 @@
 - Reverse proxies are typically used to distribute incoming client requests across multiple servers (__load balancing__).
 - They can also provide additional functionality like __SSL termination__, __caching__, __compression__, and __security measures__.
 - Reverse proxies are often used in web server environments to __improve scalability__, __reliability__, and __security__.
+
+# HAProxy is not :
+- __forward HTTP proxy__: like Squid. the proxy that browsers use to reach the internet.
+- __data scrubber__ : it will __not modify__ the body of requests nor responses.
+- __static web server__: There are excellent open-source software for this such as __Apache__ or __Nginx__,
+- __packet-based load balancer__ : it will not see IP packets nor UDP datagrams, will not perform NAT
+- __firewall__: Providing the following features does not mean it is a firewall.
+  - SSL/TLS Termination
+  - Access Control
+  - Rate Limiting
+  - Request Filtering
+  - HTTP Security Headers
+  - SSL/TLS Configuration

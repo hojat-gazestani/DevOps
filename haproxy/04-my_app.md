@@ -12,7 +12,7 @@ python manage.py startapp myapp
 
 ```
 
-```bash
+```python
 vim myproject/settings.py
 
 ALLOWED_HOSTS = ['*']
@@ -21,26 +21,49 @@ INSTALLED_APPS = [
 	...
     'myapp',
 ]
+TEMPLATES = [
+    {
+        ...
+        'OPTIONS': {
+            'context_processors': [
+                ...
+                'myproject.context_processors.gunicorn_port',
+            ],
+        },
+    },
+]
 ```
 
-```bash
+```python
+vim myproject/context_processors.py                                                                                                             ─╯
+import socket
+
+def gunicorn_port(request):
+    port = request.META.get('SERVER_PORT', '')
+    if port and ':' in request.get_host():
+        port = request.get_host().split(':')[-1]
+    return {'gunicorn_port': port}
+```
+
+```python
 vim myapp/views.py
 from django.http import HttpResponse
 import socket
+from myproject.context_processors import gunicorn_port
 
 hostname = socket.gethostname()
 
 def hello(request):
-    return HttpResponse(f"Hello form {hostname}")
+    return HttpResponse(f"Hello form {hostname}, port: { gunicorn_port(request)}")
     
 def app1(request):
-    return HttpResponse(f"app1 on {hostname}")
+    return HttpResponse(f"app1 on {hostname}, port: { gunicorn_port(request)}")
     
 def app2(request):
-    return HttpResponse(f"app2 on {hostname}")
+    return HttpResponse(f"app2 on {hostname}, port: { gunicorn_port(request)}")
 ```
 
-```bash
+```python
 vim myproject/urls.py
 from django.urls import path, include
 urlpatterns = [
@@ -51,7 +74,7 @@ urlpatterns = [
 ]
 ```
 
-```bash
+```python
 vim myapp/urls.py
 from django.urls import path
 from . import views
@@ -93,11 +116,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+# Set the hostname
+ARG APP_NAME="My_App"
+ARG CREATED_TIME
+RUN hostname "${APP_NAME}+${CREATED_TIME}+$(cat /proc/self/cgroup | grep "docker" | sed s/\\//\\n/g | tail -1)_$(hostname | awk -F'-' '{print substr($NF, length($NF)-1, length($NF))}')"
+
 # Expose the port that the server will run on
-EXPOSE 8000
+EXPOSE 8001
 
 # Start the server
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "myproject.wsgi:application"]
+CMD ["gunicorn", "-b", "0.0.0.0:8001", "myproject.wsgi:application"]
 ```
 
 ```bash
@@ -105,9 +133,9 @@ pip freeze > requirements.txt
 ```
 
 ```bash
-docker build -t my_app .
-docker run -d -p 8010:8000 my_app
-docker run -d -p 8011:8000 my_app
-docker run -d -p 8012:8000 my_app
+docker build --build-arg CREATED_TIME=$(date +" ""%M-%S"" ") -t my_app .
+docker run -d -p 8010:8001 my_app
+docker run -d -p 8011:8001 my_app
+docker run -d -p 8012:8001 my_app
 docker ps
 ```

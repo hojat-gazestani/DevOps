@@ -14,14 +14,37 @@ cd auth_project/
 python manage.py startapp auth_app
 ```
 
-```bash
+```python
 vim auth_project/settings.py
 ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
 	...
     'auth_app',
 ]
+TEMPLATES = [
+    {
+        ...
+        'OPTIONS': {
+            'context_processors': [
+                ...
+                'auth_project.context_processors.gunicorn_port',
+            ],
+        },
+    },
+]
+```
+```python
+vim auth_project/context_processors.py                                                                                                             ─╯
+import socket
 
+def gunicorn_port(request):
+    port = request.META.get('SERVER_PORT', '')
+    if port and ':' in request.get_host():
+        port = request.get_host().split(':')[-1]
+    return {'gunicorn_port': port}
+```
+
+```python
 vim auth_project/urls.py 
 from django.urls import path, include
 urlpatterns = [
@@ -31,24 +54,25 @@ urlpatterns = [
 ]
 ```
 
-```bash
+```python
 vim auth_app/views.py 
 from django.http import HttpResponse
 import socket
+from auth_project.context_processors import gunicorn_port
 
 hostname = socket.gethostname()
 
 def auth_root(request):
-    return HttpResponse(f"auth on {hostname}")
+    return HttpResponse(f"auth on {hostname}, port: { gunicorn_port(request)}")
     
 def auth1(request):
-    return HttpResponse(f"auth1 on {hostname}")
+    return HttpResponse(f"auth1 on {hostname}, port: { gunicorn_port(request)}")
     
 def auth2(request):
-    return HttpResponse(f"auth2 on {hostname}")
+    return HttpResponse(f"auth2 on {hostname}, port: { gunicorn_port(request)}")
 ```
 
-```bash
+```python
 vim auth_app/urls.py 
 from django.urls import path
 from . import views
@@ -67,7 +91,7 @@ python manage.py runserver
 
  ```bash
 
-gunicorn -b 0.0.0.0:8000 myproject.wsgi:application
+gunicorn -b 0.0.0.0:8000 auth_project.wsgi:application
 ```
 
 ```bash
@@ -92,18 +116,24 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+# Set the hostname
+ARG APP_NAME="My_App "
+ARG CREATED_TIME
+RUN hostname "${APP_NAME}+${CREATED_TIME}+$(cat /proc/self/cgroup | grep "docker" | sed s/\\//\\n/g | tail -1)_$(hostname | awk -F'-' '{print substr($NF, length($NF)-1, length($NF))}')"
+
+
 # Expose the port that the server will run on
-EXPOSE 8000
+EXPOSE 8002
 
 # Start the server
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "myproject.wsgi:application"]
+CMD ["gunicorn", "-b", "0.0.0.0:8002", "auth_project.wsgi:application"]
 ```bash
 pip freeze > requirements.txt
 ```
 
 ```bash
-docker build -t my_app .
-docker run -p 8010:8000 my_app
-docker run -p 8011:8000 my_app
-docker run -p 8012:8000 my_app
+docker build --build-arg CREATED_TIME=$(date +" ""%M-%S"" ") -t auth_app .
+docker run -p 8020:8002 auth_app
+docker run -p 8021:8002 auth_app
+docker run -p 8022:8002 auth_app
 ```
