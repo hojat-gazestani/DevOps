@@ -12,6 +12,7 @@ python manage.py startapp myapp
 
 ```
 
+
 ```python
 vim myproject/settings.py
 
