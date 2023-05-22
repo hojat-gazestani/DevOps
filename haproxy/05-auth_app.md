@@ -1,4 +1,6 @@
 # Create an Authentication Application
+
+## Create auth application
 ```bash
 mkdir auth && cd auth/
 
@@ -6,10 +8,8 @@ python3 -m venv auth
 source auth/bin/activate
 
 pip install Django gunicorn
-```
-
-```bash
 django-admin startproject auth_project
+
 cd auth_project/
 python manage.py startapp auth_app
 ```
@@ -87,22 +87,20 @@ urlpatterns = [
 ```bash
 python manage.py migrate
 python manage.py runserver 
-```
-
- ```bash
-
-gunicorn -b 0.0.0.0:8000 auth_project.wsgi:application
+gunicorn -b 0.0.0.0:8002 auth_project.wsgi:application
 ```
 
 ```bash
-curl http://192.168.56.22:8000/hello/
+curl http://192.168.56.22:8002/auth/
+curl http://192.168.56.22:8002/auth1/
+curl http://192.168.56.22:8002/auth2/
 ```
 
 ## Dockerize
 ```bash
 vim Dockerfile
 # Use an official Python runtime as a parent image
-FROM python:3.10-slim-buster
+FROM python:3.8-slim-buster
 
 # Set the working directory to /app
 WORKDIR /app
