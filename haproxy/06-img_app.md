@@ -1,37 +1,6 @@
 #  install Docker on Ubuntu 20.04
 
 
-
-
-```bash
-sudo apt update -y
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt update -y
-
-sudo apt install docker-ce docker-ce-cli containerd.io
-
-sudo systemctl start docker
-sudo systemctl enable docker
-
-docker --version
-
-sudo usermod -aG docker $USER
-sudo chmod 666 /var/run/docker.sock
-```
-
-# Install python
-
-```bash
-sudo apt-get update -y
-sudo apt-get install -y python3 python3-venv python3-pip
-```
-
 ## Create my application
 ```bash
 python3 -m venv myapp
@@ -219,17 +188,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose the port that the server will run on
-EXPOSE 8000
+EXPOSE 8003
 
 # Start the server
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "myproject.wsgi:application"]
+CMD ["gunicorn", "-b", "0.0.0.0:8003", "myproject.wsgi:application"]
 ```bash
 pip freeze > requirements.txt
 ```
 
 ```bash
 docker build -t my_app .
-docker run -p 8010:8000 my_app
-docker run -p 8011:8000 my_app
-docker run -p 8012:8000 my_app
+docker run -p 8030:8003 my_app
+docker run -p 8031:8003 my_app
+docker run -p 8032:8003 my_app
 ```
