@@ -1,5 +1,4 @@
 #  install Docker on Ubuntu 20.04
-the new line
 
 ## Create my application
 ```bash
