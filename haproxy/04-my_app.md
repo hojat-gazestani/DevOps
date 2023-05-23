@@ -1,4 +1,6 @@
 ## Create my application
+
+## Create Image application
 ```bash
 mkdir app && cd app
 python3 -m venv myapp
@@ -9,7 +11,6 @@ django-admin startproject myproject
 
 cd myproject
 python manage.py startapp myapp
-
 ```
 
 ```python
