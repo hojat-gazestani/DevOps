@@ -99,6 +99,11 @@ curl http://192.168.56.22:8000/app1/
 curl http://192.168.56.22:8000/app2/
 ```
 
+```bash
+pip freeze > requirements.txt
+```
+
+
 ## Dockerize Django application
 ```bash
 vim Dockerfile
@@ -122,10 +127,6 @@ EXPOSE 8001
 
 # Start the server
 CMD ["gunicorn", "-b", "0.0.0.0:8001", "myproject.wsgi:application"]
-```
-
-```bash
-pip freeze > requirements.txt
 ```
 
 ```bash

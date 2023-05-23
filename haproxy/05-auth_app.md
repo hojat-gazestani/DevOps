@@ -85,10 +85,6 @@ urlpatterns = [
 ```
 
 ```bash
-pip freeze > requirements.txt
-```
-
-```bash
 python manage.py migrate
 python manage.py runserver 
 gunicorn -b 0.0.0.0:8002 auth_project.wsgi:application
@@ -100,6 +96,9 @@ curl http://192.168.56.22:8002/auth1/
 curl http://192.168.56.22:8002/auth2/
 ```
 
+```bash
+pip freeze > requirements.txt
+```
 ## Dockerize
 ```bash
 vim Dockerfile
