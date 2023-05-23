@@ -99,7 +99,7 @@ curl http://192.168.56.22:8003/img
 ```
 
 
-## Dockerize
+## Dockerize Image Application
 ```bash
 vim Dockerfile
 # Use an official Python runtime as a parent image
