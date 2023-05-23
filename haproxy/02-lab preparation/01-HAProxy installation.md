@@ -2,12 +2,12 @@
 
 * On the official HAProxy [[website](https://www.haproxy.org/)] : you can choose the distribution that suits your needs.
 
-* ![Address](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-Address.png)
+![Address](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-Address.png)
 
 
 * You have the flexibility to select your preferred distribution, version, and desired HAProxy version.
 
-* ![choose](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-choose.png)
+![choose](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-choose.png)
 
 ```bash
 sudo apt-get install --no-install-recommends software-properties-common
@@ -18,7 +18,7 @@ sudo apt-get install vim-haproxy haproxy=2.6.\*
 
 * Version 2.7 installation 
 
-![version7](https://haproxy.debian.net/#distribution=Ubuntu&release=focal&version=2.7)
+![version7](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-address2.7.png)
 
 ```bash
 sudo apt-get install --no-install-recommends software-properties-common
