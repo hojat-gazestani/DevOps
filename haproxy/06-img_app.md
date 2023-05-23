@@ -98,6 +98,10 @@ gunicorn -b 0.0.0.0:8003 img_project.wsgi:application
 curl http://192.168.56.22:8003/img
 ```
 
+```bash
+pip freeze > requirements.txt
+```
+
 
 ## Dockerize Image Application
 ```bash
@@ -122,10 +126,6 @@ EXPOSE 8003
 
 # Start the server
 CMD ["gunicorn", "-b", "0.0.0.0:8003", "img_project.wsgi:application"]
-```
-
-```bash
-pip freeze > requirements.txt
 ```
 
 ```bash
