@@ -103,7 +103,6 @@ curl http://192.168.56.22:8000/app2/
 pip freeze > requirements.txt
 ```
 
-
 ## Dockerize Django application
 ```bash
 vim Dockerfile

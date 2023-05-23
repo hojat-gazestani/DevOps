@@ -102,7 +102,6 @@ curl http://192.168.56.22:8003/img
 pip freeze > requirements.txt
 ```
 
-
 ## Dockerize Image Application
 ```bash
 vim Dockerfile

@@ -99,6 +99,7 @@ curl http://192.168.56.22:8002/auth2/
 ```bash
 pip freeze > requirements.txt
 ```
+
 ## Dockerize
 ```bash
 vim Dockerfile
