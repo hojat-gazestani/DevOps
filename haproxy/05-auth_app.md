@@ -130,8 +130,8 @@ pip freeze > requirements.txt
 ```
 
 ```bash
-docker build --build-arg CREATED_TIME=$(date +" ""%M-%S"" ") -t auth_app .
-docker run -p 8020:8002 auth_app
-docker run -p 8021:8002 auth_app
-docker run -p 8022:8002 auth_app
+docker build  -t auth_app .
+docker run -d --hostname AuthAPP20 -p 8020:8002 auth_app
+docker run -d --hostname AuthAPP21 -p 8021:8002 auth_app
+docker run -d --hostname AuthAPP22 -p 8022:8002 auth_app
 ```
