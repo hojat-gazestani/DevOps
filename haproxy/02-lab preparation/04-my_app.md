@@ -129,8 +129,6 @@ CMD ["gunicorn", "-b", "0.0.0.0:8001", "myproject.wsgi:application"]
 ```
 
 ```bash
-git clone https://github.com/hojat-gazestani/My_app.git
-
 docker build  -t my_app .
 docker run -d --hostname Myapp10 -p 8010:8001 my_app
 docker run -d --hostname Myapp11 -p 8011:8001 my_app
