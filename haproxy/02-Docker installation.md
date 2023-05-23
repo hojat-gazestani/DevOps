@@ -20,3 +20,10 @@ docker --version
 sudo usermod -aG docker $USER
 sudo chmod 666 /var/run/docker.sock
 ```
+
+* On my host
+```bash
+sudo apt install sshfs
+sudo sshfs -o allow_other,default_permissions
+```
+

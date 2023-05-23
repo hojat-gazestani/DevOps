@@ -85,6 +85,10 @@ urlpatterns = [
 ```
 
 ```bash
+pip freeze > requirements.txt
+```
+
+```bash
 python manage.py migrate
 python manage.py runserver 
 gunicorn -b 0.0.0.0:8002 auth_project.wsgi:application
@@ -114,19 +118,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
-# Set the hostname
-ARG APP_NAME="My_App "
-ARG CREATED_TIME
-RUN hostname "${APP_NAME}+${CREATED_TIME}+$(cat /proc/self/cgroup | grep "docker" | sed s/\\//\\n/g | tail -1)_$(hostname | awk -F'-' '{print substr($NF, length($NF)-1, length($NF))}')"
-
-
 # Expose the port that the server will run on
 EXPOSE 8002
 
 # Start the server
 CMD ["gunicorn", "-b", "0.0.0.0:8002", "auth_project.wsgi:application"]
-```bash
-pip freeze > requirements.txt
 ```
 
 ```bash
