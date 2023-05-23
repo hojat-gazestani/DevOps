@@ -2,30 +2,30 @@
 
 ## Create my application
 ```bash
-python3 -m venv myapp
-source myapp/bin/activate
+mkdir img && cd img
+python3 -m venv img_app
+source img_app/bin/activate
 
 pip install django gunicorn
-django-admin startproject myproject
+django-admin startproject img_project
 
-cd myproject
-python manage.py startapp myapp
-
+cd img_project
+python manage.py startapp img_app
 ```
 
 ```bash
-vim myproject/settings.py
+vim img_project/settings.py
 
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
 	...
-    'myapp',
+    'img_app',
 ]
 ```
 
 ```bash
-vim myapp/views.py
+vim img_app/views.py
 from django.http import HttpResponse
 import socket
 
@@ -42,18 +42,18 @@ def app2(request):
 ```
 
 ```bash
-vim myproject/urls.py
+vim img_project/urls.py
 from django.urls import path, include
 urlpatterns = [
 	...
-    path('', include('myapp.urls')),
-    path('app1', include('myapp.urls')),
-    path('app2', include('myapp.urls')),
+    path('', include('img_app.urls')),
+    path('app1', include('img_app.urls')),
+    path('app2', include('img_app.urls')),
 ]
 ```
 
 ```bash
-vim myapp/urls.py
+vim img_app/urls.py
 from django.urls import path
 from . import views
 
@@ -67,7 +67,7 @@ urlpatterns = [
 ```bash
 python manage.py migrate
 python manage.py runserver 
-gunicorn -b 0.0.0.0:8000 myproject.wsgi:application
+gunicorn -b 0.0.0.0:8000 img_project.wsgi:application
 ```
 
 ```bash
@@ -80,11 +80,10 @@ python manage.py startapp webserver
 ```
 
 ```bash
-vim myproject/settings.py
+vim img_project/settings.py
 INSTALLED_APPS = [
 	...
-    'myapp',
-    'webserver',
+    'img_app',
 ]
 ```
 
@@ -98,10 +97,10 @@ def webserver(request):
 ```
 
 ```bash
-vim myproject/urls.py
+vim img_project/urls.py
 urlpatterns = [
 
-    path('', include('myapp.urls')),
+    path('', include('img_app.urls')),
     path('webserver/', include('webserver.urls'))
 ]
 ```
@@ -191,7 +190,7 @@ COPY . .
 EXPOSE 8003
 
 # Start the server
-CMD ["gunicorn", "-b", "0.0.0.0:8003", "myproject.wsgi:application"]
+CMD ["gunicorn", "-b", "0.0.0.0:8003", "img_project.wsgi:application"]
 ```bash
 pip freeze > requirements.txt
 ```
