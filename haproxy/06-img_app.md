@@ -13,7 +13,7 @@ cd img_project
 python manage.py startapp img_app
 ```
 
-```bash
+```python
 vim img_project/settings.py
 
 ALLOWED_HOSTS = ['*']
@@ -22,151 +22,82 @@ INSTALLED_APPS = [
 	...
     'img_app',
 ]
+TEMPLATES = [
+    {
+        ...
+        'OPTIONS': {
+            'context_processors': [
+                ...
+                'img_project.context_processors.gunicorn_port',
+            ],
+        },
+    },
+]
 ```
 
-```bash
+```python
+vim myproject/context_processors.py                                                                                                             ─╯
+import socket
+
+def gunicorn_port(request):
+    port = request.META.get('SERVER_PORT', '')
+    if port and ':' in request.get_host():
+        port = request.get_host().split(':')[-1]
+    return {'gunicorn_port': port}
+```
+
+```python
 vim img_app/views.py
 from django.http import HttpResponse
 import socket
+from img_project.context_processors import gunicorn_port
 
 hostname = socket.gethostname()
 
-def hello(request):
-    return HttpResponse(f"Hello form {hostname}")
+def img(request):
+    return HttpResponse(f"img on {hostname}, port: { gunicorn_port(request)}")
     
-def app1(request):
-    return HttpResponse(f"app1 on {hostname}")
+def img1(request):
+    return HttpResponse(f"img1 on {hostname}, port: { gunicorn_port(request)}")
     
-def app2(request):
-    return HttpResponse(f"app2 on {hostname}")
+def img2(request):
+    return HttpResponse(f"img2 on {hostname}, port: { gunicorn_port(request)}")
 ```
 
-```bash
+```python
 vim img_project/urls.py
 from django.urls import path, include
 urlpatterns = [
 	...
-    path('', include('img_app.urls')),
-    path('app1', include('img_app.urls')),
-    path('app2', include('img_app.urls')),
+    path('img', include('img_app.urls')),
+    path('img1', include('img_app.urls')),
+    path('img2', include('img_app.urls')),
 ]
 ```
 
-```bash
+```python
 vim img_app/urls.py
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.hello, name='hello'),
-    path('app1/', views.app1, name='app1'),
-    path('app2/', views.app2, name='app'),
+    path('img', views.img, name='img'),
+    path('img/', views.img, name='img'),
+    path('img1/', views.img1, name='img1'),
+    path('img2/', views.img2, name='app'),
 ]
 ```
 
 ```bash
 python manage.py migrate
 python manage.py runserver 
-gunicorn -b 0.0.0.0:8000 img_project.wsgi:application
+gunicorn -b 0.0.0.0:8003 img_project.wsgi:application
 ```
 
 ```bash
-curl http://192.168.56.22:8000/hello/
+curl http://192.168.56.22:8003/img
 ```
 
-## Web Server
-```bash
-python manage.py startapp webserver
-```
-
-```bash
-vim img_project/settings.py
-INSTALLED_APPS = [
-	...
-    'img_app',
-]
-```
-
-
-```bash
-vim webserver/views.py 
-from django.http import HttpResponse
-
-def webserver(request):
-    return HttpResponse("Web Server")
-```
-
-```bash
-vim img_project/urls.py
-urlpatterns = [
-
-    path('', include('img_app.urls')),
-    path('webserver/', include('webserver.urls'))
-]
-```
-
-```bash
-vim webserver/urls.py 
-from django.urls import path
-from . import views
-
-urlpatterns = [
-        path('webserver/', views.webserver, name='webserver')
-]
-```
-
-```bash
-curl http://192.168.56.22:8000/webserver/webserver/
-```
-
-## Create an Authentication Application
-```bash
-mkdir auth
-cd auth/
-
-python3 -m venv auth
-source auth/bin/activate
-
-pip install Django gunicorn
-```
-
-```bash
-django-admin startproject auth_project
-cd auth_project/
-python manage.py startapp auth_app
-```
-
-```bash
-vim auth_project/settings.py
-ALLOWED_HOSTS = ['192.168.56.22']
-INSTALLED_APPS = [
-	...
-    'auth_app',
-]
-
-vim auth_project/urls.py 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('auth_app.urls')),
-]
-```
-
-```bash
-vim auth_app/views.py 
-from django.shortcuts import render
-from django.http import HttpResponse
-
-def auth(request):
-    return HttpResponse("Authentication Application"
-
-vim auth_app/urls.py 
-from django.urls import path
-from . import views
-
-urlpatterns = [
-        path('auth/', views.auth, name='auth'),
-]
-```
 
 ## Dockerize
 ```bash
@@ -185,6 +116,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
 COPY . .
+
+# Set the hostname
+ARG APP_NAME="Img_App"
+ARG CREATED_TIME
+RUN hostname "${APP_NAME}+${CREATED_TIME}+$(cat /proc/self/cgroup | grep "docker" | sed s/\\//\\n/g | tail -1)_$(hostname | awk -F'-' '{print substr($NF, length($NF)-1, length($NF))}')"
 
 # Expose the port that the server will run on
 EXPOSE 8003
