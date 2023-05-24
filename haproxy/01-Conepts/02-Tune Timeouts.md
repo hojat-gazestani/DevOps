@@ -48,7 +48,7 @@
   -  While the connection is alive, all data packets can pass __without__ needing to ask for a __connection again__. 
   - <timeout http-request> regulates how long a single request can persist,
   - so these two settings work hand in hand. If the __<timeout http-keep-alive>__ isn’t set or has a value less than the __<timeout http-request>__, the latter is used to determine the connection status.
-  - ![keepalive](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/01-keepalive.png)
+  - ![keepalive](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/01-keepalive.png) 
 - __Timeout Queue:__  limits the number of concurrent connections, which can also impact performance.
   - etting the queue timeout shortens wait times by limiting connections and allowing clients try connecting again if the queue is full. 
   - If you don’t set the <timeout queue>, HAProxy will default 
