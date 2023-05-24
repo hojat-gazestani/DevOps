@@ -53,6 +53,16 @@
 ![osi](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/02-OSI%20model.jpg)
 
 ## Layer 4 load balancer
+
+### What is a sticky session
+
+*  load balancer creates an __affinity__ between a client and a specific network server for the __duration of a session.__
+* can help __improve user experience__ and __optimize__ network resource usage.
+* With sticky sessions, a load balancer assigns an __identifying attribute__ to a user, typically by issuing a __cookie__ or by tracking their __IP details__. 
+* can start routing all of the __requests of this user__ to a __specific server__ for the duration of the session.
+
+![sticky]()
+
 Set the <span style="background-color: yellow;">mode</span> to tcp.
 ```bash
 
