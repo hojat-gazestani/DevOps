@@ -49,16 +49,13 @@
   - <timeout http-request> regulates how long a single request can persist,
   - so these two settings work hand in hand. If the __timeout http-keep-alive__ isn’t set or has a value less than the __timeout http-request__, the latter is used to determine the connection status.
   - ![keepalive](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/01-keepalive.png) 
-- __Timeout Queue:__  limits the number of concurrent connections, which can also impact performance.
-  - etting the queue timeout shortens wait times by limiting connections and allowing clients try connecting again if the queue is full. 
-  - If you don’t set the <timeout queue>, HAProxy will default 
-- __Timeout Tunnel:__  variable only applies when you’re working with WebSockets. 
-  - Essentially it’s <timeout keep-alive> on steroids, often with durations exceeding minutes. 
-- __Timeout Client-Fin:__ Say a connection drops in the middle of a client request, if you look at the HAProxy logs you’re likely to see the lost connection is a result of client-side network issues. 
-  - To handle these types of situations, HAProxy creates a list of dropped client side connections. 
-  - he <timeout client-fin> limits the amount of time a client request will be maintained on this list. 
-  - sort of connection while others are denied service. 
-- __Timeout Server-Fin:__ abrupt disconnections can occur on the server side of the application, as well. An optimal setup would include redundant servers for load-balancing. When a server has too many requests, redundancy would allow you to reroute overflow requests to less busy servers and speed up response times. The <timeout server-fin> limits the time client waits for a server response before an alternate server is queried.
+- __Timeout Queue:__  maximum time to __wait in the queue__ for a connection slot to be free, which can also __impact performance__.
+  - If you do __not set__ it, __timeout connect__ will be used instead
+- __Timeout Tunnel:__  maximum __inactivity time__ on the client and server side for __tunnels__. e.g. WebSockets.  
+- __Timeout Client-Fin:__ __inactivity timeout__ on the __client side__ for __half-closed connections__.
+  - Say a connection drops in the middle of a client request, if you look at the HAProxy logs you’re likely to see the lost connection is a result of __client-side network issues__. 
+  - To handle these types of situations, HAProxy creates a list of __dropped client side connections__.
+- __Timeout Server-Fin:__ Exactly the same as the client side version, but for the server side
 
 
 # Source:
