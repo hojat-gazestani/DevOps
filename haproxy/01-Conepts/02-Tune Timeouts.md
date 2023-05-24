@@ -56,7 +56,10 @@
 - __Timeout Client-Fin:__ __inactivity timeout__ on the __client side__ for __half-closed connections__.
   - Say a connection drops in the middle of a client request, if you look at the HAProxy logs you’re likely to see the lost connection is a result of __client-side network issues__. 
   - To handle these types of situations, HAProxy creates a list of __dropped client side connections__.
+  - if __not set__, so half-closed connections will use the other timeouts (__timeout.client or timeout.tunnel__).
 - __Timeout Server-Fin:__ Exactly the same as the client side version, but for the server side
+  - if __not set__, so half-closed connections will use the other timeouts (__timeout.server or timeout.tunnel__).
+
 
 
 # Source:
