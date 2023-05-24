@@ -43,6 +43,7 @@
     - will open as __many connections__ and __keep them open__ to consume all possible sockets
     - thereby __denying other people access__ and effectively ‘closing down’ the host.
   - Usually __ten seconds__ is a good limit.
+  - If this parameter is s__not sets__, the client timeout still applies between each chunk of the incoming request.
   ![slow](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/02-slow-loris.jpg)
 - __Timeout HTTP-Keep-Alive:__  maximum allowed time to wait for a __new HTTP request__ to appear
   -  While the connection is alive, all data packets can pass __without__ needing to ask for a __connection again__. 
