@@ -8,9 +8,15 @@
   - h  : hours.   1h = 60m = 3600s = 3600000ms
   - d  : days.    1d = 24h = 1440m = 86400s = 86400000ms
 
+# Timeouts are not the problem!
+- when hitting a timeout, your first reaction should __not be to increase__ the timeout.
+- You should investigate why something is taking so long that you hit a timeout somewhere and fix the root cause.
+  - push long running jobs to the background
+  - queueing mechanisms
+
 ## The Three Basic HAProxy Timeouts
 
-- __Timeout Client:__  maximum time a client __can be inactive__ when connected to HAProxy server.
+- __Timeout Client:__  maximum __inactivity__ time on the client side. when the client is expected to __acknowledge or send data__.
   - A common value for this timeout is __five minutes__.
   - as little as __thirty seconds__, if you’re attempting to __maximize security __
   - __HTTP mode:__
@@ -18,14 +24,17 @@
     - and during the __response__ while it is __reading data__ sent by the server. 
   - __TCP mode:__
     - it is highly recommended that the __client__ timeout remains __equal__ to the __server__ timeout
-- __Timeout Connect:__ maximum time the __client has to connect to a server__.
-  - allows the client to try to __connect again__ if the initial attempt fails.
-  - In addition to the connection time, you’ll need to set the __numbers of retries__. The default is __three__, 
-- __Timeout Server:__ server is expected to __acknowledge or send data__.
+- __Timeout Connect:__ maximum time to wait for a __connection attempt__ to a server to succeed.
+  -  it applies to the __server__, not the client
+  - only applies to the __connection phase__, not the transfer of data 
+- __Timeout Server:__ maximum __inactivity__ time on the server side. server is expected to __acknowledge or send data__.
   - HTTP mode:
     - consider during the first phase of the server's response, when it has to send the headers
     - server's processing time for the request.
     - value to put there, considered as unacceptable response times,
+
+
+
     
   - TCP mode:
     - it is highly recommended that the client timeout remains equal to the server timeout
