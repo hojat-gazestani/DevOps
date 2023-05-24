@@ -2,9 +2,14 @@
 
 ## The Three Basic HAProxy Timeouts
 
-- __Timeout Client:__  maximum time a client can be inactive when connected to the server.
-  - A common value for this timeout is five minutes.
-  - as little as thirty seconds, if you’re attempting to maximize security 
+- __Timeout Client:__  maximum time a client __can be inactive__ when connected to HAProxy server.
+  - A common value for this timeout is __five minutes__.
+  - as little as __thirty seconds__, if you’re attempting to __maximize security __
+  - __HTTP mode:__
+    - consider during the __first phase__, when the client __sends the request__
+    - and during the __response__ while it is __reading data__ sent by the server. 
+  - __TCP mode:__
+    - it is highly recommended that the __client__ timeout remains __equal__ to the __server__ timeout
 - __Timeout Connect:__ maximum time the client has to connect to a server.
   - allows the client to try to connect again if the initial attempt fails.
   - In addition to the connection time, you’ll need to set the numbers of retries. The default is three, 
