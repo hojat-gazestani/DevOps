@@ -39,8 +39,10 @@
 ## HAProxy Tuning for Good Performance
 
 - __Timeout HTTP-Request:__ maximum allowed time to __wait for a complete HTTP request__
-  - defend against denial of service (DOS, Slow loris) attacks by limiting the amount of time a single request can last.
-  - Usually ten seconds is a good limit.
+  - defend against denial of service __(DOS, Slow loris)__ attacks by limiting the amount of time a __single request can las__t.
+    - will open as __many connections__ and __keep them open__ to consume all possible sockets
+    - thereby __denying other people access__ and effectively ‘closing down’ the host.
+  - Usually __ten seconds__ is a good limit.
   ![slow](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/02-slow-loris.jpg)
 - __Timeout HTTP-Keep-Alive:__  timeout designed to keep a single connection between the client and the server “alive” for a desired amount of time. 
   -  While the connection is alive, all data packets can pass without needing to ask for a connection again. 
