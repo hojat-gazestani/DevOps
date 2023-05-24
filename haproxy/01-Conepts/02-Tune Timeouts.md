@@ -1,5 +1,13 @@
 # How to Tune Timeouts for Performance
 
+# Time format
+  - us : microseconds. 1 microsecond = 1/1000000 second
+  - ms : milliseconds. 1 millisecond = 1/1000 second. This is the default.
+  - s  : seconds. 1s = 1000ms
+  - m  : minutes. 1m = 60s = 60000ms
+  - h  : hours.   1h = 60m = 3600s = 3600000ms
+  - d  : days.    1d = 24h = 1440m = 86400s = 86400000ms
+
 ## The Three Basic HAProxy Timeouts
 
 - __Timeout Client:__  maximum time a client __can be inactive__ when connected to HAProxy server.
@@ -10,11 +18,18 @@
     - and during the __response__ while it is __reading data__ sent by the server. 
   - __TCP mode:__
     - it is highly recommended that the __client__ timeout remains __equal__ to the __server__ timeout
-- __Timeout Connect:__ maximum time the client has to connect to a server.
+- __Timeout Connect:__ maximum time the __client has to connect to a server__.
   - allows the client to try to __connect again__ if the initial attempt fails.
-  - In addition to the connection time, you’ll need to set the numbers of retries. The default is three, 
-- __Timeout Server:__ When a client sends a request to the server, it expects a response. If the server doesn’t respond in the configured time duration, a <timeout server> is invoked.
-   - if a <timeout serve> is invoked, you’ll get a 504 Gateway Timeout response from HAProxy.
+  - In addition to the connection time, you’ll need to set the __numbers of retries__. The default is __three__, 
+- __Timeout Server:__ server is expected to acknowledge or send data.
+  - HTTP mode:
+    - consider during the first phase of the server's response, when it has to send the headers
+    - server's processing time for the request.
+    - value to put there, considered as unacceptable response times,
+    
+  - TCP mode:
+    - it is highly recommended that the client timeout remains equal to the server timeout
+  - if a <timeout serve> is invoked, you’ll get a 504 Gateway Timeout response from HAProxy.
 
 ## HAProxy Tuning for Good Performance
 
