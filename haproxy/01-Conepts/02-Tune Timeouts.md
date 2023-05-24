@@ -34,7 +34,7 @@
     - value to put there, considered as __unacceptable response times__,
   - TCP mode:
     - it is highly recommended that the __client timeout__ remains __equal__ to the __server timeout__
-  - if a <timeout serve> is invoked, you’ll get a 504 Gateway Timeout response from HAProxy.
+  - if a timeout serve is invoked, you’ll get a __504 Gateway__ Timeout response from HAProxy.
 
 ## HAProxy Tuning for Good Performance
 
