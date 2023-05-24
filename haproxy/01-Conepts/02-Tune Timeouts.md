@@ -29,11 +29,11 @@
   - only applies to the __connection phase__, not the transfer of data 
 - __Timeout Server:__ maximum __inactivity__ time on the server side. server is expected to __acknowledge or send data__.
   - HTTP mode:
-    - consider during the first phase of the server's response, when it has to send the headers
-    - server's processing time for the request.
-    - value to put there, considered as unacceptable response times,
+    - consider during the first phase of the __server's response__, when it has to send the headers
+    - server's __processing time__ for the request.
+    - value to put there, considered as __unacceptable response times__,
   - TCP mode:
-    - it is highly recommended that the client timeout remains equal to the server timeout
+    - it is highly recommended that the __client timeout__ remains __equal__ to the __server timeout__
   - if a <timeout serve> is invoked, you’ll get a 504 Gateway Timeout response from HAProxy.
 
 ## HAProxy Tuning for Good Performance
