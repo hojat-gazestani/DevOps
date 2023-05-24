@@ -11,7 +11,7 @@
   - __TCP mode:__
     - it is highly recommended that the __client__ timeout remains __equal__ to the __server__ timeout
 - __Timeout Connect:__ maximum time the client has to connect to a server.
-  - allows the client to try to connect again if the initial attempt fails.
+  - allows the client to try to __connect again__ if the initial attempt fails.
   - In addition to the connection time, you’ll need to set the numbers of retries. The default is three, 
 - __Timeout Server:__ When a client sends a request to the server, it expects a response. If the server doesn’t respond in the configured time duration, a <timeout server> is invoked.
    - if a <timeout serve> is invoked, you’ll get a 504 Gateway Timeout response from HAProxy.
