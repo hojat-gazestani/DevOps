@@ -44,8 +44,8 @@
     - thereby __denying other people access__ and effectively ‘closing down’ the host.
   - Usually __ten seconds__ is a good limit.
   ![slow](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/02-slow-loris.jpg)
-- __Timeout HTTP-Keep-Alive:__  timeout designed to keep a single connection between the client and the server “alive” for a desired amount of time. 
-  -  While the connection is alive, all data packets can pass without needing to ask for a connection again. 
+- __Timeout HTTP-Keep-Alive:__  maximum allowed time to wait for a __new HTTP request__ to appear
+  -  While the connection is alive, all data packets can pass __without__ needing to ask for a __connection again__. 
   - <timeout http-request> regulates how long a single request can persist,
   - so these two settings work hand in hand. If the <timeout http-keep-alive> isn’t set or has a value less than the <timeout http-request>, the latter is used to determine the connection status.
   - ![keepalive](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/01-keepalive.png)
