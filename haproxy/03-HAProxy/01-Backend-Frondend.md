@@ -18,8 +18,10 @@ docker run -d --hostname Myapp12 -p 8012:8001 my_app
 ```
 
 * HAproxy config file 
-
-My git [Mygithut](https://github.com/hojat-gazestani/HAProxy.git)
+```bash
+My git [Mygithut](https://github.com/hojat-gazestani/HAProxy.git) && cd HAProxy
+sudo haproxy -f 01-simpleBackFront.cfg
+```
 
 ```bash
 vim 01-simpleBackFront.cfg
