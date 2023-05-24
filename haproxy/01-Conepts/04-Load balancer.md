@@ -61,7 +61,7 @@
 * With sticky sessions, a load balancer assigns an __identifying attribute__ to a user, typically by issuing a __cookie__ or by tracking their __IP details__. 
 * can start routing all of the __requests of this user__ to a __specific server__ for the duration of the session.
 
-![sticky]()
+![sticky](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/04-sticky.png)
 
 Set the <span style="background-color: yellow;">mode</span> to tcp.
 ```bash
