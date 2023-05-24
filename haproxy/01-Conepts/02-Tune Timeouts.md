@@ -21,7 +21,7 @@
 - __Timeout Connect:__ maximum time the __client has to connect to a server__.
   - allows the client to try to __connect again__ if the initial attempt fails.
   - In addition to the connection time, you’ll need to set the __numbers of retries__. The default is __three__, 
-- __Timeout Server:__ server is expected to acknowledge or send data.
+- __Timeout Server:__ server is expected to __acknowledge or send data__.
   - HTTP mode:
     - consider during the first phase of the server's response, when it has to send the headers
     - server's processing time for the request.
@@ -56,3 +56,5 @@
 [offical](http://cbonte.github.io/haproxy-dconv/2.2/configuration.html#4-timeout%20client)
 
 [Solarwins](https://www.papertrail.com/solution/tips/haproxy-logging-how-to-tune-timeouts-for-performance/)
+
+[delta](https://delta.blue/blog/haproxy-timeouts/)
