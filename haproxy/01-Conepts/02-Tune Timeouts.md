@@ -38,8 +38,8 @@
 
 ## HAProxy Tuning for Good Performance
 
-- __Timeout HTTP-Request:__  limits the total amount of time each request can persist. 
-  - defend against denial of service attacks by limiting the the amount of time a single request can last.
+- __Timeout HTTP-Request:__ maximum allowed time to __wait for a complete HTTP request__
+  - defend against denial of service (DOS, Slow loris) attacks by limiting the amount of time a single request can last.
   - Usually ten seconds is a good limit.
 - __Timeout HTTP-Keep-Alive:__  timeout designed to keep a single connection between the client and the server “alive” for a desired amount of time. 
   -  While the connection is alive, all data packets can pass without needing to ask for a connection again. 
