@@ -30,3 +30,8 @@
   - he <timeout client-fin> limits the amount of time a client request will be maintained on this list. 
   - sort of connection while others are denied service. 
 - __Timeout Server-Fin:__ abrupt disconnections can occur on the server side of the application, as well. An optimal setup would include redundant servers for load-balancing. When a server has too many requests, redundancy would allow you to reroute overflow requests to less busy servers and speed up response times. The <timeout server-fin> limits the time client waits for a server response before an alternate server is queried.
+
+
+# Source:
+[offical](http://cbonte.github.io/haproxy-dconv/2.2/configuration.html#4-timeout%20client)
+[Solarwins](https://www.papertrail.com/solution/tips/haproxy-logging-how-to-tune-timeouts-for-performance/)
