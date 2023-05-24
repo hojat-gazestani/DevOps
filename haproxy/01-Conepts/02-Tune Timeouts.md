@@ -10,9 +10,9 @@
 
 # Timeouts are not the problem!
 - when hitting a timeout, your first reaction should __not be to increase__ the timeout.
-- You should investigate why something is taking so long that you hit a timeout somewhere and fix the root cause.
-  - push long running jobs to the background
-  - queueing mechanisms
+- You should investigate why something is taking so long that you hit a timeout somewhere and fix the __root cause__.
+  - push __long running jobs__ to the background
+  - __queueing mechanisms__
 
 ## The Three Basic HAProxy Timeouts
 
