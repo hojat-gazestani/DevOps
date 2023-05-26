@@ -6,7 +6,7 @@
 
 - __Distributes__ client requests or __network load__ efficiently across __multiple servers__
 - Ensures __high availability__ (Reduced downtime) and __reliability__ by sending requests only to servers that are online
-- Provides the __flexibility__ to add or subtract servers as demand dictates
+- Provides the __flexibility__ to __add__ or __subtract__ servers as demand dictates
 
 # Load Balancing Algorithms
 
