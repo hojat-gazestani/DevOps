@@ -80,7 +80,7 @@ backend databases
     server db1 192.168.0.10:3306
     server db2 192.168.0.11:3306
 ```
-- it has access to which __IP address__ and __port__ the client is trying to connect to on the backend server. It intercepts the messages by standing in for the server on the __expected address__ and port.
+- it has access to which __IP address__ and __port__ the client is trying to connect to on the backend server. It intercepts the messages by standing in for the server on the expected __address__ and __port__.
 - Proxying at this layer is __lightweight__ and __fast__ because it is only concerned with transport. HAProxy __doesn’t read__ the messages,
 
 * __hiding your internal__ network from the public Internet,
@@ -112,7 +112,7 @@ backend web_servers
 - HAProxy can make __routing decisions__ based on any detail of a message that’s defined in __layers 4 through 7__.
   - __source__ and __destination IP__ addresses and __ports__
   - __SSL handshake metadata__
-  - HTTP metadata including __headers__, __cookies__, __URL__and __method__
+  - HTTP metadata including __headers__, __cookies__, __URL__ and __method__
 
 - In this mode, you get what you had with mode tcp, __but more__.
 - based on information found in the __SSL handshake__, such as __SNI fields__.
