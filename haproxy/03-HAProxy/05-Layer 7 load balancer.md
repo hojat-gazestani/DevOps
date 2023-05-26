@@ -2,7 +2,7 @@
 
 ## Layer 7
 
-![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/05-layer7%20load%20balancer.jpg)
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/05-layer7%20load%20balance.jpg)
 
 ```bash
 defaults
