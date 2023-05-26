@@ -1,29 +1,15 @@
-# Listen section
+# Layer 4 load balancer
 
-* used to define a __complete proxy__ with the functions of a __frontend__ and __backend__ combined.
-* route traffic to a __specific set of servers__ or for __non-HTTP-related__ configurations such as TCP gateways.
+## OSI Layer 4
 
-* If you need to split traffic towards __separate pools of servers__ or your application is getting larger then it's better to __use distinct frontend and backend__ sections.
+* o known as the __transport layer__, the protocols such as __TCP, UDP__
+* connection-oriented communication, reliability, flow control, and multiplexing
+* data transfer __without visibility__ into message content.
+* layer 4 load balancing can make routing decisions __without__ the need to __decrypt__ or __inspect network traffic__
 
-# Specific Servers
+## Scenario
 
-![scenario](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/04-1-liten.jpg)
-
-```bash
-listen myapp
-    bind *:80
-    mode tcp
-
-    timeout client 30s
-    timeout connect 10s
-    timeout server 30s
-
-    server myapp8010 192.168.56.22:8010
-```
-
-# Seprate pool
-
-![scenaro1](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/04-2-listen.jpg)
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/08-1-layer4Loadbalancer.jpg)
 
 ```bash
 defaults
@@ -33,16 +19,15 @@ defaults
     timeout server 30s
 
 frontend myapp
-    bind *:80
-    default_backend my_app10
-
-backend my_app10
-    server myapp8010 192.168.56.22:8010
-
-frontend auth_app
     bind *:81
-    default_backend auth_app20
+    default_backend myapps
 
-backend auth_app20
-    server myapp8020 192.168.56.22:8020
+backend myapps
+    #balance roundrobin
+    server myapp8010 192.168.56.22:8010
+    server myapp8011 192.168.56.22:8011
+    server myapp8012 192.168.56.22:8012
+
+
+# for i in {1..100}; do curl localhost &&sleep 1 && echo; done;
 ```
