@@ -31,3 +31,28 @@ backend myapps
 
 # for i in {1..100}; do curl localhost &&sleep 1 && echo; done;
 ```
+
+* TCP sticky session
+
+```bash
+defaults
+    mode tcp
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
+
+frontend myapp
+    bind *:81
+    default_backend myapps
+
+backend myapps
+    balance source
+    stick-table type ip size 10k
+    stick on src
+    server myapp8010 192.168.56.22:8010
+    server myapp8011 192.168.56.22:8011
+    server myapp8012 192.168.56.22:8012
+
+
+# for i in {1..100}; do curl localhost &&sleep 1 && echo; done;
+```
