@@ -19,7 +19,11 @@
 
 ![04](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/01-healthCheck/04-ResMess.png)
 
-* er
+1. [Informational responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#information_responses) (100 – 199)
+2. [Successful responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses) (200 – 299)
+3. [Redirection messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#redirection_messages) (300 – 399)
+4. [Client error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses) (400 – 499)
+5. [Server error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (500 – 599)
 
 
 
@@ -30,3 +34,5 @@
 [haproxy](https://www.haproxy.com/blog/how-to-enable-health-checks-in-haproxy/)
 
 [enterprice](https://www.haproxy.com/documentation/aloha/latest/load-balancing/health-checks/http/)
+
+[mozila](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
