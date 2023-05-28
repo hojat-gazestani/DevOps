@@ -173,11 +173,60 @@ listen myapp2 0.0.0.0:8080
    server node1 10.0.0.1:80 check fall 3 rise 2
    server node2 10.0.0.2:80 check fall 3 rise 2
 ```
+##### STATUS code
+
+* two checks, __both__ of which must be successful.
+
+```bash
+backend webservers
+  option httpchk
+
+  http-check connect
+  http-check send meth GET uri /health
+  http-check expect status 200
+
+  http-check connect
+  http-check send meth GET uri /health2
+  http-check expect status 200
+
+  server server1 192.168.50.2:80 check
+  server server2 192.168.50.3:80 check
+  server server3 192.168.50.4:80 check
+```
+
+##### STRING 
+
+*  you can require the response body to contain a __case-sensitive string__, such as success:
+
+```bash
+http-check expect string success
+```
 
 ### Passive Health Checks
 
+* __continually polls the server__ with either a __TCP__ connection or an __HTTP__ request, a passive health check __monitors live traffic__ for __errors__.
+* You can enable this mode by adding the __check__, __observe__, __error-limit__, and __on-error__ parameters to a server line
+
+```bash
+backend webservers
+  option httpchk
+  http-check send meth GET uri /health
+  server server1 192.168.50.2:80 check  observe layer7  error-limit 50  on-error mark-down
+```
+* observe parameter to __layer4__ to monitor all __TCP connections__ for problems or to __layer7__ to watch all __HTTP responses__ for __errors__. 
+* __Successful responses__ are those that have an HTTP status code in the range __100-499, 501 or 505__. 
+* The error-limit parameter sets how many __consecutive requests can have errors__ before the on-error rule __kicks in__. Here, the rule marks the server as down.
+* __Passive__ health checks always __coexist__ with __active__ health checks, 
+* 
 ### Agent Health Checks
 
+* you can communicate with an __external agent__, which is software __running on the server__ that’s __separate from the application being load balanced__. 
+* External agents can do more than just respond back __with a binary up or down status__.
+
+- mark the server as up or down
+- put the server into maintenance mode
+- change the amount of traffic flowing to the server
+- increase or decrease the maximum number of clients that can connect concurrently
 
 ## Source
 [ReqRes](https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/http_basics.html)
