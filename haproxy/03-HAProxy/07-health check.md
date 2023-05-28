@@ -32,10 +32,17 @@
 4. [Client error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses) (400 – 499)
 5. [Server error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (500 – 599)
 
+## Enable Health Checks in HAProxy
+
+### Active Health Checks
 
 
+### Passive Health Checks
 
-# Source
+### Agent Health Checks
+
+
+## Source
 [ReqRes](https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/http_basics.html)
 
 [haproxy](https://www.haproxy.com/blog/how-to-enable-health-checks-in-haproxy/)
