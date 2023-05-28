@@ -50,9 +50,9 @@ backend webservers
 ```
 
 - Default
-  - every two seconds
-  - After three failed connections, the server is removed, temporarily
-  - until HAProxy gets at least two successful connections,
+  - every __two seconds__
+  - After __three failed__ connections, the server __is removed__, temporarily
+  - __until__ HAProxy gets __at least two successful__ connections,
 
 ```bash
 server server1 192.168.50.2:80 check  inter 10s  fall 5  rise 5
