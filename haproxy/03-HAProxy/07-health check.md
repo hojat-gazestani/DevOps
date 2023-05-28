@@ -36,6 +36,9 @@
 
 ### Active Health Checks
 
+#### TCP Checks
+
+#### HTTP Checks
 
 ### Passive Health Checks
 
