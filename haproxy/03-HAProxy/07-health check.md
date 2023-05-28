@@ -19,7 +19,9 @@
 * [HEAD](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD): asks for a response identical to a GET request, but __without the response body__.
 * [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST): submits an entity to the specified resource, often causing a __change in state__ or side effects on the server.
 * [PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT): __replaces__ all current representations of the target resource with the request payload.
-* 
+
+
+* The following shows a sample response message:
 
 ![04](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/01-healthCheck/04-ResMess.png)
 
