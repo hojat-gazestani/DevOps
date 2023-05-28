@@ -4,21 +4,22 @@
 
 * HTTP is an asymmetric request-response client-server protocol as illustrated.  An HTTP client sends a request message to an HTTP server.
 
-![01-ReqRes]()
+![01-ReqRes](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/01-healthCheck/01-ReqRes.png)
 
 * First line in request: Start line - First line in response: Status line
 
-![01-ReqRes]()
+![02-ReqRes](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/01-healthCheck/02-ResResHead.png)
 
 * re
 
 
-![02]()
+![03](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/01-healthCheck/03-ReqMess.png)
 
 * df
 
-![03]()
+![04](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/01-healthCheck/04-ResMess.png)
 
+* er
 
 
 
