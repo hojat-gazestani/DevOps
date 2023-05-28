@@ -128,6 +128,8 @@ backend webservers
 
 - By default __GET request to the URL path /__
 
+##### GET to specific URI
+
 *  we send a __GET request to the URL path /health__
 
 ```bash
@@ -139,8 +141,10 @@ backend webservers
   server server2 192.168.50.3:80 check
   server server3 192.168.50.4:80 check
 ```
+##### POST request
 
-* To send a POST request with a JSON body, use this form, which includes a Content-Type request header and a message body:
+* To send a __POST__ request with a __JSON body__, use this form, which includes a __Content-Type__ __request header__ and a __message body__:
+* 
 ```bash
 
 backend webservers
@@ -150,8 +154,9 @@ backend webservers
   server server2 192.168.50.3:80 check
   server server3 192.168.50.4:80 check
 ```
+##### HEAD request 
 
-- use a HEAD request against the index page of your domain using HTTP version 1.0.
+- use a __HEAD request__ against the __index page__ of your domain using HTTP version 1.0.
 ```bash
 listen myapp2 0.0.0.0:8080
     mode http
@@ -159,7 +164,8 @@ listen myapp2 0.0.0.0:8080
     server node1 10.0.0.1:80 check fall 3 rise 2
     server node2 10.0.0.2:80 check fall 3 rise 2
 ```
--  This check will use a HEAD request against a specific URL using HTTP version 1.1. It also sets the domain name, which is needed for backends that use virtual hosts.
+-  This check will use a __HEAD request__ against a specific __URL__ using HTTP version 1.1. It also sets the __domain name__, which is needed for backends that use __virtual hosts__.
+- 
 ```bash
 listen myapp2 0.0.0.0:8080
    mode http
