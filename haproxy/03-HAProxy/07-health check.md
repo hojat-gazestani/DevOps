@@ -54,6 +54,13 @@ backend webservers
   - After three failed connections, the server is removed, temporarily
   - until HAProxy gets at least two successful connections,
 
+```bash
+server server1 192.168.50.2:80 check  inter 10s  fall 5  rise 5
+```
+* The __inter__ parameter changes the __interval between checks__
+* The __fall__ parameter sets __how many failed checks__ are allowed;
+* The __rise__ parameter sets how many __passing checks__ there __must__ be before returning a previously failed server __to the rotation__;
+
 #### TCP Checks
 
 * sends out a __simple packet__ and waits for a __reply__ back from the __destination server__.
@@ -111,6 +118,38 @@ listen mysql-cluster
 * If it returns a __status 200 or 300__ response, everything is __good__. 
 * Anything above that, such as a __500 status__ response, will be considered __bad health__ and HAProxy will mark the backend __server as offline__
 
+```bash
+backend webservers
+  option httpchk
+  server server1 192.168.50.2:80 check
+  server server2 192.168.50.3:80 check
+  server server3 192.168.50.4:80 check
+```
+
+- By default __GET request to the URL path /__
+
+*  we send a __GET request to the URL path /health__
+
+```bash
+
+backend webservers
+  option httpchk
+  http-check send meth GET  uri /health
+  server server1 192.168.50.2:80 check
+  server server2 192.168.50.3:80 check
+  server server3 192.168.50.4:80 check
+```
+
+* To send a POST request with a JSON body, use this form, which includes a Content-Type request header and a message body:
+```bash
+
+backend webservers
+  option httpchk
+  http-check send meth POST  uri /health  hdr Content-Type application/json  body "{ \"foo\": \"bar\" }"
+  server server1 192.168.50.2:80 check
+  server server2 192.168.50.3:80 check
+  server server3 192.168.50.4:80 check
+```
 
 - use a HEAD request against the index page of your domain using HTTP version 1.0.
 ```bash
