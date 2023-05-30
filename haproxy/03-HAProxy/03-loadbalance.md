@@ -32,11 +32,6 @@ backend myapps
 
 ![query](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/07-query.png)
 
-
-## source
-
-[UrlUri](https://prateekvjoshi.com/2014/02/22/url-vs-uri-vs-urn/)
-
 ```bash
 defaults
     mode http
@@ -56,3 +51,8 @@ backend myapps
     server myapp8011 192.168.56.22:8011 
     server myapp8012 192.168.56.22:8012 
 ```
+
+## source
+
+[UrlUri](https://prateekvjoshi.com/2014/02/22/url-vs-uri-vs-urn/)
+
