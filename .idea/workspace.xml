@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <changelist_data name="hojat-gazestani" email="hojatgazestani@gmail.com" />
+    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="spike test">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_18_23__8_45_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haproxy/03-HAProxy/03-loadbalance.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/03-HAProxy/03-loadbalance.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +23,11 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -46,15 +47,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/arman/Documents/Github/DevOps"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/arman/Documents/Github/HAProxy&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -64,350 +65,350 @@
       <option name="presentableId" value="Default" />
       <updated>1646225940129</updated>
     </task>
-    <task id="LOCAL-00017" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684419718446</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
+    <task id="LOCAL-00083" summary="Timeout http request">
+      <created>1684909938525</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
       <option name="project" value="LOCAL" />
-      <updated>1684419718446</updated>
+      <updated>1684909938525</updated>
     </task>
-    <task id="LOCAL-00018" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684419738873</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
+    <task id="LOCAL-00084" summary="Timeout http request">
+      <created>1684913916669</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
       <option name="project" value="LOCAL" />
-      <updated>1684419738873</updated>
+      <updated>1684913916669</updated>
     </task>
-    <task id="LOCAL-00019" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684420485946</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
+    <task id="LOCAL-00085" summary="Timeout http request">
+      <created>1684913992657</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
       <option name="project" value="LOCAL" />
-      <updated>1684420485946</updated>
+      <updated>1684913992657</updated>
     </task>
-    <task id="LOCAL-00020" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684420564296</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
+    <task id="LOCAL-00086" summary="timeout keepalive">
+      <created>1684914023259</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
       <option name="project" value="LOCAL" />
-      <updated>1684420564296</updated>
+      <updated>1684914023259</updated>
     </task>
-    <task id="LOCAL-00021" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684420624344</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
+    <task id="LOCAL-00087" summary="timeout keepalive">
+      <created>1684914056940</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
       <option name="project" value="LOCAL" />
-      <updated>1684420624344</updated>
+      <updated>1684914056940</updated>
     </task>
-    <task id="LOCAL-00022" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684421118875</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
+    <task id="LOCAL-00088" summary="client and server fin">
+      <created>1684915086123</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
       <option name="project" value="LOCAL" />
-      <updated>1684421118875</updated>
+      <updated>1684915086123</updated>
     </task>
-    <task id="LOCAL-00023" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684421164315</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
+    <task id="LOCAL-00089" summary="client and server fin">
+      <created>1684915529504</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
       <option name="project" value="LOCAL" />
-      <updated>1684421164315</updated>
+      <updated>1684915529504</updated>
     </task>
-    <task id="LOCAL-00024" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/01-Protocols.md">
-      <created>1684421271465</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
+    <task id="LOCAL-00090" summary="client and server fin">
+      <created>1684915562423</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
-      <updated>1684421271465</updated>
+      <updated>1684915562423</updated>
     </task>
-    <task id="LOCAL-00025" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/01-Protocols.md">
-      <created>1684421278553</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
+    <task id="LOCAL-00091" summary="client and server fin">
+      <created>1684915766783</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
       <option name="project" value="LOCAL" />
-      <updated>1684421278553</updated>
+      <updated>1684915766783</updated>
     </task>
-    <task id="LOCAL-00026" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/01-Protocols.md">
-      <created>1684421354605</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
+    <task id="LOCAL-00092" summary="client and server fin">
+      <created>1684915854772</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
       <option name="project" value="LOCAL" />
-      <updated>1684421354605</updated>
+      <updated>1684915854772</updated>
     </task>
-    <task id="LOCAL-00027" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/01-Protocols.md">
-      <created>1684421369938</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
+    <task id="LOCAL-00093" summary="client and server fin">
+      <created>1684915948668</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
       <option name="project" value="LOCAL" />
-      <updated>1684421369938</updated>
+      <updated>1684915948668</updated>
     </task>
-    <task id="LOCAL-00028" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/01-Protocols.md">
-      <created>1684421412125</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
+    <task id="LOCAL-00094" summary="client and server fin">
+      <created>1684915987749</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
       <option name="project" value="LOCAL" />
-      <updated>1684421412125</updated>
+      <updated>1684915987749</updated>
     </task>
-    <task id="LOCAL-00029" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/01-Protocols.md">
-      <created>1684421432535</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
+    <task id="LOCAL-00095" summary="timeout scenario">
+      <created>1684921499795</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
       <option name="project" value="LOCAL" />
-      <updated>1684421432535</updated>
+      <updated>1684921499795</updated>
     </task>
-    <task id="LOCAL-00030" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684422275667</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
+    <task id="LOCAL-00096" summary="timeout scenario">
+      <created>1684921513951</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
-      <updated>1684422275667</updated>
+      <updated>1684921513951</updated>
     </task>
-    <task id="LOCAL-00031" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684422298716</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
+    <task id="LOCAL-00097" summary="timeout scenario">
+      <created>1684945135003</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
       <option name="project" value="LOCAL" />
-      <updated>1684422298716</updated>
+      <updated>1684945135003</updated>
     </task>
-    <task id="LOCAL-00032" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684422358637</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
+    <task id="LOCAL-00098" summary="Sticky session">
+      <created>1684947928423</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
       <option name="project" value="LOCAL" />
-      <updated>1684422358637</updated>
+      <updated>1684947928423</updated>
     </task>
-    <task id="LOCAL-00033" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684423864740</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
+    <task id="LOCAL-00099" summary="Load balance Cluster">
+      <created>1685008598945</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
       <option name="project" value="LOCAL" />
-      <updated>1684423864740</updated>
+      <updated>1685008598946</updated>
     </task>
-    <task id="LOCAL-00034" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684430145262</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
+    <task id="LOCAL-00100" summary="REname load balancer file">
+      <created>1685087050090</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
       <option name="project" value="LOCAL" />
-      <updated>1684430145262</updated>
+      <updated>1685087050091</updated>
     </task>
-    <task id="LOCAL-00035" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684430182793</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
+    <task id="LOCAL-00101" summary="Listen section">
+      <created>1685087381287</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
       <option name="project" value="LOCAL" />
-      <updated>1684430182793</updated>
+      <updated>1685087381287</updated>
     </task>
-    <task id="LOCAL-00036" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684430437304</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
+    <task id="LOCAL-00102" summary="Listen section">
+      <created>1685087432053</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
       <option name="project" value="LOCAL" />
-      <updated>1684430437304</updated>
+      <updated>1685087432053</updated>
     </task>
-    <task id="LOCAL-00037" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684430532737</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
+    <task id="LOCAL-00103" summary="Listen section">
+      <created>1685105065433</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
       <option name="project" value="LOCAL" />
-      <updated>1684430532737</updated>
+      <updated>1685105065434</updated>
     </task>
-    <task id="LOCAL-00038" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684430729303</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
+    <task id="LOCAL-00104" summary="Listen section">
+      <created>1685111045327</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
       <option name="project" value="LOCAL" />
-      <updated>1684430729303</updated>
+      <updated>1685111045327</updated>
     </task>
-    <task id="LOCAL-00039" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684431285625</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
+    <task id="LOCAL-00105" summary="Listen section">
+      <created>1685111729287</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
       <option name="project" value="LOCAL" />
-      <updated>1684431285625</updated>
+      <updated>1685111729288</updated>
     </task>
-    <task id="LOCAL-00040" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684472034349</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
+    <task id="LOCAL-00106" summary="Listen section">
+      <created>1685111820757</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
       <option name="project" value="LOCAL" />
-      <updated>1684472034349</updated>
+      <updated>1685111820757</updated>
     </task>
-    <task id="LOCAL-00041" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684472166397</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
+    <task id="LOCAL-00107" summary="Listen section">
+      <created>1685122632900</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
       <option name="project" value="LOCAL" />
-      <updated>1684472166397</updated>
+      <updated>1685122632900</updated>
     </task>
-    <task id="LOCAL-00042" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684472210793</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
+    <task id="LOCAL-00108" summary="Add layer 7 load balancer">
+      <created>1685122805301</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
       <option name="project" value="LOCAL" />
-      <updated>1684472210793</updated>
+      <updated>1685122805301</updated>
     </task>
-    <task id="LOCAL-00043" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684472714815</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
+    <task id="LOCAL-00109" summary="Add layer 7 load balancer">
+      <created>1685125456666</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
       <option name="project" value="LOCAL" />
-      <updated>1684472714815</updated>
+      <updated>1685125456666</updated>
     </task>
-    <task id="LOCAL-00044" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684472751636</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
+    <task id="LOCAL-00110" summary="Add layer 7 load balancer">
+      <created>1685126573006</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
       <option name="project" value="LOCAL" />
-      <updated>1684472751636</updated>
+      <updated>1685126573006</updated>
     </task>
-    <task id="LOCAL-00045" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684474374896</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
+    <task id="LOCAL-00111" summary="rename">
+      <created>1685257158047</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
       <option name="project" value="LOCAL" />
-      <updated>1684474374897</updated>
+      <updated>1685257158047</updated>
     </task>
-    <task id="LOCAL-00046" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684474481271</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
+    <task id="LOCAL-00112" summary="Health check">
+      <created>1685258106321</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
       <option name="project" value="LOCAL" />
-      <updated>1684474481271</updated>
+      <updated>1685258106321</updated>
     </task>
-    <task id="LOCAL-00047" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684474661919</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
+    <task id="LOCAL-00113" summary="Health check">
+      <created>1685258130531</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
       <option name="project" value="LOCAL" />
-      <updated>1684474661919</updated>
+      <updated>1685258130532</updated>
     </task>
-    <task id="LOCAL-00048" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684474700758</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
+    <task id="LOCAL-00114" summary="Health check">
+      <created>1685258190248</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
       <option name="project" value="LOCAL" />
-      <updated>1684474700758</updated>
+      <updated>1685258190248</updated>
     </task>
-    <task id="LOCAL-00049" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/03-Proxy.md">
-      <created>1684474741956</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
+    <task id="LOCAL-00115" summary="Health check">
+      <created>1685259498900</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
       <option name="project" value="LOCAL" />
-      <updated>1684474741956</updated>
+      <updated>1685259498900</updated>
     </task>
-    <task id="LOCAL-00050" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/03-Proxy.md">
-      <created>1684474801501</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
+    <task id="LOCAL-00116" summary="Health check">
+      <created>1685260217278</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
       <option name="project" value="LOCAL" />
-      <updated>1684474801501</updated>
+      <updated>1685260217278</updated>
     </task>
-    <task id="LOCAL-00051" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/03-Proxy.md">
-      <created>1684474817038</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
+    <task id="LOCAL-00117" summary="Health check">
+      <created>1685260773699</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
       <option name="project" value="LOCAL" />
-      <updated>1684474817038</updated>
+      <updated>1685260773699</updated>
     </task>
-    <task id="LOCAL-00052" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684476436082</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
+    <task id="LOCAL-00118" summary="Health check">
+      <created>1685260805475</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
       <option name="project" value="LOCAL" />
-      <updated>1684476436083</updated>
+      <updated>1685260805475</updated>
     </task>
-    <task id="LOCAL-00053" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684476712338</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
+    <task id="LOCAL-00119" summary="Health check">
+      <created>1685260938384</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
       <option name="project" value="LOCAL" />
-      <updated>1684476712338</updated>
+      <updated>1685260938384</updated>
     </task>
-    <task id="LOCAL-00054" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684476783604</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
+    <task id="LOCAL-00120" summary="Health check">
+      <created>1685260995442</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
       <option name="project" value="LOCAL" />
-      <updated>1684476783604</updated>
+      <updated>1685260995442</updated>
     </task>
-    <task id="LOCAL-00055" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684476854300</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
+    <task id="LOCAL-00121" summary="Health check">
+      <created>1685261111160</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
       <option name="project" value="LOCAL" />
-      <updated>1684476854300</updated>
+      <updated>1685261111160</updated>
     </task>
-    <task id="LOCAL-00056" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684492587875</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
+    <task id="LOCAL-00122" summary="Health check">
+      <created>1685261378138</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
       <option name="project" value="LOCAL" />
-      <updated>1684492587875</updated>
+      <updated>1685261378138</updated>
     </task>
-    <task id="LOCAL-00057" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684492894089</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
+    <task id="LOCAL-00123" summary="Health check">
+      <created>1685270653278</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
       <option name="project" value="LOCAL" />
-      <updated>1684492894089</updated>
+      <updated>1685270653278</updated>
     </task>
-    <task id="LOCAL-00058" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684507753414</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
+    <task id="LOCAL-00124" summary="Health check">
+      <created>1685270752774</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
       <option name="project" value="LOCAL" />
-      <updated>1684507753414</updated>
+      <updated>1685270752774</updated>
     </task>
-    <task id="LOCAL-00059" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684507787200</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
+    <task id="LOCAL-00125" summary="Health check">
+      <created>1685273249615</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
       <option name="project" value="LOCAL" />
-      <updated>1684507787200</updated>
+      <updated>1685273249615</updated>
     </task>
-    <task id="LOCAL-00060" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684510285031</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
+    <task id="LOCAL-00126" summary="Health check">
+      <created>1685275067747</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
       <option name="project" value="LOCAL" />
-      <updated>1684510285031</updated>
+      <updated>1685275067747</updated>
     </task>
-    <task id="LOCAL-00061" summary="Merge remote-tracking branch 'origin/main' into main">
-      <created>1684510401592</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
+    <task id="LOCAL-00127" summary="Health check">
+      <created>1685275152163</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
       <option name="project" value="LOCAL" />
-      <updated>1684510401592</updated>
+      <updated>1685275152164</updated>
     </task>
-    <task id="LOCAL-00062" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1684772319755</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
+    <task id="LOCAL-00128" summary="Health check">
+      <created>1685276766356</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
       <option name="project" value="LOCAL" />
-      <updated>1684772319755</updated>
+      <updated>1685276766356</updated>
     </task>
-    <task id="LOCAL-00063" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1684774399808</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
+    <task id="LOCAL-00129" summary="Health check">
+      <created>1685277509183</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
       <option name="project" value="LOCAL" />
-      <updated>1684774399809</updated>
+      <updated>1685277509183</updated>
     </task>
-    <task id="LOCAL-00064" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1684775060439</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
+    <task id="LOCAL-00130" summary="Slow start">
+      <created>1685375785674</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
       <option name="project" value="LOCAL" />
-      <updated>1684775060439</updated>
+      <updated>1685375785675</updated>
     </task>
-    <task id="LOCAL-00065" summary="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1684775247423</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
+    <task id="LOCAL-00131" summary="spike test">
+      <created>1685439057493</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
       <option name="project" value="LOCAL" />
-      <updated>1684775247424</updated>
+      <updated>1685439057494</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -428,6 +429,25 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/03-Proxy.md" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main' into main" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="image application added" />
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Add resources" />
+    <MESSAGE value="Bold font" />
+    <MESSAGE value="Add timeout unit" />
+    <MESSAGE value="add keepalive pic to document" />
+    <MESSAGE value="Timeout http request" />
+    <MESSAGE value="timeout keepalive" />
+    <MESSAGE value="client and server fin" />
+    <MESSAGE value="timeout scenario" />
+    <MESSAGE value="Sticky session" />
+    <MESSAGE value="Load balance Cluster" />
+    <MESSAGE value="REname load balancer file" />
+    <MESSAGE value="Listen section" />
+    <MESSAGE value="Add layer 7 load balancer" />
+    <MESSAGE value="rename" />
+    <MESSAGE value="Health check" />
+    <MESSAGE value="Slow start" />
+    <MESSAGE value="spike test" />
+    <option name="LAST_COMMIT_MESSAGE" value="spike test" />
   </component>
 </project>
