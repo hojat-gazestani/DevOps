@@ -28,7 +28,7 @@ backend myapps
     server myapp8012 192.168.56.22:8012 
 ```
 
-## query
+## URL parameter
 
 ![query](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/07-query.png)
 
@@ -51,6 +51,18 @@ backend myapps
     server myapp8011 192.168.56.22:8011 
     server myapp8012 192.168.56.22:8012 
 ```
+### hash-type
+
+- __Map-based:__ 
+  - __default__ hash type
+  - __hash table__ is a __static array__ containing all __alive server__ 
+  - __static__ algorithm __on fly weight change__ does not affect
+  - __inconvenient__ with __cach__
+- __consistent:__
+  - __convenient__ for __cach__
+  - __a tree table__ filled with many __occurrences of server__.
+  - __the hash key __looked up__ in the tree and the __closest server__ is chosen.
+  - __dynamic__ algorithm
 
 ## source
 
