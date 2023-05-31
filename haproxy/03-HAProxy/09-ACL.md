@@ -30,6 +30,14 @@
   - HTTP header 
   - etc.
 
+### Actions
+- Deny the request.
+- Choose the pool of servers
+- Add, remove or modify headers
+- Rewrite the URL
+- etc
+
+
 ### URL Path
 ```bash
 frontend test
@@ -106,13 +114,6 @@ frontend www1
     http-request deny if is_php || !host_found
 
 ```
-
-### Actions
-- Deny the request.
-- Choose the pool of servers
-- Add, remove or modify headers
-- Rewrite the URL
-- etc
 
 
 
