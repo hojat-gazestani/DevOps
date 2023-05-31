@@ -1,5 +1,16 @@
 # ACL
 
+## URL
+* URI (uniform resource identifier) identifies a resource (text document, image file, etc)
+* URL (uniform resource locator) is a subset of the URIs that include a network location
+* URN (uniform resource name) is a subset of URIs that include a name within a given space, but no location
+
+![URL](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/06-UrlUri.png)
+
+* URL parameter
+
+![param](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/07-query.png)
+
 ## ACls inspect traffic via fetches
 
 - __fetching:__ __store__ the data about __connections__ and __requests__ 
