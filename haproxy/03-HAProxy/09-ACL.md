@@ -38,16 +38,6 @@
 - etc
 
 
-### URL Path
-```bash
-frontend test
-    acl is_image1 path -i /img/south/image1.jpg
-    use_backend img_srv if is_image1
-    
-    # OR
-    use_backend img_srv if { path -i  /img/south/image1.jpg}
-```
-
 ```bash
 frontend test
     acl is_api path_beg /api
@@ -67,42 +57,6 @@ path_reg | path -m reg:         regex match, binary or string samples
 path_sub | path -m sub:         substring match, binary or string samples
 ```
 
-* path_dir
-```bash
-acl is_images path_dir -i /images
-```
-
-* path_end
-```bash
-acl is_html path_end -i *.html
-```
-
-* path_len
-```bash
-acl is_eleven path_len 11 
-```
-
-* path_reg
-```bash
-acl is_css_js path_reg -i .(css|js)$ 
-```
-
-* path_string
-```bash
-acl is_page path_string -i page 
-```
-
-### IP address
-
-```bash
-frontend hacker
-    acl is_hacker src 192.168.56.20/32
-    
-    # OR
-    
-    http-request deny if { src 192.168.56.20/32 }
-```
-
 ### Chain ACL
 ```bash
 frontend www
@@ -118,6 +72,7 @@ frontend www1
 - __extracting data__ from __request__ or __response__ streams, __client or server information__, from __tables__, __environmental information__ etc...
 - these samples may be used for __various purposes__ such as a __key__ to a __stick-table__
 - __matching__ them against predefined constant data called __patterns__
+
 
 
 ## sources
