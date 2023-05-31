@@ -107,13 +107,6 @@ frontend www1
 
 ```
 
-
-## condition
-1. Does the connection or request match some criteria
-2. yes. take action A
-3. NO, take action B
-4. 
-
 ### Actions
 - Deny the request.
 - Choose the pool of servers
