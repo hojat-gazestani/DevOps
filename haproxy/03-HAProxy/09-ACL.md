@@ -38,6 +38,13 @@
 - etc
 
 
+- __extracting data__ from __request__ or __response__ streams, __client or server information__, from __tables__, __environmental information__ etc...
+- these samples may be used for __various purposes__ such as a __key__ to a __stick-table__
+- __matching__ them against predefined constant data called __patterns__
+
+
+
+
 ```bash
 frontend test
     acl is_api path_beg /api
@@ -66,12 +73,7 @@ frontend www1
     acl is_php path_end .php
     acl host_found req.hdr(host) -m found
     http-request deny if is_php || !host_found
-
 ```
-
-- __extracting data__ from __request__ or __response__ streams, __client or server information__, from __tables__, __environmental information__ etc...
-- these samples may be used for __various purposes__ such as a __key__ to a __stick-table__
-- __matching__ them against predefined constant data called __patterns__
 
 
 
