@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="Delete unrequered">
-      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/01-acl-path.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/02-path-len.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/03-urlParam.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/04-header-host.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/05-deny-src-ip.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haproxy/03-HAProxy/09-ACL.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/03-HAProxy/09-ACL.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,15 +45,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/arman/Documents/Github/DevOps"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/arman/Documents/Github/DevOps&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

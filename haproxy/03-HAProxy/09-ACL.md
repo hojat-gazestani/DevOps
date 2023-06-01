@@ -76,6 +76,43 @@ frontend www1
 ```
 
 
+### 01 ACL Path
+
+![pic]()
+
+### 02 ACL Path length
+
+![pic]()
+
+### 03 ACL Path end
+
+![pic]()
+
+### 03-ACL-URL-param.jpg
+
+![pic]()
+
+### 04-ACL-hostHeader.jpg
+
+![pic]()
+
+### 05-ACL-Deny-srcIP.jpg
+
+![pic]()
+
+### 06-ACL-methodPost.jpg
+
+![pic]()
+
+### 07-ACL-redirect.jpg
+
+![pic]()
+
+### 08-ACL-userAgent.jpg
+
+![pic]()
+
+
 
 ## sources
 
