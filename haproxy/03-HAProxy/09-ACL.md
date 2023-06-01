@@ -38,9 +38,9 @@
 - etc
 
 
-- __extracting data__ from __request__ or __response__ streams, __client or server information__, from __tables__, __environmental information__ etc...
-- these samples may be used for __various purposes__ such as a __key__ to a __stick-table__
-- __matching__ them against predefined constant data called __patterns__
+* __extracting data__ from __request__ or __response__ streams, __client or server information__, from __tables__, __environmental information__ etc...
+* these samples may be used for __various purposes__ such as a __key__ to a __stick-table__
+* __matching__ them against predefined constant data called __patterns__
 
 
 
