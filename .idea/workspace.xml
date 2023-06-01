@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="spike test">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_18_23__8_45_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="Delete unrequered">
+      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/01-acl-path.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/02-path-len.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/03-urlParam.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/04-header-host.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/haproxy/pictures/03-HAProxy/2-acl/05-deny-src-ip.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/haproxy/03-HAProxy/03-loadbalance.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/03-HAProxy/03-loadbalance.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,15 +50,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/arman/Documents/Github/HAProxy&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/arman/Documents/Github/DevOps"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -64,104 +67,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646225940129</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Timeout http request">
-      <created>1684909938525</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1684909938525</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Timeout http request">
-      <created>1684913916669</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1684913916669</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Timeout http request">
-      <created>1684913992657</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1684913992657</updated>
-    </task>
-    <task id="LOCAL-00086" summary="timeout keepalive">
-      <created>1684914023259</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1684914023259</updated>
-    </task>
-    <task id="LOCAL-00087" summary="timeout keepalive">
-      <created>1684914056940</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1684914056940</updated>
-    </task>
-    <task id="LOCAL-00088" summary="client and server fin">
-      <created>1684915086123</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1684915086123</updated>
-    </task>
-    <task id="LOCAL-00089" summary="client and server fin">
-      <created>1684915529504</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1684915529504</updated>
-    </task>
-    <task id="LOCAL-00090" summary="client and server fin">
-      <created>1684915562423</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1684915562423</updated>
-    </task>
-    <task id="LOCAL-00091" summary="client and server fin">
-      <created>1684915766783</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1684915766783</updated>
-    </task>
-    <task id="LOCAL-00092" summary="client and server fin">
-      <created>1684915854772</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1684915854772</updated>
-    </task>
-    <task id="LOCAL-00093" summary="client and server fin">
-      <created>1684915948668</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1684915948668</updated>
-    </task>
-    <task id="LOCAL-00094" summary="client and server fin">
-      <created>1684915987749</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1684915987749</updated>
-    </task>
-    <task id="LOCAL-00095" summary="timeout scenario">
-      <created>1684921499795</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1684921499795</updated>
-    </task>
-    <task id="LOCAL-00096" summary="timeout scenario">
-      <created>1684921513951</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1684921513951</updated>
     </task>
     <task id="LOCAL-00097" summary="timeout scenario">
       <created>1684945135003</created>
@@ -408,7 +313,105 @@
       <option name="project" value="LOCAL" />
       <updated>1685439057494</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="uri load balancing">
+      <created>1685446846649</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1685446846649</updated>
+    </task>
+    <task id="LOCAL-00133" summary="uri load balancing">
+      <created>1685446944026</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1685446944026</updated>
+    </task>
+    <task id="LOCAL-00134" summary="uri load balancing">
+      <created>1685452225242</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1685452225242</updated>
+    </task>
+    <task id="LOCAL-00135" summary="uri load balancing">
+      <created>1685521601858</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1685521601858</updated>
+    </task>
+    <task id="LOCAL-00136" summary="uri load balancing">
+      <created>1685521640854</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1685521640854</updated>
+    </task>
+    <task id="LOCAL-00137" summary="HAPRoxy access list">
+      <created>1685521666942</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1685521666942</updated>
+    </task>
+    <task id="LOCAL-00138" summary="HAPRoxy access list">
+      <created>1685521968206</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1685521968206</updated>
+    </task>
+    <task id="LOCAL-00139" summary="HAPRoxy access list">
+      <created>1685526694098</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1685526694098</updated>
+    </task>
+    <task id="LOCAL-00140" summary="rename">
+      <created>1685540477669</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1685540477669</updated>
+    </task>
+    <task id="LOCAL-00141" summary="rename">
+      <created>1685556537524</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1685556537525</updated>
+    </task>
+    <task id="LOCAL-00142" summary="rename">
+      <created>1685556644334</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1685556644334</updated>
+    </task>
+    <task id="LOCAL-00143" summary="rename">
+      <created>1685556710374</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1685556710374</updated>
+    </task>
+    <task id="LOCAL-00144" summary="Delete unrequered">
+      <created>1685557039161</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1685557039161</updated>
+    </task>
+    <task id="LOCAL-00145" summary="Delete unrequered">
+      <created>1685557100451</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1685557100451</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -424,9 +427,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="URL changed" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/01-Protocols.md" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;haproxy/Conepts/03-Proxy.md" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main' into main" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="image application added" />
@@ -444,10 +444,14 @@
     <MESSAGE value="REname load balancer file" />
     <MESSAGE value="Listen section" />
     <MESSAGE value="Add layer 7 load balancer" />
-    <MESSAGE value="rename" />
     <MESSAGE value="Health check" />
     <MESSAGE value="Slow start" />
     <MESSAGE value="spike test" />
-    <option name="LAST_COMMIT_MESSAGE" value="spike test" />
+    <MESSAGE value="HAProxy Access list" />
+    <MESSAGE value="uri load balancing" />
+    <MESSAGE value="HAPRoxy access list" />
+    <MESSAGE value="rename" />
+    <MESSAGE value="Delete unrequered" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete unrequered" />
   </component>
 </project>
