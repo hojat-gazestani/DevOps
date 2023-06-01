@@ -78,39 +78,39 @@ frontend www1
 
 ### 01 ACL Path
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/01-Layer7-ACLpath.jpg)
 
 ### 02 ACL Path length
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/02-ACL-PathLen.jpg)
 
 ### 03 ACL Path end
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/03-ACL-Path-end.jpg)
 
-### 03-ACL-URL-param.jpg
+### 04 ACL URL Param
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/04-ACL-URL-param.jpg)
 
-### 04-ACL-hostHeader.jpg
+### 04 ACL Host header
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/05-ACL-hostHeader.jpg)
 
-### 05-ACL-Deny-srcIP.jpg
+### 05 ACL Deny Source IP
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/06-ACL-Deny-srcIP.jpg)
 
-### 06-ACL-methodPost.jpg
+### 06-ACL method POST
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/07-ACL-methodPost.jpg)
 
-### 07-ACL-redirect.jpg
+### 07-ACL redirect
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/08-ACL-redirect.jpg)
 
-### 08-ACL-userAgent.jpg
+### 08-ACL User Agent
 
-![pic]()
+![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/09-ACL-userAgent.jpg)
 
 
 
