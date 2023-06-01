@@ -12,6 +12,11 @@
 ![param](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/07-query.png)
 
 ## ACL basic
+
+* __extracting data__ from __request__ or __response__ streams, __client or server information__, from __tables__, __environmental information__ etc...
+* these samples may be used for __various purposes__ such as a __key__ to a __stick-table__
+* __matching__ them against predefined constant data called __patterns__
+
 - __content switching:__  __take decisions__ based on __content extracted__ from the __request__
   - __extract a data__ sample from a __stream__, __table__ or the __environment__
   - optionally apply some __format conversion__ to the extracted sample
@@ -36,13 +41,6 @@
 - Add, remove or modify headers
 - Rewrite the URL
 - etc
-
-
-* __extracting data__ from __request__ or __response__ streams, __client or server information__, from __tables__, __environmental information__ etc...
-* these samples may be used for __various purposes__ such as a __key__ to a __stick-table__
-* __matching__ them against predefined constant data called __patterns__
-
-
 
 
 ```bash
