@@ -81,7 +81,30 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/01-Layer7-ACLpath.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
 
+frontend myapp_imgeapp
+    bind *:80
+
+    acl is_myapp path_beg -i /app
+    use_backend my_apps if is_myapp
+
+    use_backend img_apps if { path -m beg -i /img }
+
+    default_backend auth_apps
+
+backend my_apps
+    server myapp8010 192.168.56.22:8010 
+
+backend img_apps
+    server myapp8010 192.168.56.22:8030
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
 ```
 
 ### 02 ACL Path length
@@ -89,7 +112,34 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/02-ACL-PathLen.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
 
+frontend myapp_imgeapp
+    bind *:80
+
+    use_backend img_apps if { path_len 14 } # path length is 14
+
+    #use_backend img_apps if { path_len ge 10 }
+
+    #use_backend img_apps if { path_len le 20 }
+
+    #use_backend img_apps if { path_len 10:20 }
+
+    #acl is_image_request path_len 14
+    #use_backend img_apps if is_image_request
+
+
+    default_backend auth_apps
+
+backend img_apps
+    server myapp8010 192.168.56.22:8030
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
 ```
 
 ### 03 ACL Path end
@@ -97,6 +147,28 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/03-ACL-Path-end.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
+
+frontend myapp_imgeapp
+    bind *:80
+
+    use_backend img_apps if { path_end -i .jpg }
+
+    #use_backend img_apps if { path_end -i .jpg .png .mov .mp4 }
+    #use_backend img_apps if { path_reg -i .(jpg|png|mov|mp4) }
+
+    default_backend auth_apps
+
+backend img_apps
+    server myapp8010 192.168.56.22:8030
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
+
 
 ```
 
@@ -105,7 +177,42 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/04-ACL-URL-param.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
 
+frontend myapp_imgeapp
+    bind *:80
+
+ 
+    acl is_west url_param(region) -i -m str west south
+    acl is_east url_param(region) -i -m str east north
+   
+    #acl is_west url_param(region) -i -m reg w.*
+    #acl is_west url_param(region) -i -m reg (west|south)
+    #acl urlparam url_param() -i -m end 
+
+    use_backend my_apps if is_west
+    use_backend img_apps if is_east
+
+    default_backend auth_apps
+
+backend my_apps
+    server myapp8010 192.168.56.22:8010 
+
+backend img_apps
+    server myapp8030 192.168.56.22:8030
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
+
+
+# http://192.168.56.21/?region=west
+# http://192.168.56.21/?region=east
+# http://192.168.56.21/?region=south
+# http://192.168.56.21/?region=north
 ```
 
 ### 04 ACL Host header
@@ -113,7 +220,39 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/05-ACL-hostHeader.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
 
+frontend myapp_imgeapp
+    bind *:80
+
+    acl is_hojatcom hdr(Host) -i -m str hojat.com
+    acl is_nethightech hdr(host) -i -m str www.nethightech.com || hdr(host) -i -m str ftp.nethightech.com || hdr(host) -i -m str mail.nethightech.com
+    acl is_nethightech hdr_reg(host) -i ^(www|ftp|mail)\.nethightech\.com$
+
+    acl is_phone  hdr_end(User-Agent) -i -m reg (Andoroid|Iphone)
+    use_backend img_apps if is_phone
+
+    #acl name req.hdr
+    #acl name res.hdr
+    #acl name res.hdr_reg
+
+    use_backend my_apps if is_hojatcom
+    use_backend img_apps if is_nethightech
+
+    default_backend auth_apps
+
+backend my_apps
+    server myapp8010 192.168.56.22:8010 
+
+backend img_apps
+    server myapp8030 192.168.56.22:8030
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
 ```
 
 ### 05 ACL Deny Source IP
@@ -121,7 +260,21 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/06-ACL-Deny-srcIP.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
 
+frontend myapp_imgeapp
+    bind *:80
+
+    http-request deny if { src 192.168.56.20 }
+
+    default_backend auth_apps
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
 ```
 
 ### 06-ACL method POST
@@ -129,6 +282,31 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/07-ACL-methodPost.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
+
+frontend myapp_imgeapp
+    bind *:80
+
+    #use_backend api_app if method POST
+    #use_backend api_app if method GET AND path_beg -i /api
+
+    acl is_post_method method POST
+    use_backend api_app if is_post_method
+
+    acl is_get_api path_beg -i /api
+    use_backend api_app if is_get_api
+
+    default_backend auth_apps
+
+backend api_app
+    server ApiAPP40 192.168.56.22:8040
+
+bbackend auth_apps
+    server AuthAPP20 192.168.56.22:8020
 
 ```
 
@@ -137,7 +315,22 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/08-ACL-redirect.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
 
+frontend myapp_imgeapp
+    bind *:80
+
+    acl is_pic path_end -i .jpg .gif
+    redirect prefix http://nethightech.com if is_pic
+
+    default_backend auth_apps
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
 ```
 
 ### 08-ACL User Agent
@@ -145,7 +338,25 @@ frontend www1
 ![pic](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/03-HAProxy/2-acl/09-ACL-userAgent.jpg)
 
 ```bash
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
 
+frontend myapp_imgeapp
+    bind *:80
+
+    acl is_phone  hdr_end(User-Agent) -i -m reg (Andoroid|Iphone)
+    use_backend img_apps if is_phone
+
+    default_backend auth_apps
+
+backend img_apps
+    server myapp8030 192.168.56.22:8030
+
+backend auth_apps
+    server AuthAPP20 192.168.56.22:8020
 ```
 
 ## sources
