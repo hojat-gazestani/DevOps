@@ -14,11 +14,8 @@ globals
 
 ```bash
 ❯ cat /etc/rsyslog.d/49-haproxy.conf
-# Create an additional socket in haproxy's chroot in order to allow logging via
-# /dev/log to chroot'ed HAProxy processes
 $AddUnixListenSocket /var/lib/haproxy/dev/log
 
-# Send HAProxy messages to a dedicated logfile
 :programname, startswith, "haproxy" {
   /var/log/haproxy.log
   stop
