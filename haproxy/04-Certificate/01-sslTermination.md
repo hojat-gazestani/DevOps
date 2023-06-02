@@ -1,6 +1,6 @@
 # SSL Termination
 
-![01-ssltermination]()
+![01-ssltermination](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/04-certificate/01-SSL-Termination.jpg)
 
 * __compromised__  server included certificate
 ```bash
