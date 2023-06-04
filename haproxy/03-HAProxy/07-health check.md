@@ -202,15 +202,6 @@ backend webservers
 http-check expect string success
 ```
 
-[Watch the YouTube video](https://youtu.be/AnZikN6uG1w)
-
-
-* the second
-
-
-[![Video Name](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-load%20blalancer.jpg)](https://youtu.be/AnZikN6uG1w)
-
-
 ### Passive Health Checks
 
 * __continually polls the server__ with either a __TCP__ connection or an __HTTP__ request, a passive health check __monitors live traffic__ for __errors__.
