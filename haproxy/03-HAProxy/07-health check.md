@@ -202,6 +202,15 @@ backend webservers
 http-check expect string success
 ```
 
+[Watch the YouTube video](https://youtu.be/AnZikN6uG1w)
+
+
+* the second
+
+
+[![Video Name](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/AnZikN6uG1w)
+
+
 ### Passive Health Checks
 
 * __continually polls the server__ with either a __TCP__ connection or an __HTTP__ request, a passive health check __monitors live traffic__ for __errors__.
