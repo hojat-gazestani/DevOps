@@ -208,7 +208,7 @@ http-check expect string success
 * the second
 
 
-[![Video Name](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/AnZikN6uG1w)
+![Video Name](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/AnZikN6uG1w)
 
 
 ### Passive Health Checks
