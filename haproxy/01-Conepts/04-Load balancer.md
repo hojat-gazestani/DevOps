@@ -54,14 +54,22 @@
 
 ## Layer 4 load balancer
 
+- it has access to which __IP address__ and __port__ the client is trying to connect to on the backend server. It intercepts the messages by standing in for the server on the expected __address__ and __port__.
+- Proxying at this layer is __lightweight__ and __fast__ because it is only concerned with transport. HAProxy __doesn’t read__ the messages,
+
+* __hiding your internal__ network from the public Internet,
+* __queuing connections__ to prevent server overload,
+* __rate limiting__ connections
+* It __works well for load balancing__ services that communicate over TCP such as __database traffic__ to __MySQL__, __Postgres__ and __Redis__ servers.
+
+
+
 ### What is a sticky session
 
 *  load balancer creates an __affinity__ between a client and a specific network server for the __duration of a session.__
 * can help __improve user experience__ and __optimize__ network resource usage.
 * With sticky sessions, a load balancer assigns an __identifying attribute__ to a user, typically by issuing a __cookie__ or by tracking their __IP details__. 
 * can start routing all of the __requests of this user__ to a __specific server__ for the duration of the session.
-
-![sticky](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/04-sticky.png)
 
 Set the <span style="background-color: yellow;">mode</span> to tcp.
 ```bash
@@ -80,14 +88,29 @@ backend databases
     server db1 192.168.0.10:3306
     server db2 192.168.0.11:3306
 ```
-- it has access to which __IP address__ and __port__ the client is trying to connect to on the backend server. It intercepts the messages by standing in for the server on the expected __address__ and __port__.
-- Proxying at this layer is __lightweight__ and __fast__ because it is only concerned with transport. HAProxy __doesn’t read__ the messages,
+#### Sticky session
 
-* __hiding your internal__ network from the public Internet,
-* __queuing connections__ to prevent server overload,
-* __rate limiting__ connections
-* It __works well for load balancing__ services that communicate over TCP such as __database traffic__ to __MySQL__, __Postgres__ and __Redis__ servers.
+![sticky](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/04-sticky.png)
 
+```bash
+defaults
+    mode tcp
+    timeout client 30s
+    timeout connect 10s
+    timeout server 30s
+
+frontend myapp
+    bind *:81
+    default_backend myapps
+
+backend myapps
+    balance source
+    stick-table type ip size 10k
+    stick on src
+    server myapp8010 192.168.56.22:8010
+    server myapp8011 192.168.56.22:8011
+    server myapp8012 192.168.56.22:8012
+```
 
 ## Layer 7 Load balancer
 
