@@ -30,5 +30,4 @@ backend my_app
     http-request cache-use It-cache
     http-response cache-store It-cache
 	server MyApp8010 192.168.56.22:8010
-
 ```
