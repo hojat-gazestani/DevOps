@@ -63,14 +63,6 @@
 * It __works well for load balancing__ services that communicate over TCP such as __database traffic__ to __MySQL__, __Postgres__ and __Redis__ servers.
 
 
-
-### What is a sticky session
-
-*  load balancer creates an __affinity__ between a client and a specific network server for the __duration of a session.__
-* can help __improve user experience__ and __optimize__ network resource usage.
-* With sticky sessions, a load balancer assigns an __identifying attribute__ to a user, typically by issuing a __cookie__ or by tracking their __IP details__. 
-* can start routing all of the __requests of this user__ to a __specific server__ for the duration of the session.
-
 Set the <span style="background-color: yellow;">mode</span> to tcp.
 ```bash
 
@@ -88,6 +80,14 @@ backend databases
     server db1 192.168.0.10:3306
     server db2 192.168.0.11:3306
 ```
+
+### What is a sticky session
+
+*  load balancer creates an __affinity__ between a client and a specific network server for the __duration of a session.__
+* can help __improve user experience__ and __optimize__ network resource usage.
+* With sticky sessions, a load balancer assigns an __identifying attribute__ to a user, typically by issuing a __cookie__ or by tracking their __IP details__. 
+* can start routing all of the __requests of this user__ to a __specific server__ for the duration of the session.
+
 #### Sticky session
 
 ![sticky](https://github.com/hojat-gazestani/DevOps/blob/main/haproxy/pictures/01-concept/04-sticky.png)
