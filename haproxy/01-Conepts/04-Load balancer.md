@@ -116,21 +116,6 @@ backend myapps
 
 Set the <span style="background-color: yellow;">mode</span> to http.
 
-```bash
-defaults
-    # mode is inherited by sections that follow
-    mode http
-
-frontend www
-    # receives traffic from clients
-    bind :80
-    default_backend web_servers
-
-backend web_servers
-    # relays the client messages to servers
-    server s1 192.168.0.10:3000
-    server s2 192.168.0.11:3000
-```
 
 - HAProxy can make __routing decisions__ based on any detail of a message that’s defined in __layers 4 through 7__.
   - __source__ and __destination IP__ addresses and __ports__
@@ -148,3 +133,19 @@ backend web_servers
 - issuing __HTTP redirects__,
 - enabling __Basic authentication__,
 - introducing __cookie-based__ server persistence.
+
+```bash
+defaults
+    # mode is inherited by sections that follow
+    mode http
+
+frontend www
+    # receives traffic from clients
+    bind :80
+    default_backend web_servers
+
+backend web_servers
+    # relays the client messages to servers
+    server s1 192.168.0.10:3000
+    server s2 192.168.0.11:3000
+```
