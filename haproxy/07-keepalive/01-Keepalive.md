@@ -78,11 +78,15 @@ vrrp_instance VIP_1 {
 }
 ```
 
-##
+## ssh key
 ```bash
 ssh-keygen
 ssh-copy-id root@192.168.56.24
+```
 
+## Syncing script
+
+```bash
 vim haproxy_reload.sh
   
 #!/bin/bash
@@ -96,14 +100,17 @@ rsync -azvP -e 'ssh -p 22' /certs/ root@192.168.56.24:/certs/
 sleep 60
 
 ssh root@192.168.56.24 "sudo systemctl restart haproxy
+```
 
+```bash
 chmod +x ./haproxy_reload
+```
 
-
+## auto mount
+```bash
 /certs  /var/lib/haproxy/certs/ none    defaults,bind 0 0
 /run    /var/lib/haproxy/run/   none    defaults,bind 0 0
-
-
-
 ```
+
+
 
