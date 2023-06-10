@@ -19,7 +19,7 @@ sudo vim /etc/fstab
 
 ```bash
 frontend sshTerm
-        bind *443 ssl /certs/armangzni.ddns.net.pem
+        bind *:443 ssl /certs/armangzni.ddns.net.pem
         mode http
         default backend myapp
 
