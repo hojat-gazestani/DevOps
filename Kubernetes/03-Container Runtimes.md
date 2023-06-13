@@ -19,11 +19,13 @@
 ![Containerd](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/01-environment/01-containerd.png)
 
 ## Installing Containerd
-* first method
+
 ```bash
 # Install required packages
-sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
-
+sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates lsb-release
+```
+* first method
+```bash
 # Add Docker repo
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
@@ -36,41 +38,25 @@ sudo apt install -y containerd.io
 sudo su -
 mkdir -p /etc/containerd
 containerd config default>/etc/containerd/config.toml
-
-# restart containerd
-sudo systemctl restart containerd
-sudo systemctl enable containerd
-systemctl status containerd
 ```
 
 * second method
 
 ```bash
-$ sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
-
-$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
-$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 
-$ sudo apt update
-$ sudo apt install -y containerd.io
+sudo apt update
+sudo apt install -y containerd.io
 
-$ containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
-$ sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
-
-$ sudo systemctl restart containerd
-$ sudo systemctl enable containerd
+containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
+sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 ```
 
 * third method
 
 ```bash
-sudo apt-get update
-sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release -y
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo \
@@ -81,6 +67,11 @@ sudo apt remove containerd
 sudo apt update
 sudo apt install containerd.io -y
 sudo rm /etc/containerd/config.toml
+```
 
+```bash
+# restart containerd
 sudo systemctl restart containerd
+sudo systemctl enable containerd
+systemctl status containerd
 ```
