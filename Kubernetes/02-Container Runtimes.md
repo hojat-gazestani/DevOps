@@ -12,5 +12,12 @@
   + Debian GNU/Linux (since Debian 11 bullseye)
   + RHEL and RHEL-like distributions (since 9)
 
-## ![Container Runtimes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+## [Container Runtimes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+
+[affect](https://kubernetes.io/docs/tasks/administer-cluster/migrating-from-dockershim/check-if-dockershim-removal-affects-you/)
+
+![Containerd](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/01-environment/01-containerd.png)
+
+
+
 
