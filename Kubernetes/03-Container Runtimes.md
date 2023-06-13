@@ -19,7 +19,7 @@
 ![Containerd](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/01-environment/01-containerd.png)
 
 ## Installing Containerd
-
+* first method
 ```bash
 # Install required packages
 sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
@@ -43,6 +43,8 @@ sudo systemctl enable containerd
 systemctl status containerd
 ```
 
+* second method
+
 ```bash
 $ sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
 
@@ -59,6 +61,8 @@ $ sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd
 $ sudo systemctl restart containerd
 $ sudo systemctl enable containerd
 ```
+
+* third method
 
 ```bash
 sudo apt-get update
