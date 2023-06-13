@@ -1,6 +1,6 @@
 # Container Runtimes
 
-## [!About cgroup v2](https://kubernetes.io/docs/concepts/architecture/cgroups/)
+## [About cgroup v2](https://kubernetes.io/docs/concepts/architecture/cgroups/)
 
 + **cgroups** used for **resource management** for pods and containers which includes **cpu/memory** requests and limits for containerized workloads.
 + use a Linux distribution that enables and uses cgroup v2 by default.
@@ -13,3 +13,4 @@
   + RHEL and RHEL-like distributions (since 9)
 
 ## ![Container Runtimes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+
