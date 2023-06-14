@@ -33,3 +33,25 @@ zip dummy-virtualbox.zip metadata.json empty.box
 ```bash
 vagrant init dummy
 ```
+
+
+# Virtual Box
+
+```bash
+vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.50" --register --mode machine
+
+vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.51" --register --mode machine
+
+vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.52" --register --mode machine
+```
+
+```bash
+sudo hostnamectl set-hostname master
+
+echo "alias ipa='ip -c -br a'
+alias ipr='ip -c -br r'
+" >> ~/.bashrc
+
+sudo sed -i 's/192.168.56.50/192.168.56.51/g' /etc/netplan/00-installer-config.yaml
+sudo netplan apply
+```
