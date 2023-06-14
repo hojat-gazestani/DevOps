@@ -36,7 +36,7 @@ vagrant init dummy
 
 
 # Virtual Box
-
+![LAB](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/01-environment/02-LAB.png)
 ```bash
 vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.50" --register --mode machine
 
