@@ -4,7 +4,7 @@ sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 sudo swapoff -a
 ```
 
-## Install and configure prerequisites
+## [Install and configure prerequisites](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
 
 ```bash
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
