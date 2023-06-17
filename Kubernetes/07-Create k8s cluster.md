@@ -1,8 +1,10 @@
 # [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
 ```bash
+# Pull container images:
 kubeadm config images pull
-# Create a snapshot
+
+# initialize cluster
 sudo kubeadm init  --apiserver-advertise-address=192.168.56.50 --pod-network-cidr 192.169.0.0/16
 
 mkdir -p $HOME/.kube
