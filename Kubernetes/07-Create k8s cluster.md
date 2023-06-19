@@ -2,7 +2,7 @@
 
 ```bash
 # Pull container images:
-sudo kubeadm config images pull
+    sudo kubeadm config images pull
 
 # initialize cluster
 sudo kubeadm init  --apiserver-advertise-address=192.168.56.50 --pod-network-cidr 192.169.0.0/16

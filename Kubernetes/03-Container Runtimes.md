@@ -34,6 +34,14 @@ sudo tee /etc/modules-load.d/containerd.conf << EOF
 overlay
 br_netfilter
 EOF
+
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+
+# Install containerd
+sudo apt update
+sudo apt install -y containerd.io
 ```
 ## [Installing binaries](Installing binaries)
 
@@ -59,16 +67,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now containerd
 sudo systemctl status containerd
 ```
-
-```bash
-sudo mkdir -p /etc/containerd
-sudo containerd config default | sudo tee /etc/containerd/config.toml
-sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
-```
-
-# Install containerd
-sudo apt update
-sudo apt install -y containerd.io
 
 
 ```bash
