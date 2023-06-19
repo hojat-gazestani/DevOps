@@ -30,15 +30,46 @@ sudo apt install -y curl gnupg2 software-properties-common apt-transport-https c
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
+sudo tee /etc/modules-load.d/containerd.conf << EOF
+overlay
+br_netfilter
+EOF
+```
+## [Installing binaries](Installing binaries)
+
+```bash
+wget https://github.com/containerd/containerd/releases/download/v1.7.2/containerd-1.7.2-linux-amd64.tar.gz
+sudo tar Cxzvf /usr/local  containerd-1.7.2-linux-amd64.tar.gz
+
+wget https://github.com/opencontainers/runc/releases/download/v1.1.3/runc.amd64
+sudo install -m 755 runc.amd64 /usr/local/sbin/runc
+
+wget https://github.com/containernetworking/plugins/releases/download/v1.1.1/cni-plugins-linux-amd64-v1.1.1.tgz
+sudo mkdir -p /opt/cni/bin
+sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
+
+sudo mkdir /etc/containerd
+containerd config default | sudo tee /etc/containerd/config.toml
+sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
+
+sudo curl -L https://raw.githubusercontent.com/containerd/containerd/main/containerd.service -o /etc/systemd/system/containerd.service
+
+sudo systemctl daemon-reload
+
+sudo systemctl enable --now containerd
+sudo systemctl status containerd
+```
+
+```bash
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+```
+
 # Install containerd
 sudo apt update
 sudo apt install -y containerd.io
 
-# Configure containerd and start service
-sudo su -
-mkdir -p /etc/containerd
-containerd config default>/etc/containerd/config.toml
-```
 
 ```bash
 # restart containerd

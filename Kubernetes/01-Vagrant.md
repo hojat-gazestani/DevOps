@@ -40,9 +40,9 @@ vagrant init dummy
 ```bash
 vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.50" --register --mode machine
 
-vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.51" --register --mode machine
+vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Worker1-56.51" --register --mode machine
 
-vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.52" --register --mode machine
+vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Worker2-56.52" --register --mode machine
 ```
 
 ```bash

@@ -2,6 +2,9 @@
 ```bash
 sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 sudo swapoff -a
+
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
 ```
 
 ## [Install and configure prerequisites](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)

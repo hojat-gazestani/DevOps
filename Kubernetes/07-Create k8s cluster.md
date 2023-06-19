@@ -2,7 +2,7 @@
 
 ```bash
 # Pull container images:
-kubeadm config images pull
+sudo kubeadm config images pull
 
 # initialize cluster
 sudo kubeadm init  --apiserver-advertise-address=192.168.56.50 --pod-network-cidr 192.169.0.0/16
@@ -10,12 +10,13 @@ sudo kubeadm init  --apiserver-advertise-address=192.168.56.50 --pod-network-cid
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+kubectl get nodes
 
 # OR
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml 
-sudo kubectl apply -f calico.yaml --cluster-cidr=192.169.0.0/16
+kubectl apply -f calico.yaml 
 sudo systemctl status kubelet -l
 ```
 
