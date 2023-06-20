@@ -38,11 +38,11 @@ vagrant init dummy
 # Virtual Box
 ![LAB](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/01-environment/02-LAB.png)
 ```bash
-vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Master-56.50" --register --mode machine
+vboxmanage clonevm "UbuS20-Base" --name "Kube-UbuS20-Master-56.80" --register --mode machine
 
-vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Worker1-56.51" --register --mode machine
+vboxmanage clonevm "UbuS20-Base" --name "Kube-UbuS20-Worker1-56.81" --register --mode machine
 
-vboxmanage clonevm "UbuS22-base" --name "Kube-UbuS22-Worker2-56.52" --register --mode machine
+vboxmanage clonevm "UbuS20-Base" --name "Kube-UbuS20-Worker2-56.82" --register --mode machine
 ```
 
 ```bash
@@ -52,6 +52,6 @@ echo "alias ipa='ip -c -br a'
 alias ipr='ip -c -br r'
 " >> ~/.bashrc
 
-sudo sed -i 's/192.168.56.50/192.168.56.51/g' /etc/netplan/00-installer-config.yaml
+sudo sed -i 's/192.168.56.70/192.168.56.51/g' /etc/netplan/00-installer-config.yaml
 sudo netplan apply
 ```

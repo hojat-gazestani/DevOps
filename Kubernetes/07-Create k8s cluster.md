@@ -5,7 +5,7 @@
     sudo kubeadm config images pull
 
 # initialize cluster
-sudo kubeadm init  --apiserver-advertise-address=192.168.56.50 --pod-network-cidr 192.169.0.0/16
+sudo kubeadm init  --apiserver-advertise-address=192.168.56.71 --pod-network-cidr 192.169.0.0/16
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -18,6 +18,22 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml 
 kubectl apply -f calico.yaml 
 sudo systemctl status kubelet -l
+```
+
+```bash
+kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+wget https://docs.projectcalico.org/manifests/custom-resources.yaml
+kubectl create -f custom-resources.yaml
+```
+[official](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)
+```bash
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/custom-resources.yaml
+￼
+￼
+
+￼
+
 ```
 
 ```bash
