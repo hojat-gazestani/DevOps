@@ -3,7 +3,7 @@
 ```diff
 ! this is test
 + this is second test
-- other tesst
+-       other tesst
 * another one
 ```
 
