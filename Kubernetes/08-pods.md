@@ -75,11 +75,13 @@ kubectl exec shared-vol -c 2nd -- /bin/cat /html/index.html
 - Containers in a Pod share the same IPC namespace.
 - can communicate with each other using standard inter-process communications such as SystemV semaphores or POSIX shared memory.
 
+![ipc](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/02-kube-components/04-ipc.png)
+
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mc2
+  name: ipc
 spec:
   containers:
   - name: producer
@@ -89,6 +91,88 @@ spec:
     image: allingeek/ch6_ipc
     command: ["./ipc", "-consumer"]
   restartPolicy: Never
+```
+
+```bash
+kubectl get pods --show-all -w
+kubectl logs ipc -c producer
+kubectl logs ipc -c consumer
+```
+
+### Inter-container network communication
+
+- Containers in a Pod are accessible via "localhost"; they use the same network namespace, host name is a Pod’s name.
+
+![inter]()
+
++ Nginx configMap
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mc3-nginx-conf
+data:
+  nginx.conf: |-
+    user  nginx;
+    worker_processes  1;
+
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+
+    events {
+        worker_connections  1024;
+    }
+
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+
+        sendfile        on;
+        keepalive_timeout  65;
+
+        upstream webapp {
+            server 127.0.0.1:5000;
+        }
+
+        server {
+            listen 80;
+
+            location / {
+                proxy_pass         http://webapp;
+                proxy_redirect     off;
+            }
+        }
+    }
+```
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: inter
+  labels:
+    app: inter
+spec:
+  containers:
+  - name: webapp
+    image: training/webapp
+  - name: nginx
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: nginx-proxy-config
+      mountPath: /etc/nginx/nginx.conf
+      subPath: nginx.conf
+  volumes:
+  - name: nginx-proxy-config
+    configMap:
+      name: inter-nginx-conf
+```
+
+```bash
+kubectl expose pod inter --type=NodePort --port=80
+kubectl describe service inter
 ```
 
 
