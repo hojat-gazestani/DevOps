@@ -30,7 +30,66 @@ kubectl apply -f https://github.com/hojat-gazestani/kubernetes/blob/main/Kubeadm
 
 ## Use Cases for Multi-Container Pods
 
+### Shared volumes 
 
+- it is sufficient to use a directory on the host that is shared with all containers within a Pod.
+- these volumes have the same lifetime as the Pod. If that Pod is deleted for any reason, even if an identical replacement is created, the shared Volume is also destroyed and created anew.
+
+![sharevol](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/02-kube-components/03-sharedVol.png)
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-vol
+spec:
+  volumes:
+  - name: html
+    emptyDir: {}
+  containers:
+  - name: nginx-app
+    image: nginx
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  - name: debian-app
+    image: debian
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+      - while true; do
+          date >> /html/index.html;
+          sleep 1;
+        done
+```
+
+```bash
+kubectl exec shared-vol -c 1st -- /bin/cat /usr/share/nginx/html/index.html
+kubectl exec shared-vol -c 2nd -- /bin/cat /html/index.html
+```
+
+### Inter-process communications (IPC)
+
+- Containers in a Pod share the same IPC namespace.
+- can communicate with each other using standard inter-process communications such as SystemV semaphores or POSIX shared memory.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mc2
+spec:
+  containers:
+  - name: producer
+    image: allingeek/ch6_ipc
+    command: ["./ipc", "-producer"]
+  - name: consumer
+    image: allingeek/ch6_ipc
+    command: ["./ipc", "-consumer"]
+  restartPolicy: Never
+```
 
 
 ## anti-patterns:
