@@ -28,6 +28,11 @@ spec:
 kubectl apply -f https://github.com/hojat-gazestani/kubernetes/blob/main/Kubeadm/manifest/01-pod.yml
 ```
 
+## Use Cases for Multi-Container Pods
+
+
+
+
 ## anti-patterns:
 
 1. Deploying **pods without** specifying a **memory** or **CPU limit**.and Request more resources than the limit when setting the memory and CPU resources for a container
