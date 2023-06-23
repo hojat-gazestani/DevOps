@@ -3,10 +3,10 @@
 + Pods are the smallest deployable units in Kubernetes
 
 - pod of whales
-![whales]()
+![whales](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/02-kube-components/01-wahles.jpg)
 
 + pea pod
-![pea]()
+![pea](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/02-kube-components/02-Peas.jpg)
 
 
 # Pods command
