@@ -1,11 +1,12 @@
 # Pod 
 
-```diff
-! this is test
-+ this is second test
--       other tesst
-* another one
-```
++ Pods are the smallest deployable units in Kubernetes
+
+- pod of whales
+![whales]()
+
++ pea pod
+![pea]()
 
 
 # Pods command
