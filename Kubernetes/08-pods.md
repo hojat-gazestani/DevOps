@@ -103,14 +103,14 @@ kubectl logs ipc -c consumer
 
 - Containers in a Pod are accessible via "localhost"; they use the same network namespace, host name is a Pod’s name.
 
-![inter]()
+![inter](https://github.com/hojat-gazestani/DevOps/blob/main/Kubernetes/Pic/02-kube-components/05-inter.png)
 
 + Nginx configMap
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mc3-nginx-conf
+  name: inter-nginx-conf
 data:
   nginx.conf: |-
     user  nginx;
