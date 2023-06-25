@@ -1,17 +1,23 @@
-helm.sh  -> get started -> install heml
+# Helm
+
+# Concept
+
+- **chart:**  **collection** of files organized in a specific directory structure
+  - The configuration information related to a chart is managed **in the configuration**
+- **release:** running instance of a chart with a specific config
+  - Helm tracks an installed chart in the Kubernetes cluster using releases.
+  - allows us to install a single chart multiple times with different releases in a cluster.
+- **library charts:** **enable support** for common charts that we can use to define chart **primitives or definitions**.
+- we can share charts as archives through repositories.  Artifact Hub
 
 # Install Helm on Ubuntu 22.04
+```bash
 wget https://get.helm.sh/helm-v3.8.2-linux-amd64.tar.gz
 tar xvf helm-*-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin
 helm version
-
-heml version
-3.6.1
-
-artifact HUB
-search: mysql bitnami
-
+```
+```bash
 helm install mysql oci://registry-1.docker.io/bitnamicharts/mysql
 
 kubectl get all
@@ -27,14 +33,16 @@ service/mysql-headless   ClusterIP   None          <none>        3306/TCP   2m5s
 
 NAME                     READY   AGE
 statefulset.apps/mysql   0/1     2m5s
+```
 
 # 03- How to find heml chart
-helm repo list
+
 
 # 04- how to install promethous and graphana
-
+```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
+helm repo list
 helm install prometheus prometheus-community/prometheus
 
 kubectl edit svc prometheus
@@ -46,13 +54,15 @@ kubectl edit svc prometheus
 	nodePort: 30001
 	
   type: NodePort
-  
+```
 ## 05- Working
+```shell
 helm show values prometheus-community/prometheus > values.yaml
 vim values.yaml
 adminpassword: arman
 
 heml upgrade prometheus prometheus-community/prometheus --set grafana.adminPassword=admin
+```
 
 # 06- How to override values.yaml
 ```bash
@@ -67,7 +77,6 @@ grafana:
 		nodePort: 30008
 		
 heml upgrade prometheus prometheus-community/prometheus  --values=values.yaml
-
 ```
 
 # 07- Avoiding Snowflake Clusters
@@ -124,6 +133,7 @@ grafana:
 		nodePort: 30008
 	
 helm upgrade prometheus --values=myvalues.yaml .
+```
 
 # 09- Create yaml from a Helm Chart
 
@@ -134,7 +144,6 @@ helm template monitoring ./prometheus --values=./prometheus/values.yaml > monito
 # 10- Why make your own charts
 
 ```bash
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -171,12 +180,19 @@ spec:
   type: NodePort
 ```
 
-# 11- writing Go templates
+# 11- Creating a Chart - writing Go templates
 
 ```bash
 cd prometheus/
-helm create fleetman-helm-chart && cd fleetman-helm-chart/
+helm create fleetman-helm-chart && cd fleetman-helm-chart/ && tree fleetman-helm-chart
+```
+- **Chart.yaml:** **main file** that contains the **description of our chart**
+- **values.yaml:** Contains the **default values** for our **chart**
+- **templates:** the directory where **Kubernetes resources** are defined as templates
+- **charts:**  optional directory that may contain **sub-charts**
+- **.helmignore:** where we can define patterns to **ignore when packaging**
 
+```shell
 vim Chart.yaml
  apiVersion: v2
 name: fleetman-helm-chart
@@ -208,7 +224,8 @@ helm template .
 # Source: fleetman-helm-chart/templates/one.yaml
 hello:
   world: true
-  
+``` 
+ 
 ```bash
 vim templates/two.yaml 
 something:
@@ -412,7 +429,6 @@ spec:
       - name: webapp
         # Note to deployer - add -dev at the end of here for development version
         image: richardchesterwood/k8s-fleetman-helm-demo:v1.0.0
-
 ```
 
 ```bash
@@ -517,7 +533,6 @@ spec:
 ```bash
 vim values.yaml
 development: true
-
 ```
 
 ```bash
