@@ -12,11 +12,14 @@
 
 # Install Helm on Ubuntu 22.04
 ```bash
-wget https://get.helm.sh/helm-v3.8.2-linux-amd64.tar.gz
-tar xvf helm-*-linux-amd64.tar.gz
+# wget https://get.helm.sh/helm-v3.8.2-linux-amd64.tar.gz
+wget https://get.helm.sh/helm-v3.12.1-linux-amd64.tar.gz
+# tar xvf helm-*-linux-amd64.tar.gz
+tar xvf helm-v3.12.1-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin
 helm version
 ```
+
 ```bash
 helm install mysql oci://registry-1.docker.io/bitnamicharts/mysql
 
