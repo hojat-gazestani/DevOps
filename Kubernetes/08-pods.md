@@ -10,12 +10,19 @@
 
 - is a **group** of one or more **containers**, with **shared storage** and **network resources**, and  models an application-specific **logical host**
 
-## Simple pod
-
-```bash
-kubectl run nginx-pod --image=nginx
+# api
+```shell
+kubectl api-resources
+kubectl explain pods
+kubectl explain pods.spec
+kubectl explain pods.spec.containers
 ```
 
+## Simple pod
+```bash
+kubectl run nginx-pod --image=nginx
+kubectl exec nginx-pod -- nginx -v
+```
 
 ## Using Pods
 ```yaml

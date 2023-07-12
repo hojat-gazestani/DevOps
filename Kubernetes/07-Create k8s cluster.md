@@ -20,6 +20,11 @@ kubectl apply -f calico.yaml
 sudo systemctl status kubelet -l
 ```
 
+```shell
+ kubectl completion bash > /etc/bash_completion.d/kubectl
+
+```
+
 ```bash
 kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
 wget https://docs.projectcalico.org/manifests/custom-resources.yaml
