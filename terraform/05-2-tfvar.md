@@ -1,6 +1,6 @@
 # terraform.tfvar.tf
 
-![tfvar]()
+![tfvar](https://github.com/hojat-gazestani/DevOps/blob/main/terraform/pic/03-tfvar.png)
 
 ```shell
 vim main.tf

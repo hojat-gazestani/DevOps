@@ -1,6 +1,6 @@
 #  variable
 
-![vaiable]()
+![vaiable](https://github.com/hojat-gazestani/DevOps/blob/main/terraform/pic/02-variable.png)
 ```shell
 vim main.tf
 resource "aws_instance" "trtest" {
