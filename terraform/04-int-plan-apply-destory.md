@@ -23,11 +23,13 @@ provider "aws" {
 ```shell
 vim main.tf
 resource "aws_instance" "trtest" {
-  ami           = "ami-0507f77897697c4ba"
+  ami = "ami-0507f77897697c4ba"
   instance_type = "t2.nano"
+  key_name = "sword"
 
   tags = {
     terraform = "test"
+    name      = "trtest"
   }
 }
 ```
@@ -36,6 +38,8 @@ resource "aws_instance" "trtest" {
 
 ```shell
 terraform init
+terraform fmt
+terraform validate
 terraform plan
 terraform apply
 terraform destory
