@@ -1,3 +1,5 @@
+
+```shell
 sudo add-apt-repository ppa:rael-gc/rvm
 sudo apt-get update
 sudo apt install libssl1.0-dev
@@ -15,3 +17,4 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-2.210.1.tar.gz
 ./config.sh
 ./run.sh
 
+```
