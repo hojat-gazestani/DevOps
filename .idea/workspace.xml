@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="Delete unrequered">
-      <change beforePath="$PROJECT_DIR$/haproxy/03-HAProxy/09-ACL.md" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/03-HAProxy/09-ACL.md" afterDir="false" />
+    <list default="true" id="6a394680-f89f-42e6-a3de-f11bcc4867b2" name="Changes" comment="terraform basic">
+      <change afterPath="$PROJECT_DIR$/Kubernetes/xx.rbac.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,15 +46,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/arman/Documents/Github/DevOps&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/arman/Documents/Github/myapp",
+    "settings.editor.selected.configurable": "preferences.sourceCode"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -62,69 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646225940129</updated>
-    </task>
-    <task id="LOCAL-00097" summary="timeout scenario">
-      <created>1684945135003</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1684945135003</updated>
-    </task>
-    <task id="LOCAL-00098" summary="Sticky session">
-      <created>1684947928423</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1684947928423</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Load balance Cluster">
-      <created>1685008598945</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1685008598946</updated>
-    </task>
-    <task id="LOCAL-00100" summary="REname load balancer file">
-      <created>1685087050090</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1685087050091</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Listen section">
-      <created>1685087381287</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1685087381287</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Listen section">
-      <created>1685087432053</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1685087432053</updated>
-    </task>
-    <task id="LOCAL-00103" summary="Listen section">
-      <created>1685105065433</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1685105065434</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Listen section">
-      <created>1685111045327</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1685111045327</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Listen section">
-      <created>1685111729287</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1685111729288</updated>
     </task>
     <task id="LOCAL-00106" summary="Listen section">
       <created>1685111820757</created>
@@ -406,7 +345,70 @@
       <option name="project" value="LOCAL" />
       <updated>1685557100451</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="source">
+      <created>1686907107526</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1686907107527</updated>
+    </task>
+    <task id="LOCAL-00147" summary="source">
+      <created>1686988698869</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1686988698870</updated>
+    </task>
+    <task id="LOCAL-00148" summary="installing kube services">
+      <created>1686992434733</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1686992434733</updated>
+    </task>
+    <task id="LOCAL-00149" summary="installing kube services">
+      <created>1686993423327</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1686993423327</updated>
+    </task>
+    <task id="LOCAL-00150" summary="Creating a k8s cluster">
+      <created>1687008602892</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1687008602892</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Creating a k8s cluster">
+      <created>1687008942244</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1687008942244</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Creating a k8s cluster">
+      <created>1687173884410</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1687173884410</updated>
+    </task>
+    <task id="LOCAL-00153" summary="Creating a k8s cluster">
+      <created>1687179576763</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1687179576763</updated>
+    </task>
+    <task id="LOCAL-00154" summary="Creating a k8s cluster">
+      <created>1687263496211</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1687263496212</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -422,10 +424,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <MESSAGE value="image application added" />
-    <MESSAGE value="Initial commit" />
     <MESSAGE value="Add resources" />
     <MESSAGE value="Bold font" />
     <MESSAGE value="Add timeout unit" />
@@ -447,6 +445,10 @@
     <MESSAGE value="HAPRoxy access list" />
     <MESSAGE value="rename" />
     <MESSAGE value="Delete unrequered" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete unrequered" />
+    <MESSAGE value="source" />
+    <MESSAGE value="installing kube services" />
+    <MESSAGE value="Creating a k8s cluster" />
+    <MESSAGE value="terraform basic" />
+    <option name="LAST_COMMIT_MESSAGE" value="terraform basic" />
   </component>
 </project>
