@@ -1,0 +1,6 @@
+---
+
+- name: Create a directory
+  hosts: lb
+  roles:
+    - nginx

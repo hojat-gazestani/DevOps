@@ -1,0 +1,7 @@
+HOSTNAEM: "app1"
+app1_user: "app1_user"
+
+LISTVAR:
+  - app1.list1
+  - app1.list2
+  - app1.list3

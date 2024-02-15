@@ -1,0 +1,7 @@
+---
+
+- name: Create a directory and print Username
+  hosts: db
+  roles:
+    - nginx
+    - mysql 

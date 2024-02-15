@@ -1,0 +1,7 @@
+---
+- name: Configure Nginx Log File Locations and Send to ELK Stack
+  hosts: web_servers
+  become: yes
+
+  tasks:
+    - nginx

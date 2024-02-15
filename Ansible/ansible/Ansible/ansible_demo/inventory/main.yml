@@ -1,0 +1,21 @@
+---
+
+all:
+  hosts:
+    lb.demo.local:
+    db.demo.local:
+    app1.demo.local:
+    app2.demo.local:
+
+app:
+  hosts:
+    app1.demo.local:
+    app2.demo.local:
+
+db:
+  hosts:
+    db.demo.local:
+
+lb:
+  hosts:
+    lb.demo.local:

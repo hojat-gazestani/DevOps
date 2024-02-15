@@ -1,0 +1,7 @@
+- name: Backup configuration file
+  ansible.builtin.copy:
+    src: /var/temp/conf/temp.conf
+    dest: /var/temp/conf/temp.conf-backup
+    mode: 0644
+    remote_src: yes
+

@@ -1,0 +1,5 @@
+---
+
+- name: IPv4 facts gathering
+  debug:
+    msg: "{{ ansible_facts.default_ipv4 }}"

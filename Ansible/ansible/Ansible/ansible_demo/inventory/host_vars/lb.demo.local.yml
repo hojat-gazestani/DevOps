@@ -1,0 +1,8 @@
+HOSTNAEM: 'lb'
+lb_user: "lb_user"
+
+LISTVAR:
+  - lb.list1
+  - lb.list2
+  - lb.list3
+

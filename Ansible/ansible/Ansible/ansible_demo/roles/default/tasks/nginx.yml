@@ -1,0 +1,47 @@
+---
+
+- name: Copy file with owner and permission, using symbolic representation
+  ansible.builtin.copy:
+    src: var/temp/bin/temp.conf
+    dest: /var/temp/bin/temp.conf
+    owner: user
+    group: user
+    mode: u=rw,g=r,o=r
+
+- name: Update Nginx error log location
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    regexp: '^error_log'
+    line: 'error_log /var/log/nginx/error.log;'
+  notify: Reload Nginx
+
+- name: Update Nginx access log location
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    regexp: '^access_log'
+    line: 'access_log /var/log/nginx/access.log;'
+  notify: Reload Nginx
+
+- name: Install Filebeat
+  apt:
+    name: filebeat
+    state: present
+  become: yes
+
+- name: Configure Filebeat
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+  notify: Restart Filebeat
+
+  handlers:                                                                   
+    - name: Reload Nginx
+      systemd:
+        name: nginx
+        state: reloaded
+
+    - name: Restart Filebeat
+      systemd:
+        name: filebeat
+        state: restarted
+

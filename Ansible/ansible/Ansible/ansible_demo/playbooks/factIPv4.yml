@@ -1,0 +1,6 @@
+---
+
+- name: default action on all hosts
+  hosts: all
+  roles:
+    - factsIPv4

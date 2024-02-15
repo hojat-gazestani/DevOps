@@ -1,0 +1,9 @@
+---
+
+- name: Echo MySQL username
+  shell: |
+    echo {{ db_user }} > /var/db_user.cfg
+
+- name: Print Username
+  debug:
+    msg: "{{ db_user }}"

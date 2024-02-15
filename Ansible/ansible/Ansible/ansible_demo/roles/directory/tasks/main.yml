@@ -1,0 +1,14 @@
+---
+
+#- name: Create Directory temp bin
+#  file:
+#    state: directory
+#    path: "{{ item }}"
+#  loop:
+#    - "/var/temp/bin/"
+#    - "/var/temp/conf/"
+
+- name: Create Directory temp bin
+  file:
+    state: directory
+    path: /var/arsenal/conf

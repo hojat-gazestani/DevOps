@@ -1,0 +1,46 @@
+---
+
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - git
+    - wget
+    - sysstat
+    - tcpdump
+    - lftp
+  tags:
+    - install 
+    - packages
+
+- name: Install packages with shell
+  shell: | 
+    apt update; apt install git
+
+- name: Template arsenal
+  ansible.builtin.template:
+    src: var/arsenal/conf/arsenal.conf
+    dest: /var/arsenal/conf/arsenal.conf
+    #owner: bin
+    #group: wheel
+    #mode: '0644'
+
+- name: facts
+  debug:
+    msg: "{{ ansible_facts.default_ipv4 }}"
+
+- name: Print all facts
+  debug:
+    msg: "{{ ansible_facts }}"
+  tags:
+    - testwhen1
+
+- name: create dir when app
+  file:
+    state: dirctory
+    path: "/tmp/app"
+  when: "ansible_facts.fqdn == 'app1' or ansible_facts.fqdn == 'app2'"
+  tags:
+    - testwhen
