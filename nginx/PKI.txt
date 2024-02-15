@@ -1,0 +1,211 @@
+3-2 The OpenSSL Command Line interface
+
+sudo apt install openssl
+sudo apt-cache seach libssh
+sudo apt install libssl1.0.0
+
+openssl -h
+openssl emc -h
+openssl 
+	version
+	
+---------------------------------
+3-3 Generating a certificate Signing Request
+
+mkdir first
+openssl req -nodes -days 10 -newkey rsa:2048 -keyout keyfile.pem -out certfile.pem
+Country Name: 		CA
+State :			Ontario
+Location :		Toronto
+ON:			Bootstrap IT
+OU:			[]
+Common Name:		www.bootstrap-it.com / hojat.com
+Email:			info@bootstrap.com
+A challenge Pass:	password
+An optional Compan:	[]
+
+ls 
+keyfile.pem certfile.pem
+
+cat certfile.pem
+---- .. CERTIFICAT REQUEST .. ----
+
+openssl req -in certfile.pem -noout -verify -key keyfile.pem
+openssl req -in certfile.pem -noout -text
+
+----------------------------------------------
+3-4 Building a Private Certificate Authority
+
+mkdir ~/my-ca; cd ~/my-ca; mkdir signedcerts private
+
+echo '01' > serial
+touch index.txt
+vim caconfig.cnf
+	[ ca ]
+	default_ca      = CA_default
+
+	[ CA_default ]
+
+	dir             = /home/administrator/my-ca          
+	certs           = $dir/certs            
+	crl_dir         = $dir/crl              
+	database        = $dir/index.txt       
+	                                        
+	new_certs_dir   = $dir/newcerts         
+
+	certificate     = $dir/cacert.pem       
+	serial          = $dir/serial           
+	crlnumber       = $dir/crlnumber     
+	                                        
+	crl             = $dir/crl.pem          
+	private_key     = $dir/private/cakey.pem
+
+	x509_extensions = usr_cert              
+
+	name_opt        = ca_default            
+	cert_opt        = ca_default           
+
+
+
+	default_days    = 1825              
+	default_crl_days= 365                
+	default_md      = default              
+	preserve        = no  
+	
+export OPENSSL_CONF=~/my-ca/caconfig.cnf
+
+openssl req -x509 -newkey rsa:2048 -out cacert.pem -outform PEM -days 1825
+password: 12345
+
+vim testserver.cnf
+	[req]
+	distinguished_name	= server_distinguished_name
+	x509_extensions 	= v3_req
+	prompt 			= no
+
+	[ server_distinguished_name ]
+	commonName         	= www.hojat.com
+	stateOrProvinceName 	= Ontario
+	countryName        	= CA
+	emailAddress        	= info@bootstrap-it.com
+	organizationName    	= Bootstrap IT
+	OrganizationalUnitName 	= IT
+
+
+	[v3_req]
+	basicConstraints = CA:FALSE
+	keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+	subjectAltName = @alt_names
+
+	[alt_names]
+	DNS.1 = www.hojat.com
+	DNS.2 = hojat.com
+	
+openssl req -newkey rsa:2048 -keyout basekey.pem -keyform PEM -out basereq.pem -outform PEM
+password: 123456
+
+export OPENSSL_CONF=~/my-ca/caconfig.cnf
+openssl ca -in basereq.pem -out server_crt.pem
+y
+y
+
+cat newcerts/01.pem
+
+-----------------------------------------------
+3-5 Revoking a Certificate
+
+mkdir revoked
+echo 1000 > ~/my-ca/crlnumber
+openssl ca -gencrl -config ~/my-ca/caconfig.cnf -out revoked/crl.pem
+openssl crl -in revoked/crl.pem -noout -text
+
+openssl ca -gencrl -config ~/my-ca/caconfig.cnf -revoke newkeys/02.pem
+openssl ca -gencrl -config ~/my-ca/caconfig.cnf -out revoked/crl.pem
+
+# Online certificate Status Protocol (OCSP)
+# 	Smaller/Simpler request formats
+
+# Online certificate Status Protocol Stapling
+#	Requests handled between cert-holders and CA authorities
+#	Regular updates
+#	Update "stapled" to certificate communication
+
+-----------------------------------------------------
+4-2 Configure Apache for SSL
+
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+
+sudo vim /etc/apache2/site-available/default-ssl.conf
+	# SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+	# SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.k
+	SSLCertificateFile /home/ubuntu/my-ca/server_crt.pem
+	SSLCertificateKeyFile /home/ubuntu/my-ca/basekey.pem
+	
+sudo vim /etc/apache2/apache2.conf
+	# Global configuration
+	ServerName hojat.com
+	
+sudo systemctl restart apache2
+
+------------------------------------------
+4-3 Configuring Named Virtual Hosts
+
+
+<VirtualHost *:80>
+    ServerName www.foo.com
+    DocumentRoot /var/www/foo.com/html
+    ErrorLog  /var/log/apache2/www.foo.com-error.log
+    CustomLog /var/log/apache2/www.foo.com-access.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName www.bar.com
+    DocumentRoot /var/www/bar.com/html
+    ErrorLog /var/log/apache2/www.bar.com-/error.log
+    CustomLog /var/log/apache2/www.bar.com-access.log combined
+</VirtualHost>
+
+apachectl configtest
+
+<VirtualHost *:443>
+    ServerName www.bar.com
+    DocumentRoot /var/www/bar.com/html
+    
+    ErrorLog /var/log/apache2/www.bar.com-/error.log
+    CustomLog /var/log/apache2/www.bar.com-access.log combined
+    
+    SSLEngine on
+    SSLProtocol all-SSLv2
+    SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP
+    SSLCertificateFile    /etc/ssl/certs/ssl-cert-bar.pem
+    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-bar.key
+</VirtualHost>
+
+--------------------------------
+4-4 Importing SSL Certificates to Browsers
+
+openssl pkcs12 -export -in server_crt.pem -inkey basekey.pem -out browser.p1
+
+---------------------------------
+4-5 Testing SSL configuration
+
+openssl s_client -CApath . -connect www.hojat.com:443
+ 
+-----------------------------------
+4-6 HTTP Strict Transport Security
+
+<VirtualHost *:443>
+	Header always set Strict-Transport-Security: max-age=31536000; includeSubDomains
+    ServerName www.bar.com
+    ...
+    
+    SSLEngine on
+    ..
+</VirtualHost>
+
+
+
+
+
+

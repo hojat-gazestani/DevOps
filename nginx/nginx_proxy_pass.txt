@@ -1,0 +1,49 @@
+sudo nginx -v
+
+sudo vim /etc/nginx/sites-enabled/proxy.conf
+	server {
+		listen 9090;
+
+		root /usr/share/nginx/html;
+		index index.html;
+
+		location / {
+			proxy_pass http://backend.com:8080/;
+		}
+	}
+
+
+sudo nginx -t
+sudo nginx -s reload
+
+ss -ntl
+
+--------------------------------------------------
+
+server {
+        listen 8080;
+#        listen [::]:80;
+#
+#        root /var/www/hasan.com/html;
+#        index index.html index.htm index.nginx-debian.html;
+#
+#        server_name hasan.com www.hasan.com;
+#
+        location / {
+                #try_files $uri $uri/ =404;
+                proxy_pass http://hasan.com:80;
+        }
+}
+
+---------------------------------------------------
+
+server {
+        listen 9090;
+#
+#        root /usr/share/nginx/html;
+#        index index.html;
+#
+        location / {
+                proxy_pass http://192.168.56.107:80/;
+        }
+}

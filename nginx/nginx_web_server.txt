@@ -1,0 +1,85 @@
+sudo apt update 
+sudo apt install nginx 
+
+sudo ufw app list 
+sudo ufw allow 'Nginx HTTP' 
+sudo ufw status 
+
+systemctl status nginx 
+
+sudo mkdir -p /var/www/hojat.com/html 
+sudo mkdir -p /var/www/ali.com/html 
+
+sudo chown -R $USER:$USER /var/www/hojat.com/html 
+sudo chown -R $USER:$USER /var/www/ali.com/html 
+
+sudo chmod -R 755 /var/www/hojat.com 
+sudo chmod -R 755 /var/www/ali.com 
+
+vim/var/www/hojat.com/html/index.html 
+<html> 
+    <head> 
+        <title>Welcome to hojat.com!</title> 
+    </head> 
+    <body> 
+        <h1>Success!  The hojat.com server block is working!</h1> 
+    </body> 
+</html> 
+
+vim/var/www/ali.com/html/index.html 
+<html> 
+    <head> 
+        <title>Welcome to ali.com!</title> 
+    </head> 
+    <body> 
+        <h1>Success!  The ali.com server block is working!</h1> 
+    </body> 
+</html> 
+
+sudo vim /etc/nginx/sites-available/hojat.com 
+server { 
+        listen 80; 
+        listen [::]:80; 
+  
+        root /var/www/hojat.com/html; 
+        index index.html index.htm index.nginx-debian.html; 
+
+        server_name hojat.com www.hojat.com; 
+
+        location / { 
+                try_files $uri $uri/ =404; 
+        } 
+} 
+
+ 
+
+sudo vim /etc/nginx/sites-available/ali.com 
+server { 
+        listen 80; 
+        listen [::]:80; 
+
+        root /var/www/ali.com/html; 
+        index index.html index.htm index.nginx-debian.html; 
+
+        server_name ali.com www.ali.com; 
+
+        location / { 
+                try_files $uri $uri/ =404; 
+        } 
+} 
+
+sudo ln -s /etc/nginx/sites-available/hojat.com /etc/nginx/sites-enabled/ 
+sudo ln -s /etc/nginx/sites-available/ali.com /etc/nginx/sites-enabled/  
+
+sudo vim /etc/nginx/nginx.conf 
+... 
+http { 
+    ... 
+    server_names_hash_bucket_size 64; 
+    ... 
+} 
+... 
+
+sudo nginx -t 
+sudo systemctl restart nginx 
+sudo nginx -s reload
