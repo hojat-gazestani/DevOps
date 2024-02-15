@@ -1,0 +1,17 @@
+sudo brctl addbr br0
+sudo ifup br0
+sudo ip link set dev br0 up
+sudo netplan apply
+sudo -i
+
+sudo systemctl status libvirtd
+
+sudo cp /var/lib/libvirt/boot/* /var/lib/libvirt/images
+sudo ls /var/lib/libvirt/boot/
+sudo mv /var/lib/libvirt/boot/* /var/lib/libvirt/images/
+sudo mv /var/lib/libvirt/boot/en-us_windows_10_business_editions_version_22h2_updated_dec_2023_x64_dvd_68a2d40b.iso /var/lib/libvirt/images/
+sudo mv /var/lib/libvirt/boot/en-us_windows_11_business_editions_version_23h2_updated_dec_2023_x64_dvd_d9da936d.iso /var/lib/libvirt/images/
+
+
+sudo dhclient -r br0
+sudo dhclient -r ens1f0
