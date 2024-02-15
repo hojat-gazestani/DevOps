@@ -1,0 +1,21 @@
+https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309
+https://stackoverflow.com/questions/21297139/how-do-you-sign-a-certificate-signing-request-with-your-certification-authority
+
+Create Root Key:
+	openssl genrsa -des3 -out rootCA.key 4096
+Create and self sign the Root Certificate
+	openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.crt
+2048-bit RSA private key and CSR:	
+	openssl req -newkey rsa:2048 -keyout HOJAT_PRIVATKEY.key -out hojat.csr
+	
+Create the certificate key:
+	openssl genrsa -out mydomain.com.key 2048
+	
+Create the signing (csr)
+    Method A (Interactive)
+    	openssl genrsa -out  hojat.com.key 2048
+    	openssl req -new -key hojat.com.key -out hojat.com.csr
+    	
+    	openssl genrsa -out  hojatB.com.key 2048
+    	openssl req -new -sha256 -key hojatB.com.key -subj "/C=IR/ST=Tehran/O=Mahsan, Inc./CN=hojatB.com" -out hojatB.com.csr
+

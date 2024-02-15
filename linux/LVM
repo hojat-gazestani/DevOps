@@ -1,0 +1,65 @@
+Creating Physical Volumes, Volume Groups, and Logical Volumes 
+=============================================================
+
+Physical Volume
+---------------
+sudo fdisk /dev/sda 
+p 
+n 
+w 
+a 
+
+sudo vgextend ubuntu-vg /dev/sda4 
+sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv 
+sudo resize2fs -p /dev/mapper/ubuntu--vg-ubuntu--lv 
+
+Create physical volumes 
+-----------------------
+# pvcreate /dev/sdb /dev/sdc /dev/sdd 
+
+List the newly created PVs 
+--------------------------
+# pvs 
+
+Detailed information about each PV 
+----------------------------------
+# pvdisplay /dev/sdX 
+
+Create a volume group named 
+---------------------------
+# vgcreate vg00 /dev/sdb /dev/sdc 
+
+View information about this volume group 
+----------------------------------------
+# vgs 
+# vgdisplay vg00 
+
+Create two LVs 
+--------------
+# lvcreate -n vol_projects -L 10G vg00 
+# lvcreate -n vol_backups -l 100%FREE vg00 
+
+view the list of LVs and basic information 
+------------------------------------------
+# lvs 
+
+View detailed information 
+-------------------------
+# lvdisplay 
+
+View information about a single LV 
+----------------------------------
+# lvdisplay vg00/vol_projects 
+
+View information about a single LV 
+----------------------------------
+# vgdisplay
+
+Create a filesystem use EXT4 
+----------------------------
+# mkfs.ext4 /dev/vg00/vol_projects 
+# mkfs.ext4 /dev/vg00/vol_backups 
+
+Sources:
+https://www.tecmint.com/manage-and-create-lvm-parition-using-vgcreate-lvcreate-and-lvextend/ 
+ 

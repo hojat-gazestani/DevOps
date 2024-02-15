@@ -1,0 +1,59 @@
+# LDAP
+
+## Insallation OpenLDAP
+```bash
+hostname
+server1.example.com
+
+su -
+
+ip a s
+echo "192.168.56.105 server1.example.com" >> /etc/hosts
+ping server1.example.com
+
+netstat -ltn
+
+firewall-cmd --permanent --add-service=ldap
+firewall-cmd --reload
+
+yum install -y openldap openldap-clients openldap-servers migrationtools.noarch
+```
+## Configure OpenLDAP
+```bash
+cp /usr/share/openldap-servers/DB_CONF.example /var/lib/ldap/DB_CONFIG
+
+ls /var/lib/ldap/
+slaptest
+chown ldap.ldap /var/lib/ldap/*
+
+systemctl start slapd
+systemctl enable slapd
+
+netstat -ltn
+		::389
+		
+netstat -lt
+		::ldap
+		
+cd /etc/openldap/schema/
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f consine.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f nis.ldif
+
+cd
+slappasswd -s Password1 -n > rootpwd
+cat rootpwd
+
+vi config.ldif
+olcSuffix: dc=example,dc=com
+olcRootDN: cn=Manager, dc=example, dc=com
+olcRootPW: [ESC] :r rootpwd
+olcLogLevel: 0
+
+ldapmodify -Y EXTERNAL -H ldapi:/// -f config.ldif
+```
+
+## Create Directory Structure
+```bash
+
+
+

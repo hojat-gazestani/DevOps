@@ -1,0 +1,52 @@
+نولان:‌
+nmcli con show -a
+nmcli dev status
+
+sudo nmcli connection modify network_uuid IPv4.address new_static_IP/24
+sudo nmcli connection modify f02789f7-9d84-3870-ac06-8e4edbd1ecd9 IPv4.address 10.0.2.27/24
+
+sudo nmcli connection modify 'Wired connection 1' IPv4.address 10.0.2.27/24
+sudo nmcli connection modify 'Wired connection 1' IPv4.gateway 10.0.2.11
+sudo nmcli connection modify 'Wired connection 1' IPv4.dns 8.8.8.8
+sudo nmcli connection modify 'Wired connection 1' IPv4.method manual
+sudo nmcli connection down 'Wired connection 1.'
+sudo nmcli connection up 'Wired connection 1.'
+
+## create/add network bridge
+```shell
+nmcli con show
+
+sudo nmcli con add type bridge ifname virbr1 con-name virbr1
+sudo nmcli con add type bridge-slave ifname enp0s20u2 master virbr1
+
+nmcli con up virbr1
+
+# Enable STP
+sudo nmcli con modify virbr1 bridge.stp yes
+nmcli -f bridge con show virbr1
+```
+
+* turn on bridge interface
+```shell
+sudo nmcli con down "Wired connection 1"
+sudo nmcli con up virbr1
+nmcli con show
+```
+
+
+
+## How to use br0 with KVM
+```shell
+cat /tmp/br0.xml
+<network>
+  <name>br0</name>
+  <forward mode="bridge"/>
+  <bridge name="br0" />
+</network>
+
+virsh net-define /tmp/br0.xml
+virsh net-start br0
+virsh net-autostart br0
+virsh net-list --all
+```
+

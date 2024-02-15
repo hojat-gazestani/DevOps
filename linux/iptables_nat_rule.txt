@@ -1,0 +1,90 @@
+ 
+
++-----------+		                                        +-----------------+		                                        +-------+ 
+
+| server: 22 | enp0s3:192.168.56.108 <-- enp0s3:198.51.56.111      | firewall: 1111 | enp0s8:192.168.57.14 <-- enp0s3:192.168.57.11 | client |  
+
++------------+		                                        +-----------------+		                                         +------+
+
+ 
+# Enable IP forwarding
+----------------------
+echo 1 > /proc/sys/net/ipv4/ip_forward 
+
+sysctl -w net.ipv4.ip_forward=1
+
+
+sudo nano /etc/sysctl.conf
+net.ipv4.ip_forward = 1
+
+-------------------------------------------
+
+sudo vim /etc/iptables/rules.v4 
+
+sudo iptables -t nat -A PREROUTING -d 192.168.57.14  -i enp0s8  -p tcp --dport 1111 -j DNAT --to-destination 192.168.56.108:22 
+
+sudo iptables -t nat -A POSTROUTING -o enp0s3 -p tcp --dport 22 -d 192.168.56.108 -j SNAT --to-source 192.168.56.111 
+--------------------------------------------------------
+
+sudo iptables -t nat -A PREROUTING -i enp0s8 -d 172.16.30.105 -p tcp --dport 1111 -j DNAT --to-destination 192.168.56.107:22
+sudo iptables -t nat -A POSTROUTING -o enp0s9 -p tcp --dport 22  -d 192.168.56.107 -j SNAT --to-source 192.168.56.106
+-------------------------------------------------
+
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.12.77:80
+iptables -t nat -A POSTROUTING -p tcp -d 192.168.12.77 --dport 80 -j SNAT --to-source 192.168.12.87
+---------------------------------------------
+iptables -A OUTPUT -p tcp -m tcp -m multiport --dports 80,443,22,8080 -j ACCEPT
+iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p tcp -m tcp -m multiport ! --dports 80,443,22,8080 -j DROP
+iptables -A OUTPUT -j DROP
+
+iptables -A FORWARD -p tcp -m tcp -m multiport --dports 80,22 -j ACCEPT
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A FORWARD -p tcp -m tcp -m multiport ! --dports 80,22 -j DROP
+iptables -A FORWARD -j DROP
+
+
+iptables -A INPUT -p tcp -m tcp -m multiport --dports 80,22,9090 -j ACCEPT
+iptables -A INPUT -m conntrack -j ACCEPT  --ctstate RELATED,ESTABLISHED
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp -m tcp -m multiport ! --dports 80,22,9090 -j DROP
+iptables -A INPUT -j DROP
+
+---------------------------------------
+iptables -L --line-numbers
+
+# Delete rule
+--------------------------------------
+iptables -L --line-numbers
+iptables -D INPUT 3
+
+iptables -t nat -v -L POSTROUTING -n --line-number
+iptables -t nat -D POSTROUTING {number-here}
+
+
+
+iptables -D INPUT -m conntrack --ctstate INVALID -j DROP
+
+
+# Flush
+--------------------------------------
+iptables --flush         # Delete all of the firewall rules
+iptables -F
+
+iptables -X              # Delete all non-default chains
+
+
+iptables --flush INPUT   # Delete all of the rules in the INPUT chain
+iptables -F INPUT
+
+iptables -t nat --flush  # Delete all of the rules in the NAT table
+iptables -t nat -F  
+
+iptables -t mangle --flush  # Delete all of the rules in the MANGLE table
+iptables -t mangle -F  
+
+# clear the counters
+---------------------------------------------
+iptables -Z
+iptables -Z INPUT
+iptables -Z INPUT 1

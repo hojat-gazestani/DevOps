@@ -1,0 +1,162 @@
+WordPress with LAMP on Ubuntu 20.04
+
+2- Install Dependencies
+sudo apt update
+sudo apt install -y apache2 \
+                 ghostscript \
+                 libapache2-mod-php \
+                 mysql-server \
+                 php \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip \
+                 php-gd \
+                 php-xmlrpc \
+                 php-soap
+
+sudo ufw allow in "Apache"
+sudo mysql_secure_installation
+
+--------------------------------------------------------------
+Step 4 — Creating a Virtual Host for your Website
+
+sudo mkdir /var/www/demo.local
+sudo chown -R $USER:$USER /var/www/demo.local
+sudo vim /etc/apache2/sites-available/demo.local.conf
+	<VirtualHost *:80>
+	    ServerName demo.local
+	    ServerAlias www.demo.local
+	    ServerAdmin webmaster@localhost
+	    DocumentRoot /var/www/demo.local
+	    ErrorLog ${APACHE_LOG_DIR}/error.log
+	    CustomLog ${APACHE_LOG_DIR}/access.log combined
+	</VirtualHost>
+
+vim /var/www/demo.local/index.html
+	<html>
+	  <head>
+	    <title>demo.local website</title>
+	  </head>
+	  <body>
+	    <h1>Hello World!</h1>
+
+	    <p>This is the landing page of <strong>demo.local</strong>.</p>
+	  </body>
+	</html>
+sudo vim /etc/apache2/apache2.conf 
+	ServerName demo.local
+
+sudo a2ensite demo.local
+sudo a2dissite 000-default
+
+sudo apache2ctl configtest
+
+sudo systemctl reload apache2
+
+http://server_domain_or_IP
+
+------------------------------------------------------------------
+
+sudo mysql
+
+CREATE DATABASE wp DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE USER 'wpuser'@'%' IDENTIFIED WITH mysql_native_password BY 'openstack';
+GRANT ALL ON wp.* TO 'wpuser'@'%';
+FLUSH PRIVILEGES;
+exit;
+
+------------------------------------------------------------------
+sudo vim /etc/apache2/sites-available/wordpress.conf
+	<Directory /var/www/demo.local/>
+	    AllowOverride All
+	</Directory>
+
+sudo a2enmod rewrite
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+
+-----------------------------------------------------------------
+cd /tmp
+curl -O https://wordpress.org/latest.tar.gz
+
+tar xzvf latest.tar.gz
+
+touch /tmp/wordpress/.htaccess
+
+cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
+
+mkdir /tmp/wordpress/wp-content/upgrade
+
+sudo cp -a /tmp/wordpress/. /var/www/demo.local/wp
+
+sudo chown -R www-data:www-data /var/www/demo.local
+
+sudo find /var/www/demo.local/ -type d -exec chmod 750 {} \;
+sudo find /var/www/demo.local/ -type f -exec chmod 640 {} \;
+
+curl -s https://api.wordpress.org/secret-key/1.1/salt/
+
+sudo vim  /var/www/demo.local/wp-config.php
+	// ** MySQL settings - You can get this info from your web host ** //
+	/** The name of the database for WordPress */
+	define( 'DB_NAME', 'wp );
+
+	/** MySQL database username */
+	define( 'DB_USER', 'wpuser' );
+
+	/** MySQL database password */
+	define( 'DB_PASSWORD', 'openstack' );
+
+	/** MySQL hostname */
+	define( 'DB_HOST', 'localhost' );
+
+	/** Database Charset to use in creating database tables. */
+	define( 'DB_CHARSET', 'utf8' );
+
+	/** The Database Collate type. Don't change this if in doubt. */
+	define( 'DB_COLLATE', '' );
+
+	define('FS_METHOD', 'direct');
+
+
+-----------------------------------------------
+# ADD NEW PROJECT
+
+sudo mysql
+
+CREATE DATABASE newDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE USER 'newDBuser'@'%' IDENTIFIED WITH mysql_native_password BY 'newDBpass';
+GRANT ALL ON wp.* TO 'wpuser'@'%';
+FLUSH PRIVILEGES;
+exit;
+
+mkdir /var/www/demo.local/newPR
+sudo cp -a /tmp/wordpress/. /var/www/demo.local/newPR
+
+sudo vim  /var/www/demo.local/wp-config.php
+	// ** MySQL settings - You can get this info from your web host ** //
+	/** The name of the database for WordPress */
+	define( 'DB_NAME', 'newDB' );
+
+	/** MySQL database username */
+	define( 'DB_USER', 'newDBuser' );
+
+	/** MySQL database password */
+	define( 'DB_PASSWORD', 'newDBpass' );
+
+	/** MySQL hostname */
+	define( 'DB_HOST', 'localhost' );
+
+	/** Database Charset to use in creating database tables. */
+	define( 'DB_CHARSET', 'utf8' );
+
+	/** The Database Collate type. Don't change this if in doubt. */
+	define( 'DB_COLLATE', '' );
+
+	define('FS_METHOD', 'direct');
