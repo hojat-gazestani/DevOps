@@ -1,10 +1,14 @@
 ## Pfsense - OpenVPN Server
 
 > Pfsense OpenVPN server and Mikrotik OpenVPN Client Configuration
+
 > cipher (null | aes128-cbc | aes128-gcm | aes192-cbc | aes192-gcm | aes256-cbc | aes256-gcm | blowfish128; Default: blowfish128)
 Allowed ciphers. In order to use GCM type ciphers, the "auth" parameter must be set to "null", because GCM cipher is also responsible for "auth", if used.
+
 > auth=sha256 which is causing problem for cipher you have set (aes256-gcm), check also if other config and client parameters are aligned with doc...
+
 > https://help.mikrotik.com/docs/display/ROS/OpenVPN
+
 - General Information
 ```txt
 Description: Zaravand
