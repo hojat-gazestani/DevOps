@@ -11,7 +11,7 @@ Allowed ciphers. In order to use GCM type ciphers, the "auth" parameter must be 
 
 - General Information
 ```txt
-Description: Zaravand
+Description: OpenVPNServer
 ```
 
 - Mode Configuration
