@@ -1,4 +1,4 @@
-# Download a base image
+# virt install Ubuntu22 and Ubuntu18
 
 ```sh
 wget https://cloud-images.ubuntu.com/releases/bionic/release/ubuntu-18.04-server-cloudimg-amd64.img
@@ -37,7 +37,7 @@ virt-install --name ubuntu-18-vm \
   --disk path=ubuntu-vm-disk.qcow2,device=disk \
   --disk path=user-data.img,format=raw \
   --graphics none \
-  --os-type Linux --os-variant ubuntu18.04 
+  --os-type Linux --os-variant ubuntu18.04
 
 virt-install --name ubuntu-22-vm \
   --virt-type kvm --memory 4096 --vcpus 4 \
@@ -45,5 +45,5 @@ virt-install --name ubuntu-22-vm \
   --disk path=ubuntu-vm-disk.qcow2,device=disk \
   --disk path=user-data.img,format=raw \
   --graphics none \
-  --os-type Linux --os-variant ubuntu22.04 
+  --os-type Linux --os-variant ubuntu22.04
 ```
