@@ -9,7 +9,7 @@ ovs-vsctl add-br br0 &&  ovs-vsctl add-port br0 eth0 && ifconfig eth0 0.0.0.0 &&
 # internal bridge
 ovs-vsctl add-br br-int
 
-# gre tunnel 
+# gre tunnel
 ovs-vsctl add-port br-int gre0 -- set interface gre0 type=gre options:remote_ip=<remote ip>
 
 ```
@@ -37,14 +37,14 @@ local-hostname: CentOS-7-SSH
 cd $D/$VM
 vim user-data
 #cloud-config
-# Customize as per your need. At least change username (orcadmin) and ssh-ed22519 
+# Customize as per your need. At least change username (orcadmin) and ssh-ed22519
 # key with your actual public key
- 
+
 # Hostname management
 preserve_hostname: False
 hostname: CentOS-7-SSH
 fqdn: CentOS-7-SSH.orca.local
- 
+
 # Setup Users with ssh keys so that I can log in into new machine
 users:
     - default
@@ -56,24 +56,24 @@ users:
       ssh-authorized-keys:
 		- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCOi8bgbt/Vvhzq033Q5CecZbV2GM7P3TDEReXFjBYJQMGNX2Jf02k1fvSsaDtdEDblvFyry3oQBrrbQG22RxPfhk5ztt52ggm+dPsorIcBxsyjjykPYqSE1xhKXyScoRqNL44suzM7JBiZvH91yOcMknN+AZ+lluZuBuICL+kAOEnqSFs1WQVXwpp26qW4KDAqdq62CNolR8fijVaLs6DFNBqZoj11dOxuNZBeKfBQBLfcBijngG5zEKapa06SjaY0mW44+WN18EcQZPNvwRZIk8T17UJPzNeql+lJ1H6YRgYoD0G9HFhmEP1EYV1iD9eGMkoulNh7fwKfmT83N8hrJFODtqNNpXz/7UYixQ755k57/1Kws1mI0Fzrwp7NTJRkq017NVWrAWeFYdgNDWPPbFCnzjuZlyLSG3igbmXs/9fhLcj/KTUlv7BS17RMFWGpJKE2HAimKFK1A9AZH6UwlOPVLraE7it9Vk7ZgaabbacnUcFIjr/REnmTkRRMO6s= user@cp
       	- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxv3N93X7TFJFllDjdcg3ieSL7nB0VlTbFxgWDzweCLcCaH2Wi0EJqzkoF5LX/UOlMIUTUrQlamC2Gxplb0AwxUQM1crn9edYy/r3ctT2imDSIUKnLk74pIj1p8NG+wKYRa9290ojdJSDEXhXxrM6Iev0v2VrNDBTO29P8l9LyhCgmHIPLEiznnt28avjSqvWBdb8zgGx6HImspq4VEUb5hCRRJiAZ26zTBOBSPnYQPMnzoF4vEwOZols9rzCDeHxIZnpaZJBH9mF++y4iztYKJmaUE6oATVSpJGUmVH+t6DMpoGGKAbddbxwOA1ogMwhtsGq2jg5bdYCh7wsxMsxAMx6rRVgCapl/NbEFw825H9KrOQgc4FSRjSKzkX+teNACWVRt6tscMvkoWw/L3yLPB5n65SeMWrQ3AHUgFyLnn0mfw/bHNNxWcF9AIWT/qK0B7JdKkETOM2RGaJB+wyxtmN5tVy32MlbS/TUEH0w3Mib6JEgqPsRkz/yEVHXmAhk= root@Sword
- 
+
 # Configure where output will go
 output:
   all: ">> /var/log/cloud-init.log"
- 
+
 # configure interaction with ssh server
 ssh_genkeytypes: ['ed25519', 'rsa']
- 
+
 # Install your public ssh key to the first user-defined user configured
 # in cloud.cfg in the template (optional since I created orcadmin)
 ssh_authorized_keys:
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCOi8bgbt/Vvhzq033Q5CecZbV2GM7P3TDEReXFjBYJQMGNX2Jf02k1fvSsaDtdEDblvFyry3oQBrrbQG22RxPfhk5ztt52ggm+dPsorIcBxsyjjykPYqSE1xhKXyScoRqNL44suzM7JBiZvH91yOcMknN+AZ+lluZuBuICL+kAOEnqSFs1WQVXwpp26qW4KDAqdq62CNolR8fijVaLs6DFNBqZoj11dOxuNZBeKfBQBLfcBijngG5zEKapa06SjaY0mW44+WN18EcQZPNvwRZIk8T17UJPzNeql+lJ1H6YRgYoD0G9HFhmEP1EYV1iD9eGMkoulNh7fwKfmT83N8hrJFODtqNNpXz/7UYixQ755k57/1Kws1mI0Fzrwp7NTJRkq017NVWrAWeFYdgNDWPPbFCnzjuZlyLSG3igbmXs/9fhLcj/KTUlv7BS17RMFWGpJKE2HAimKFK1A9AZH6UwlOPVLraE7it9Vk7ZgaabbacnUcFIjr/REnmTkRRMO6s= user@cp
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxv3N93X7TFJFllDjdcg3ieSL7nB0VlTbFxgWDzweCLcCaH2Wi0EJqzkoF5LX/UOlMIUTUrQlamC2Gxplb0AwxUQM1crn9edYy/r3ctT2imDSIUKnLk74pIj1p8NG+wKYRa9290ojdJSDEXhXxrM6Iev0v2VrNDBTO29P8l9LyhCgmHIPLEiznnt28avjSqvWBdb8zgGx6HImspq4VEUb5hCRRJiAZ26zTBOBSPnYQPMnzoF4vEwOZols9rzCDeHxIZnpaZJBH9mF++y4iztYKJmaUE6oATVSpJGUmVH+t6DMpoGGKAbddbxwOA1ogMwhtsGq2jg5bdYCh7wsxMsxAMx6rRVgCapl/NbEFw825H9KrOQgc4FSRjSKzkX+teNACWVRt6tscMvkoWw/L3yLPB5n65SeMWrQ3AHUgFyLnn0mfw/bHNNxWcF9AIWT/qK0B7JdKkETOM2RGaJB+wyxtmN5tVy32MlbS/TUEH0w3Mib6JEgqPsRkz/yEVHXmAhk= root@Sword
- 
+
 # set timezone for VM
 timezone: Asia/Tehran
- 
-# Remove cloud-init 
+
+# Remove cloud-init
 runcmd:
   - systemctl stop network && systemctl start network
   - yum -y remove cloud-init
@@ -159,7 +159,7 @@ virsh dumpxml ubuntu-test > ubuntu-test.xml
 # get the iso
 wget http://releases.ubuntu.com/14.04.3/ubuntu-14.04.3-server-amd64.iso
 
-# create the image disk 
+# create the image disk
 qemu-img create -f qcow2 disk.qcow2 10G
 
 
@@ -203,7 +203,7 @@ vim ubuntu.xml
 
 # launch the creation
 virsh create ubuntu.xml
- 
+
 # you can connect to using vnc.
 
 ```
@@ -270,7 +270,7 @@ cd /etc/libvirt/hooks/
 vi qemu
 #!/bin/bash
 # Hook to insert NEW rule to allow connection for VMs
-# 192.168.122.0/24 is NATed subnet 
+# 192.168.122.0/24 is NATed subnet
 # virbr0 is networking interface for VM and host
 # -----------------------------------------------------------------
 # Written by Vivek Gite under GPL v3.x {https://www.cyberciti.biz}
@@ -326,6 +326,7 @@ iptables-save -t filter | grep FORWARD
 # reset password
 
 ```sh
+virsh shutdown debian9-vm1
 virsh dumpxml debian9-vm1 | grep 'source file'
 <source file='/var/lib/libvirt/images/debian9-vm1.qcow2'/>
 
@@ -349,7 +350,3 @@ virsh start debian9-vm1
 virsh list
 virsh console debian9-vm1
 ```
-
-
-
-
