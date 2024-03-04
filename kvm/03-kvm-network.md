@@ -55,7 +55,7 @@ qemu-system-x86_64 -hda /path/to/hda.img -device e1000,netdev=net0,mac=$macaddre
 
 ```
 
-## Create a bridge
+## Create a bridge and add to VM
 ```sh
 uuidgen
 336758DD-3A31-4E36-9353-537976D53CE0
