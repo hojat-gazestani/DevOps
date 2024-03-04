@@ -1,6 +1,6 @@
 ## Private Virtual Bridge
 
-- must be installed 
+- must be installed
 ```sh
 ip
 brctl (deprecated). Use ip link instead
@@ -55,4 +55,31 @@ qemu-system-x86_64 -hda /path/to/hda.img -device e1000,netdev=net0,mac=$macaddre
 
 ```
 
-	
+## Create a bridge
+```sh
+uuidgen
+336758DD-3A31-4E36-9353-537976D53CE0
+
+sudo cp /etc/libvirt/qemu/networks/default.xml /etc/libvirt/qemu/networks/virbrCeph.xml
+sudo vim /etc/libvirt/qemu/networks/virbrCeph.xml
+<network>
+  <name>virbrCeph</name>
+  <uuid>336758dd-3a31-4e36-9353-537976d53ce0</uuid>
+  <forward dev='eno4' mode='nat'>
+    <interface dev='eno4'/>
+  </forward>
+  <bridge name='virbrCeph' stp='on' delay='0'/>
+  <mac address='52:54:00:ed:03:f1'/>
+  <ip address='192.168.123.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.123.100' end='192.168.123.254'/>
+    </dhcp>
+  </ip>
+</network>
+
+sudo virsh net-define /etc/libvirt/qemu/networks/virbrCeph.xml
+sudo virsh net-start virbrCeph
+sudo virsh net-autostart virbrCeph
+
+svir attach-interface --type bridge --source virbrCeph --model virtio Ubu22-Test
+```
