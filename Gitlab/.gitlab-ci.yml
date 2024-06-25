@@ -1,0 +1,76 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  # DOCKER_HOST: tcp://docker:2375
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  IMAGE_TAG_LAT: $CI_REGISTRY_IMAGE:latest
+
+unit-test:
+  stage: test
+  script:
+    - echo "test"
+    # - docker run --rm -v "$PWD:/app" -w /app python:3.10 manage.py test
+  tags:
+    - prod
+
+lint-test:
+  stage: test
+  script:
+    - echo "No lint issues found."
+    # - docker run --rm -v "$PWD:/app" -w /app python:3.10 flake8
+  tags:
+    - prod
+
+build-job:
+  stage: build
+  script:
+    - unset DOCKER_HOST
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $IMAGE_TAG .
+    - docker tag $IMAGE_TAG $IMAGE_TAG_LAT
+    - docker push $IMAGE_TAG
+    - docker push $IMAGE_TAG_LAT
+  tags:
+    - stage
+
+.deploy:
+  script:
+    - hostname
+    - echo ${LPORT} ${PROJ}
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker stop project-name-${PROJ}
+    - docker rm project-name-${PROJ}
+    - LPORT=${LPORT} docker compose -p ${PROJ} up -d
+    # - sleep 4;
+    # - docker compose -p stage logs --tail 25
+    # - docker compose -p stage exec project echo 1
+
+deploy_stage:
+  extends:
+    - .deploy
+  stage: deploy
+  environment: stage
+  only:
+    - stage
+  tags:
+    - stage
+
+deploy_prod:
+  extends:
+    - .deploy
+  stage: deploy
+  environment: prod
+  tags:
+    - prod
+
+deploy_pord1:
+  extends:
+    - .deploy
+  stage: deploy
+  when: manual
+  environment: prod1
+  tags:
+    - prod1

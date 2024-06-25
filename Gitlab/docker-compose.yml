@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+  zaraamad_fe:
+    container_name: project-name-${PROJ}
+    image: gitlab..com:5050/project-name:latest
+    pull_policy: always
+    environment:
+      - BACKEND=${BACKEND_GIT}
+    restart: always
+    ports:
+      - ${LPORT}:3000
+    networks:
+      - projNet
+
+networks:
+  projNet:
+    external: true
+    name: ${PROJ}
