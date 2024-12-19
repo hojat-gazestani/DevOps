@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: mattermost-db
+    restart: always
+    environment:
+      POSTGRES_USER: mattermost
+      POSTGRES_PASSWORD: mattermost
+      POSTGRES_DB: mattermost
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    
+  app:
+    image: mattermost/mattermost-enterprise-edition:latest
+    container_name: mattermost-app
+    restart: always
+    ports:
+      - "8065:8065"
+    depends_on:
+      - db
+    environment:
+      MM_SQLSETTINGS_DRIVERNAME: postgres
+      MM_SQLSETTINGS_DATASOURCE: postgres://mattermost:mattermost@db:5432/mattermost?sslmode=disable
+    volumes:
+      - app-data:/mattermost/data
+
+volumes:
+  db-data:
+  app-data:

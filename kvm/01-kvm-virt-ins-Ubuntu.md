@@ -3,6 +3,7 @@
 ```sh
 wget https://cloud-images.ubuntu.com/releases/bionic/release/ubuntu-18.04-server-cloudimg-amd64.img
 wget https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img
+wget https://cloud-images.ubuntu.com/releases/24.10/release-20241109/ubuntu-24.10-server-cloudimg-amd64.img
 ```
 ```sh
 sudo apt install -y qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager cloud-image-utils libguestfs-tools
@@ -45,5 +46,6 @@ virt-install --name ubuntu-22-vm \
   --disk path=ubuntu-vm-disk.qcow2,device=disk \
   --disk path=user-data.img,format=raw \
   --graphics none \
-  --os-type Linux --os-variant ubuntu22.04
+  --os-type Linux --os-variant ubuntu22.04 \
+  --network bridge=br-kvm,model=virtio
 ```
