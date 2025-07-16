@@ -1,9 +1,11 @@
 # Over OpenVPN
 
+
 The following OpenVPN configuration:
-✅ Protocol: UDP —  good for performance
-✅ Ciphers: Secure and modern (GCM, CHACHA20) 
-✅ No compression enabled —  avoids redundant rsync compression
+
++ ✅ Protocol: UDP —  good for performance
++ ✅ Ciphers: Secure and modern (GCM, CHACHA20) 
++ ✅ No compression enabled —  avoids redundant rsync compression
 
 ```sh
 dev tun
