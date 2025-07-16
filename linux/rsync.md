@@ -34,8 +34,11 @@ route 192.168.174.0 255.255.255.0
 rsync -azP --inplace --partial --append-verify -e "ssh -T -c aes128-ctr -o Compression=no -x" src/ user@192.168.174.X:/path/
 ```
 
+```sh
  -azP --partial --inplace --append-verify
+```
 
+```text
 `-a`: archive mode (preserves metadata)
 `-z`: compress file data during transfer
 `-P`: shows progress and resumes partial transfers (Don’t use in rsync)
@@ -43,11 +46,15 @@ rsync -azP --inplace --partial --append-verify -e "ssh -T -c aes128-ctr -o Compr
 `--partial`: Keep partially transferred files (default is to delete them on failure)
 `--inplace`: Write directly to destination files (no temporary copy)
 `--append-verify`: Resume file transfer and verify contents
+```
 
-
+```sh
 -e "ssh -T -c aes128-ctr -o Compression=no -x"
+```
 
+```text
 `-T`: disables pseudo-tty
 `-c aes128-ctr`: faster cipher than default
 `-o Compression=no`: avoids double compression (already using -z)
 `-x`: disables X11 forwarding
+```
