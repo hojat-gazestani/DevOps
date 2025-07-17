@@ -1,0 +1,33 @@
+---
+services:
+  mssql_cityname:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql_cityname
+    restart: always
+    environment:
+      SA_PASSWORD: "mssql_password"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1443:1433"
+    volumes:
+      - mssql_cityname:/var/opt/mssql
+      - ./init-database.sql:/init-database.sql
+      - ./backup:/var/opt/mssql/backup/
+      - type: bind
+        source: /var/zaraamad_backups/
+        target: /backup
+    networks:
+      - citynameNet
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 2000M
+
+networks:
+  citynameNet:
+    name: cityname
+
+volumes:
+  mssql_cityname:
+
