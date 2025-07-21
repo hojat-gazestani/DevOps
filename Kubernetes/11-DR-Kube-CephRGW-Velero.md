@@ -16,9 +16,11 @@
 
 
 ## Setup Steps Overview
-1. Ceph RGW Multisite Configuration
+1. Ceph RGW Multisite sync, Redundant, geo-replicated object storage
 2. Shared S3 Credentials (Global User)
-3. Velero Install in Both Clusters
+3. Velero Install in Both Clusters, Declarative backups + DR automation
+4. Dual kuberenetes cluster: Resilience to regoin-wide failure
+5. GitOps compatible, Combine with ArgoCD for full-stack recovery
 
 Bounes
 4. failover scrip
