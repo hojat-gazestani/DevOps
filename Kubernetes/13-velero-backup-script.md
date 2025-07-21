@@ -212,7 +212,7 @@ failover:
 
 ## Script `failover_monitor.py`
 
-```pyth
+```python
 import requests
 import yaml
 import time
