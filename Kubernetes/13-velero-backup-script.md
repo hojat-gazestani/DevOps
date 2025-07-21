@@ -2,6 +2,56 @@
 
 
 
+## Run Minio in docker container
+
+
+
+```sh
+docker pull minio/minio
+
+docker run --name minio \
+-p 9000:9000 \
+-p 41411:41411 \
+-v data:/data \
+-e "MINIO_SERVER_URL=http://0.0.0.0:9000" \
+-e "MINIO_BROWSER_REDIRECT_URL=http://172.27.103.53:9000" \
+minio/minio server /data --console-address ":41411"
+
+```
+
+
+
+## Verlero setup
+
+
+
+```sh
+wget https://github.com/vmware-tanzu/velero/releases/download/v1.16.1/velero-v1.16.1-linux-amd64.tar.gz
+tar xzvf velero-v1.16.1-linux-amd64.tar.gz
+
+sudo mv velero-v1.16.1-linux-amd64/velero /usr/local/bin
+which velero
+rm -rf velero-v1.16.1-linux-amd64*
+
+cat <<EOF>> ceph.cred
+[default]
+aws_access_key_id=<access_key>
+aws_secret_access_key=<secret_key>
+EOF
+
+velero install \
+--provider aws \
+--plugins velero/velero-plugin-for-aws:v1.9.2 \
+--bucket backup \
+--secret-file ./ceph.cred \
+--backup-location-config region=minio,s3ForcePathStyle=true,s3Url=http://172.27.103.53:80
+
+velero backup-location get
+
+```
+
+
+
 ## Features
 
 + Multisite RGW zone creation (`zone-a`, `zone-b`)
@@ -316,4 +366,6 @@ Restart=always
 ```sh
 sudo systemctl enable --now ceph-failover.service
 ```
+
+
 
