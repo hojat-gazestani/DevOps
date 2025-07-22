@@ -1,4 +1,8 @@
-# Python script that **automates both Ceph RGW Multisite setup** and **Velero S3 backup integration**
+# Velero
+
+
+
+# 
 
 
 
@@ -33,7 +37,7 @@ sudo mv velero-v1.16.1-linux-amd64/velero /usr/local/bin
 which velero
 rm -rf velero-v1.16.1-linux-amd64*
 
-cat <<EOF>> ceph.cred
+cat <<EOF>> minio.credential
 [default]
 aws_access_key_id=<access_key>
 aws_secret_access_key=<secret_key>
@@ -43,16 +47,239 @@ velero install \
 --provider aws \
 --plugins velero/velero-plugin-for-aws:v1.9.2 \
 --bucket backup \
---secret-file ./ceph.cred \
+--secret-file ./minio.credential \
 --backup-location-config region=minio,s3ForcePathStyle=true,s3Url=http://172.27.103.53:80
 
 velero backup-location get
 
 ```
 
+### Delete Existing Backup Location
+
+```sh
+kubectl delete backupstoragelocation default -n velero
+```
 
 
-## Features
+
+### Ceph Config
+
+```sh
+cat <<EOF>> velero.credentials
+[default]
+aws_access_key_id=<access_key>
+aws_secret_access_key=<secret_key>
+EOF
+
+kubectl -n velero create secret generic cloud-credentials --from-file=cloud=./velero.credentials --dry-run=client -o yaml | kubectl apply -f -
+
+velero backup-location create orcabackup \
+  --provider aws \
+  --bucket orcabackup \
+  --config region=default,s3ForcePathStyle=true,s3Url=http://172.27.103.107:7480 \
+  --credential cloud-credentials=cloud \
+  --access- mode ReadWrite \
+  --default
+```
+
+
+
+## Velero basic
+
+### Velero backup
+
+```sh
+k -n velero get backups
+k -n velero get crds
+velero backup get
+
+❯ velero backup create testbackup --include-namespaces test
+Backup request "testbackup" submitted successfully.
+Run `velero backup describe testbackup` or `velero backup logs testbackup` for more details.
+
+# List backups
+❯ velero backup get
+NAME         STATUS      ERRORS   WARNINGS   CREATED                           EXPIRES   STORAGE LOCATION   SELECTOR
+testbackup   Completed   0        0          2025-07-22 09:20:39 +0330 +0330   29d       orcabackup         <none>
+❯ velero backup describe testbackup
+
+# Take backup
+velero backup create testbackup --include-namespaces test 
+
+velero backup create testbackup --include-namespaces test --include-resources pods,deployments,pvcs 
+
+velero backup create testbackup --include-namespaces test --include-resources pods,deployments,pvcs --exclude-resources configmaps
+```
+
+
+
+###  Velero restore backup
+
+```sh
+❯ k delete ns test
+namespace "test" deleted
+
+❯ k get ns
+NAME                 STATUS   AGE
+default              Active   22h
+kube-node-lease      Active   22h
+kube-public          Active   22h
+kube-system          Active   22h
+local-path-storage   Active   22h
+velero               Active   15h
+
+❯ velero restore get
+
+~
+
+ ❯ velero restore create restorebackup --from-backup testbackup
+Restore request "restorebackup" submitted successfully.
+Run `velero restore describe restorebackup` or `velero restore logs restorebackup` for more details.
+
+❯ velero restore get
+NAME            BACKUP       STATUS      STARTED                           COMPLETED                         ERRORS   WARNINGS   CREATED                           SELECTOR
+restorebackup   testbackup   Completed   2025-07-22 09:32:20 +0330 +0330   2025-07-22 09:32:22 +0330 +0330   0        2          2025-07-22 09:32:20 +0330 +0330   <none>
+
+❯ velero restore describe restorebackup
+
+❯ k get ns
+NAME                 STATUS   AGE
+default              Active   22h
+kube-node-lease      Active   22h
+kube-public          Active   22h
+kube-system          Active   22h
+local-path-storage   Active   22h
+test                 Active   109s
+velero               Active   15h
+
+
+```
+
+
+
+### Velero delete back and restore
+
+```sh
+❯ velero restore delete restorebackup
+Are you sure you want to continue (Y/N)? Y
+Request to delete restore "restorebackup" submitted successfully.
+The restore will be fully deleted after all associated data (restore files in object storage) are removed.
+
+~ took 2s
+❯ velero restore get
+
+~
+
+❯ velero backup get
+NAME         STATUS      ERRORS   WARNINGS   CREATED                           EXPIRES   STORAGE LOCATION   SELECTOR
+testbackup   Completed   0        0          2025-07-22 09:20:39 +0330 +0330   29d       orcabackup         <none>
+
+~
+❯ velero backup delete testbackup
+Are you sure you want to continue (Y/N)? Y
+Request to delete backup "testbackup" submitted successfully.
+The backup will be fully deleted after all associated data (disk snapshots, backup files, restores) are removed.
+
+~ took 2s
+❯ velero backup get
+
+~
+```
+
+
+
+### Velero Schedule
+
+```sh
+❯ velero schedule get
+
+~
+❯ velero schedule create testschedule --schedule="0 * * * *" # Every hours
+❯ velero schedule create testschedule --schedule="@every 2h"	# Entire cluster 
+❯ velero schedule create testschedule --schedule="@every 2d"
+❯ velero schedule create testschedule --schedule="@every 2w"
+
+❯ velero schedule create testschedule --schedule="@every 1m" --include-namespaces test
+Schedule "testschedule" created successfully.
+
+❯ velero schedule describe testschedule 
+
+❯ date
+Tue Jul 22 09:45:01 +0330 2025
+
+~
+❯ velero backup get
+
+~
+❯ velero backup get
+NAME                          STATUS      ERRORS   WARNINGS   CREATED                           EXPIRES   STORAGE LOCATION   SELECTOR
+testschedule-20250722061529   Completed   0        0          2025-07-22 09:45:29 +0330 +0330   29d       orcabackup         <none>
+
+
+❯ velero backup get
+NAME                          STATUS      ERRORS   WARNINGS   CREATED                           EXPIRES   STORAGE LOCATION   SELECTOR
+testschedule-20250722061629   Completed   0        0          2025-07-22 09:46:29 +0330 +0330   29d       orcabackup         <none>
+testschedule-20250722061529   Completed   0        0          2025-07-22 09:45:29 +0330 +0330   29d       orcabackup         <none>
+
+~
+❯ date
+Tue Jul 22 09:46:57 +0330 2025
+
+
+# Delete schedule
+❯  velero schedule delete --all
+Are you sure you want to continue (Y/N)? y
+Schedule deleted: testschedule
+
+~ took 4s
+❯ velero schedule get
+
+~
+
+❯ velero backup get
+NAME                          STATUS      ERRORS   WARNINGS   CREATED                           EXPIRES   STORAGE LOCATION   SELECTOR
+testschedule-20250722061729   Completed   0        0          2025-07-22 09:47:29 +0330 +0330   29d       orcabackup         <none>
+testschedule-20250722061629   Completed   0        0          2025-07-22 09:46:29 +0330 +0330   29d       orcabackup         <none>
+testschedule-20250722061529   Completed   0        0          2025-07-22 09:45:29 +0330 +0330   29d       orcabackup         <none>
+
+~
+❯ velero backup delete --all
+Are you sure you want to continue (Y/N)? y
+Request to delete backup "testschedule-20250722061529" submitted successfully.
+The backup will be fully deleted after all associated data (disk snapshots, backup files, restores) are removed.
+Request to delete backup "testschedule-20250722061629" submitted successfully.
+The backup will be fully deleted after all associated data (disk snapshots, backup files, restores) are removed.
+Request to delete backup "testschedule-20250722061729" submitted successfully.
+The backup will be fully deleted after all associated data (disk snapshots, backup files, restores) are removed.
+
+~ took 2s
+❯ velero backup get
+
+~
+```
+
+
+
+### Velero backup TTL
+
+```sh
+❯ velero backup create testbackup --include-namespaces test --ttl 3m
+Backup request "testbackup" submitted successfully.
+Run `velero backup describe testbackup` or `velero backup logs testbackup` for more details.
+
+~
+❯ velero backup get
+NAME         STATUS      ERRORS   WARNINGS   CREATED                           EXPIRES   STORAGE LOCATION   SELECTOR
+testbackup   Completed   0        0          2025-07-22 09:50:57 +0330 +0330   2m        orcabackup         <none>
+```
+
+
+
+
+
+## Python script that **automates both Ceph RGW Multisite setup** and **Velero S3 backup integration**
+
+### Features
 
 + Multisite RGW zone creation (`zone-a`, `zone-b`)
 
@@ -62,7 +289,7 @@ velero backup-location get
 
 
 
-##  Config file
+###  Config file
 
 
 
@@ -100,7 +327,7 @@ velero:
 
 
 
-## Script
+### Script
 
 
 
@@ -221,7 +448,7 @@ if __name__ == "__main__":
 
 
 
-##  Run
+###  Run
 
 
 
@@ -232,7 +459,7 @@ python setup_ceph_multisite.py config.yaml zone-a
 
 
 
-# support **automated failover detection** and **dynamic Velero S3 endpoint switching**.
+### support **automated failover detection** and **dynamic Velero S3 endpoint switching**.
 
 
 
@@ -246,7 +473,7 @@ python setup_ceph_multisite.py config.yaml zone-a
 
 
 
-## Config 
+### Config 
 
 ```yml
 failover:
@@ -260,7 +487,7 @@ failover:
 
 
 
-## Script `failover_monitor.py`
+### Script `failover_monitor.py`
 
 ```python
 import requests
@@ -343,7 +570,7 @@ if __name__ == "__main__":
 
 
 
-## Run as a Systemd Service or Cronjob
+### Run as a Systemd Service or Cronjob
 
 
 
