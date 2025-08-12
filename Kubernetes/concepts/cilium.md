@@ -1,5 +1,45 @@
 # Cilium
 
+
+
+## Cilium + MetalLB layer 2 + without kube-proxy
+
+in `inventory/arc/group_vars/k8s_cluster/k8s-net-cilium.yml`
+
+```sh
+cni_provider: cilium
+
+cilium_kube_proxy_replacement: strict
+
+cilium_load_balancer_mode: dsr
+
+cilium_enable_host_firewall: false
+
+cilium_policy_enforcement: default
+```
+
+
+
+In `inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml`:
+
+
+
+```sh
+kube_proxy_mode: none
+kube_proxy_strict_arp: false  # irrelevant with kube-proxy disabled
+
+metallb_enabled: true
+metallb_ip_ranges:
+  - "172.23.2.40-172.23.2.50"
+  
+metallb_layer2_advertise_ip: true
+metallb_layer2_announce_ip: true
+```
+
+
+
+
+
 ## Kube-proxy
 
 + Handles traffic routing within a cluster to the appropriate backend pods.
@@ -101,4 +141,67 @@ NOTE:
 If you’re using **MetalLB in layer2 mode** with Kubespray, `kube_proxy_strict_arp: true` is basically **mandatory**.
 
 
+
+## Cilium with kube-proxy
+
++ Kube-proxy in **IPVS mode** and Cilium just provide CNI
+  + `kube_proxy_strict_arp: true`is required for **MetalLB Layer 2**
+
+### 
+
+### Cilium without Kube-proxy
+
++ `kubeProxyReplacement: true` in Cilium
++ The `strictARP` setting in `kube-proxy` has no effect because kube-proxy isn't even running 
++ You instead control ARP handling through Cilium's own logic via `externalIPs` / `loadBalancer`handling
+
+
+
+### Cilium with MetalLB Layer 2 mode
+
++ With kube-proxy  `kube_proxy_strict_arp: true` is recommended for kube-proxy **IPVS mode**
++ Wouthut kube-proxy: you must configure MetalLB `avoid-buggy-ips` and ensure Cilium's eBPF service LB doesn't respond to IPs it doesn't own. (Cilium 1.11+ automatically handle ARP correctly)
+
+
+
+###  Kubespray specifics
+
+In `inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml`:
+
+```sh
+kube_proxy_mode: ipvs
+kube_proxy_strict_arp: true
+
+```
+
+
+
+This will:
+
++ Deploy kube-proxy in IPVS mode
+
++ Apply ARP sysctl tweaks
+
++ Work fine with Cilium as CNI
+
+If you plan full kube-proxy replacement with Cilium:
+
+```sh
+kube_proxy_mode: none
+kube_proxy_strict_arp: false  # no effect without kube-proxy
+
+```
+
+
+
+And in Cilium’s Helm values:
+
+
+
+```sh
+kubeProxyReplacement: strict
+loadBalancer:
+  mode: dsr
+
+```
 
