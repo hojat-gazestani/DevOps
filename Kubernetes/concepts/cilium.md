@@ -4,6 +4,32 @@
 
 ## Cilium + MetalLB layer 2 + without kube-proxy
 
+
+
+In `inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml`:
+
+
+
+```sh
+kube_network_plugin: cilium
+
+kube_proxy_mode: none
+kube_proxy_strict_arp: false  # irrelevant with kube-proxy disabled
+
+metallb_enabled: true
+metallb_ip_ranges:
+  - "172.23.2.40-172.23.2.50"
+  
+metallb_layer2_advertise_ip: true
+metallb_layer2_announce_ip: true
+```
+
+
+
+
+
+
+
 in `inventory/arc/group_vars/k8s_cluster/k8s-net-cilium.yml`
 
 ```sh
@@ -20,23 +46,37 @@ cilium_policy_enforcement: default
 
 
 
-In `inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml`:
-
-
+In ` inventory/arc/group_vars/k8s_cluster/addons.yml`
 
 ```sh
-kube_proxy_mode: none
-kube_proxy_strict_arp: false  # irrelevant with kube-proxy disabled
-
 metallb_enabled: true
-metallb_ip_ranges:
-  - "172.23.2.40-172.23.2.50"
-  
-metallb_layer2_advertise_ip: true
-metallb_layer2_announce_ip: true
+metallb_speaker_enabled: "{{ metallb_enabled }}"
+metallb_namespace: "metallb-system"
+metallb_protocol: "layer2"
+metallb_port: "7472"
+metallb_memberlist_port: "7946"
+metallb_config:
+  speaker:
+    nodeselector:
+      kubernetes.io/os: "linux"
+    tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Equal"
+        value: ""
+        effect: "NoSchedule"
+  controller:
+    nodeselector:
+      kubernetes.io/os: "linux"
+    tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Equal"
+        value: ""
+        effect: "NoSchedule"
+  address_pools:
+    primary:
+      ip_range:
+        - 172.23.2.40-172.23.2.50
 ```
-
-
 
 
 
@@ -120,17 +160,26 @@ sysctl net.ipv4.conf.all.arp_announce
 Resullt
 
 ```sh
-net.ipv4.conf.all.arp_ignore = 1
-net.ipv4.conf.all.arp_announce = 2
+# Temporarily set the values (will reset on reboot)
+sudo sysctl -w net.ipv4.conf.all.arp_ignore=0
+sudo sysctl -w net.ipv4.conf.all.arp_announce=0
+
+
+# Make permanent by adding to /etc/sysctl.conf
+echo "net.ipv4.conf.all.arp_ignore = 0" | sudo tee -a /etc/sysctl.conf
+echo "net.ipv4.conf.all.arp_announce = 0" | sudo tee -a /etc/sysctl.conf
+
+# Apply changes
+sudo sysctl -p
 
 ```
 
 
+The default values (0) allow:
 
-Meaning:
+- The system to respond to ARP requests regardless of which interface they arrive on
 
-- Ignore ARP requests for IPs not on this node
-- Only announce ARP from the correct interface
+- The system to announce ARP replies for any local IP address
 
 
 
