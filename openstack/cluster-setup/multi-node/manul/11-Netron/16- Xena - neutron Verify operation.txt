@@ -1,0 +1,13 @@
+Xena - neutron Verify operation
+===============================
+. admin-openrc
+
+openstack extension list --network
+
+Networking Option 1: Provider networks
+--------------------------------------
+openstack network agent list
+
+Networking Option 2: Self-service networks
+------------------------------------------
+openstack network agent list

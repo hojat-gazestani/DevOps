@@ -1,0 +1,12 @@
+Xena - Install and configure cinder on backup service on Block Storage node
+===========================================================================
+sudo apt install cinder-backup -y
+
+sudo vim  /etc/cinder/cinder.conf
+[DEFAULT]
+backup_driver = cinder.backup.drivers.swift.SwiftBackupDriver
+backup_swift_url = SWIFT_URL
+
+openstack catalog show object-store
+
+service cinder-backup restart
