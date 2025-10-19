@@ -1,6 +1,6 @@
-Xena - Install and configure horizonal for Ubuntu
-=================================================
+# Xena - Install and configure horizonal for Ubuntu
 
+```sh
 sudo apt install openstack-dashboard -y
 
 sudo vim /etc/openstack-dashboard/local_settings.py
@@ -46,3 +46,4 @@ sudo vim /etc/apache2/conf-available/openstack-dashboard.conf
 WSGIApplicationGroup %{GLOBAL}
 
 sudo  systemctl reload apache2.service
+```

@@ -1,6 +1,6 @@
-Xena - Glance Installation Tutorial for Ubuntu
-==============================================
+# Xena - Glance Installation Tutorial for Ubuntu
 
+```sh
 sudo mysql
 
 CREATE DATABASE glance;
@@ -26,10 +26,11 @@ openstack endpoint create --region RegionOne \
   image internal http://controller01:9292
 openstack endpoint create --region RegionOne \
   image admin http://controller01:9292
+```
 
-Register quota limits (optional):
----------------------------------
+## Register quota limits (optional):
 
+```sh
 sudo vim /etc/glance/glance-api.conf
 	use_keystone_quotas=True 
 
@@ -86,10 +87,11 @@ openstack role add --user glance --user-domain Default --system all reader
 sudo su -s /bin/sh -c "glance-manage db_sync" glance
 
 sudo service glance-api restart
+```
 
-Verify operation
-----------------
+## Verify operation
 
+```sh
 . admin-openrc
 
 
@@ -101,3 +103,4 @@ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
   --visibility=public
 
 glance image-list
+```

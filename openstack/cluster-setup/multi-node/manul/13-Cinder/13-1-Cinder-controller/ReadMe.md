@@ -1,6 +1,6 @@
-Xena - Install and configure cinder on controller01 node
-======================================================
+# Xena - Install and configure cinder on controller01 node
 
+```sh
 sudo mysql
 
 CREATE DATABASE cinder;
@@ -63,9 +63,10 @@ password = openstack
 lock_path = /var/lib/cinder/tmp
 
 sudo su -s /bin/sh -c "cinder-manage db sync" cinder
+```
 
-Configure Compute to use Block Storage
---------------------------------------
+## Configure Compute to use Block Storage
+```sh
 sudo vim /etc/nova/nova.conf
 [cinder]
 os_region_name = RegionOne
@@ -73,9 +74,11 @@ os_region_name = RegionOne
 sudo service nova-api restart
 sudo service cinder-scheduler restart
 sudo service apache2 restart
+```
 
-Verify Cinder operation
------------------------
+## Verify Cinder operation
+```sh
 . admin-openrc
 
 openstack volume service list
+```

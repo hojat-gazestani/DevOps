@@ -1,6 +1,6 @@
-Xena - Install and configure nova on compute node for Ubuntu
-============================================================
+# Xena - Install and configure nova on compute node for Ubuntu
 
+```sh
 sudo apt install nova-compute -y
 
 sudo vim /etc/nova/nova.conf
@@ -58,3 +58,4 @@ openstack compute service list --service nova-compute
 
 sudo su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
 
+```

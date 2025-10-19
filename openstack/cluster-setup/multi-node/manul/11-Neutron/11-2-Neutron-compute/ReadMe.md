@@ -1,6 +1,6 @@
-Xena - Install and configure neutron compute node
-=================================================
+# Xena - Install and configure neutron compute node
 
+```sh
 sudo apt install neutron-linuxbridge-agent -y
 
 sudo vim /etc/neutron/neutron.conf 
@@ -21,9 +21,10 @@ password = openstack
 
 [oslo_concurrency]
 lock_path = /var/lib/neutron/tmp
+```
 
-Networking Option 1: Provider networks
-======================================
+## Networking Option 1: Provider networks
+```sh
 sudo vim /etc/neutron/plugins/ml2/linuxbridge_agent.ini
 [linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
@@ -37,9 +38,10 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 sudo sysctl net.bridge.bridge-nf-call-iptables
 sudo sysctl  net.bridge.bridge-nf-call-ip6tables
+```
 
-Networking Option 2: Self-service networks
-===========================================
+## Networking Option 2: Self-service networks
+```sh
 sudo vim /etc/neutron/plugins/ml2/linuxbridge_agent.ini
 [linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
@@ -55,3 +57,4 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 sudo sysctl net.bridge.bridge-nf-call-iptables
 sudo sysctl net.bridge.bridge-nf-call-ip6tables
+```

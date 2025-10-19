@@ -1,5 +1,5 @@
-Xena - Install and configure cinder on storage node
-===================================================
+# Xena - Install and configure cinder on storage node
+```sh
 sudo apt install lvm2 thin-provisioning-tools -y
 
 sudo pvcreate /dev/sdb
@@ -44,3 +44,4 @@ lock_path = /var/lib/cinder/tmp
 
 sudo service tgt restart
 sudo service cinder-volume restart
+```

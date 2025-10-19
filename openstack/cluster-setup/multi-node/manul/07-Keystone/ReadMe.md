@@ -1,10 +1,8 @@
 
-Xena - Keystone Installation Tutorial for Ubuntu
-================================================
+# Xena - Keystone Installation Tutorial for Ubuntu
 
-Install and configure
----------------------
-
+## Install and configure
+```sh
 sudo mysql
 
 CREATE DATABASE keystone;
@@ -63,11 +61,10 @@ openstack user create --domain default \
 openstack role create myrole
 
 openstack role add --project myproject --user myuser myrole
+```
 
-
-Verify operation
-----------------
-
+## Verify operation
+```sh
 unset OS_AUTH_URL OS_PASSWORD
 
 openstack --os-auth-url http://controller01:5000/v3 \
@@ -77,11 +74,10 @@ openstack --os-auth-url http://controller01:5000/v3 \
 openstack --os-auth-url http://controller01:5000/v3 \
   --os-project-domain-name Default --os-user-domain-name Default \
   --os-project-name myproject --os-username myuser token issue
+```
 
-
-Create OpenStack client environment scripts
--------------------------------------------
-
+## Create OpenStack client environment scripts
+```sh
 vim  admin-openrc
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
@@ -104,3 +100,4 @@ export OS_IMAGE_API_VERSION=2
 
 . admin-openrc
 openstack token issue
+```

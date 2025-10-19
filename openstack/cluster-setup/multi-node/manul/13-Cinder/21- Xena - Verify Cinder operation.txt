@@ -1,6 +1,0 @@
-Xena - Verify Cinder operation
-==============================
-
-. admin-openrc
-
-openstack volume service list

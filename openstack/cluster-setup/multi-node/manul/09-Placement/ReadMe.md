@@ -1,6 +1,6 @@
-Xena - Install and configure Placement for Ubuntu
-=================================================
+# Xena - Install and configure Placement for Ubuntu
 
+```sh
 sudo mysql
 
 CREATE DATABASE placement;
@@ -48,10 +48,11 @@ password = openstack
 sudo su -s /bin/sh -c "placement-manage db sync" placement
 
 sudo service apache2 restart
+```
 
-Verify Installation
--------------------
+## Verify Installation
 
+```sh
 . admin-openrc
 
 placement-status upgrade check
@@ -62,3 +63,4 @@ pip3 install osc-placement
 openstack --os-placement-api-version 1.2 resource class list --sort-column name
 
 openstack --os-placement-api-version 1.6 trait list --sort-column name
+```

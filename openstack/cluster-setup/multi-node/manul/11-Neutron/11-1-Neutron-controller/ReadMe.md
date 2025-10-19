@@ -1,6 +1,6 @@
-Xena - Install and configure neutron on controller01 node
-=======================================================
+# Xena - Install and configure neutron on controller01 node
 
+```sh
 sudo mysql 
 CREATE DATABASE neutron;
 
@@ -24,9 +24,10 @@ openstack endpoint create --region RegionOne \
   network internal http://controller01:9696
 openstack endpoint create --region RegionOne \
   network admin http://controller01:9696
+```
 
-Networking Option 1: Provider networks
-======================================
+## Networking Option 1: Provider networks
+```sh
 sudo apt install neutron-server neutron-plugin-ml2 \
   neutron-linuxbridge-agent neutron-dhcp-agent \
   neutron-metadata-agent -y
@@ -69,9 +70,11 @@ password = openstack
 
 [oslo_concurrency]
 lock_path = /var/lib/neutron/tmp
+```
 
-Configure the Modular Layer 2 (ML2) plug-in
--------------------------------------------
+### Configure the Modular Layer 2 (ML2) plug-in
+
+```sh
 sudo vim  /etc/neutron/plugins/ml2/ml2_conf.ini
 [ml2]
 type_drivers = flat,vlan
@@ -84,9 +87,10 @@ flat_networks = provider
 
 [securitygroup]
 enable_ipset = true
+```
 
-Configure the Linux bridge agent
---------------------------------
+### Configure the Linux bridge agent
+```sh
 sudo vim /etc/neutron/plugins/ml2/linuxbridge_agent.ini
 [linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
@@ -100,18 +104,20 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 sudo sysctl net.bridge.bridge-nf-call-iptables
 sudo sysctl net.bridge.bridge-nf-call-ip6tables
+```
 
-Configure the DHCP agent
------------------------
+### Configure the DHCP agent
+```sh
 sudo vim /etc/neutron/dhcp_agent.ini
 [DEFAULT]
 interface_driver = linuxbridge
 dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
 enable_isolated_metadata = true
+```
 
-Networking Option 2: Self-service networks
-==========================================
+## Networking Option 2: Self-service networks
 
+```sh
 sudo apt install neutron-server neutron-plugin-ml2 \
   neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
   neutron-metadata-agent -y
@@ -154,10 +160,11 @@ password = openstack
 
 [oslo_concurrency]
 lock_path = /var/lib/neutron/tmp
+```
 
-Configure the Modular Layer 2 (ML2) plug-in
--------------------------------------------
+### Configure the Modular Layer 2 (ML2) plug-in
 
+```sh
 sudo vim  /etc/neutron/plugins/ml2/ml2_conf.ini
 [ml2]
 type_drivers = flat,vlan,vxlan
@@ -173,9 +180,9 @@ vni_ranges = 1:1000
 
 [securitygroup]
 enable_ipset = true
-
-Configure the Linux bridge agent
---------------------------------
+```
+### Configure the Linux bridge agent
+```sh
 sudo vim /etc/neutron/plugins/ml2/linuxbridge_agent.ini
 [linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
@@ -191,33 +198,39 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 sudo sysctl net.bridge.bridge-nf-call-iptables
 sudo sysctl net.bridge.bridge-nf-call-ip6tables
+```
 
-Configure the layer-3 agent
----------------------------
+### Configure the layer-3 agent
 
+```sh
 sudo vim /etc/neutron/l3_agent.ini
 [DEFAULT]
 interface_driver = linuxbridge
+```
 
-Configure the DHCP agent
-------------------------
+### Configure the DHCP agent
+```sh
 sudo vim /etc/neutron/dhcp_agent.ini
 [DEFAULT]
 interface_driver = linuxbridge
 dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
 enable_isolated_metadata = true
-
+```
+```sh
 # End of Self-service networks configuration
+```
 
-Configure the metadata agent
-----------------------------
+### Configure the metadata agent
+```sh
 sudo vim /etc/neutron/metadata_agent.ini
 [DEFAULT]
 nova_metadata_host = controller01
 metadata_proxy_shared_secret = openstack
+```
 
-Configure the Compute service to use the Networking service
------------------------------------------------------------
+
+### Configure the Compute service to use the Networking service
+```sh
 sudo vim /etc/nova/nova.conf
 [neutron]
 auth_url = http://controller01:5000
@@ -230,9 +243,10 @@ username = neutron
 password = openstack
 service_metadata_proxy = true
 metadata_proxy_shared_secret = openstack
+```
 
-Finalize installation
----------------------
+# Finalize installation
+```sh
 sudo su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
   --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 
@@ -243,3 +257,4 @@ sudo service neutron-linuxbridge-agent restart
 sudo service neutron-dhcp-agent restart
 sudo service neutron-metadata-agent restart
 sudo service neutron-l3-agent restart
+```

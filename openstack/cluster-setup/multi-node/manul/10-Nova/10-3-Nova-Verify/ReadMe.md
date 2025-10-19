@@ -1,6 +1,6 @@
-Xena - nova Verify operation
-============================
+# Xena - nova Verify operation
 
+```sh
 . admin-openrc
 
 openstack compute service list
@@ -10,3 +10,4 @@ openstack catalog list
 openstack image list
 
 sudo nova-status upgrade check
+```

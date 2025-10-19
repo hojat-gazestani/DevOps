@@ -1,6 +1,6 @@
-Xena - Install and configure nova on controller01 node for Ubuntu
-==================================================================
+# Xena - Install and configure nova on controller01 node for Ubuntu
 
+```sh
 sudo mysql
 
 CREATE DATABASE nova_api;
@@ -103,3 +103,4 @@ sudo service nova-api restart
 sudo service nova-scheduler restart
 sudo service nova-conductor restart
 sudo service nova-novncproxy restart
+```
