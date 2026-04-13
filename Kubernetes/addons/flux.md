@@ -89,6 +89,7 @@ kubectl create secret docker-registry gitlab-registry-secret-flux-system \
   --docker-server=registry.gitlab.ir:5005 \
   --docker-username="hojat-kube" \
   --docker-password=<your-token> \
+  --docker-password="your-password" \
   --docker-email=hojat-kube@example.com \
   -n flux-system \
   --dry-run=client -o yaml > gitlab-registry-secret-flux-system.yaml
