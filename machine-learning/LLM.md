@@ -21,13 +21,18 @@ Deep learning > Machine Learning > Artificial Intelligence
 
 
 
-**Neural Network:**
 
-​	At the heart of Deep Learning are Artificial Neural Networks. Which are <u>algorithms</u> inspired by the structure and function of the <u>brain</u>.
 
 **A human brain:**
 
 ​	Contains millions of interconnected neurons  that work together to learn and process information.
+![Human](https://github.com/hojat-gazestani/Notes/blob/main/machine-learning/pic/02-human-brain.png)
+
+**Neural Network:**
+
+​	At the heart of Deep Learning are Artificial Neural Networks. Which are <u>algorithms</u> inspired by the structure and function of the <u>brain</u>.
+
+![NN](https://github.com/hojat-gazestani/Notes/blob/main/machine-learning/pic/03-neural-network.png)
 
 **Artificial neural networks:**
 
@@ -139,7 +144,7 @@ Llama 1B -> Billions of Parameters
 
 ## Models benchmark
 
-![Screenshot 1404-10-27 at 11.47.07 PM](/Users/hojat/Pictures/ScreenShot/Screenshot 1404-10-27 at 11.47.07 PM.png)
+![benchmark](https://github.com/hojat-gazestani/Notes/blob/main/machine-learning/pic/04-llama.png)
 
 
 
