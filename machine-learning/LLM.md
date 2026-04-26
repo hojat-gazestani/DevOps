@@ -151,10 +151,13 @@ Llama 1B -> Billions of Parameters
 ## Transformer
 
 What is Transformer Model?
+ It is a device that transfers electric energy from one cyrcle to another cyrcle.
 
 ​	Transformers are a type of neural network architecture that hve revolutionized the field of natural language processing (NLP). Here are some key points about transformer models:
 
-1. Architecture: Transformers use a unique architecture primarily based on <u>self-attention</u> mechanisms, allowing them to <u>weigh</u> the importance of different parts of the <u>input</u> data.![Screenshot 1404-10-27 at 11.53.55 PM](/Users/hojat/Pictures/ScreenShot/Screenshot 1404-10-27 at 11.53.55 PM.png)
+1. Architecture: Transformers use a unique architecture primarily based on <u>self-attention</u> mechanisms, allowing them to <u>weigh</u> the importance of different parts of the <u>input</u> data.
+![Transformer](https://github.com/hojat-gazestani/Notes/blob/main/machine-learning/pic/05-transformers.png)
+
 2. Parallel Proccessing: Unlike previous sequence-based models like RNNs and LSTMs, transformers process entire sequences of data in parallel, significantly speeding up training and inference times.
 3. Attention Mechanism: The core of the transformer is the <u>attention mechanism</u>, which allows the model to focus on different parts of the input sequence when producing output, enhancing it ability to understand context and relationships in the data.
 4. ![Screenshot 1404-10-28 at 12.00.24 AM](/Users/hojat/Pictures/ScreenShot/Screenshot 1404-10-28 at 12.00.24 AM.png)
