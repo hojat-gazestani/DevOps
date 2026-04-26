@@ -160,7 +160,7 @@ What is Transformer Model?
 
 2. Parallel Proccessing: Unlike previous sequence-based models like RNNs and LSTMs, transformers process entire sequences of data in parallel, significantly speeding up training and inference times.
 3. Attention Mechanism: The core of the transformer is the <u>attention mechanism</u>, which allows the model to focus on different parts of the input sequence when producing output, enhancing it ability to understand context and relationships in the data.
-4. ![Screenshot 1404-10-28 at 12.00.24 AM](/Users/hojat/Pictures/ScreenShot/Screenshot 1404-10-28 at 12.00.24 AM.png)
+4. ![Attention](https://github.com/hojat-gazestani/Notes/blob/main/machine-learning/pic/06-attention.png)
 
 Context:
 
