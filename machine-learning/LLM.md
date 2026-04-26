@@ -183,7 +183,8 @@ Context:
 
 ## Embedding
 
-An embedding is a way of <u>converting</u> the <u>features</u> of an object, like a <u>word</u>, into <u>vectore</u> of real numbers.![Screenshot 1404-10-28 at 12.15.46 AM](/Users/hojat/Pictures/ScreenShot/Screenshot 1404-10-28 at 12.15.46 AM.png)
+An embedding is a way of <u>converting</u> the <u>features</u> of an object, like a <u>word</u>, into <u>vectore</u> of real numbers.
+![Embedding](https://github.com/hojat-gazestani/Notes/blob/main/machine-learning/pic/08-embedding.png)
 
 **Transforming Data:** Embeddings turn complex data (like words or pictures) into vector or a list of numbers that a computer can understand and work with.
 
