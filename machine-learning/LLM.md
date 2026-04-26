@@ -1,27 +1,5 @@
-
-
-
-
 Deep learning > Machine Learning > Artificial Intelligence 
 
-<<<<<<< HEAD
-
-
-**Artificial intelligence:**
-
-​	A technique which enables machines to mimic human behavior.
-
-**Machine Learning:**
-
-​	Subset of AI techniques which use statistical methods to enable machines to imporove with experience.
-
-**Deep Learning:**
-
-​	Subset of ML which make the computation of multi-layer neural network feasible.
-
-​	ML techniques that teaches computers to process data in way that is inspired by the human brain.
-||||||| 492be5e
-=======
 ## Artificial intelligence:
 
 **Artificial intelligence:**
@@ -39,7 +17,7 @@ Deep learning > Machine Learning > Artificial Intelligence
 ​	ML techniques that teaches computers to process data in way that is inspired by the human brain.
 
 ![AI](https://github.com/hojat-gazestani/Notes/blob/MachineLearning/machine-learning/pic/01-Artificial-intelligence.png)
->>>>>>> MachineLearning
+
 
 
 
