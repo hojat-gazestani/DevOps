@@ -172,7 +172,9 @@ Context:
 
 4. No Recurrence: Transformers do not require  recurrent layer. This absence of recurrence means they can handle longer sequences of data in moer effectively than RNNs and LSTMs.
 5. Scalability: The parallel nature of transformers makes them highly scalable with increased data and computaional resources, leading to improvements in performance.
-6. Layer Structure: A typcal transformer model consists of an encoder and a decoder, each comprising multiple layers of self-attention and feed-forward neural networks.![Screenshot 1404-10-28 at 12.08.48 AM](/Users/hojat/Pictures/ScreenShot/Screenshot 1404-10-28 at 12.08.48 AM.png)
+6. Layer Structure: A typcal transformer model consists of an encoder and a decoder, each comprising multiple layers of self-attention and feed-forward neural networks.
+![Layer](https://github.com/hojat-gazestani/Notes/blob/main/machine-learning/pic/07-layer.png)
+
 7. Application in NLP: Transformers have become the backbone of many state-of-the-art NLP models, used in tasks like machine translation, text generation, summarization, and question-answering.
 8. BERT and GPT: Notable implementaions of transformer models include BERT (Bidirectional Encoder Representation from Transformers) for understanding context in language, and GPT (Generative Pre-Transformer) for generating human-like text.
 9. Beyound NLP: While initially designed for NLP tasks, the transformer architecture has also been adapted for use in other areas, such as computer vision and audio proccessing.
